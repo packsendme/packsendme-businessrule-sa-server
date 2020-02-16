@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        NAME_CONTAINER = "businessrule-microservice-psm"
-        NAME_IMAGE = "businessrule-image-psm:1"
+        NAME_CONTAINER = "businessrulesa-microservice-psm"
+        NAME_IMAGE = "businessrulesa-image-psm:1"
         ID_CONTAINER = null 
         PORT_CONTAINER = "9100: 9100"
     }
@@ -13,7 +13,7 @@ pipeline {
         stage('Git Checkout Repositorio') {
             steps {
                 git branch: 'develop',
-                url: 'https://github.com/packsendme/packsendme-businessrule-server.git'
+                url: 'https://github.com/packsendme/packsendme-businessrulesa-server.git'
             }
         }
         stage('Java Build') {

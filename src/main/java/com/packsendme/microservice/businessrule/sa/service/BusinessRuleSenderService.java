@@ -1,4 +1,4 @@
-package com.packsendme.microservice.businessrulesa.service;
+package com.packsendme.microservice.businessrule.sa.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,8 +14,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.packsendme.lib.businessrule.model.BusinessRulesModel;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
-import com.packsendme.microservice.businessrulesa.config.Configuration;
-import com.packsendme.microservice.businessrulesa.config.SenderConfig;
+import com.packsendme.microservice.businessrule.sa.config.Configuration;
+import com.packsendme.microservice.businessrule.sa.config.SenderConfig;
  
 @Service
 public class BusinessRuleSenderService {

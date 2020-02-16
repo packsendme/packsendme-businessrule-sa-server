@@ -1,4 +1,4 @@
-package com.packsendme.microservice.businessrulesa.service;
+package com.packsendme.microservice.businessrule.sa.service;
 
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;

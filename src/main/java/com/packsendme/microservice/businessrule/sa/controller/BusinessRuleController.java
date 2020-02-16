@@ -1,4 +1,4 @@
-package com.packsendme.microservice.businessrulesa.controller;
+package com.packsendme.microservice.businessrule.sa.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.packsendme.lib.businessrule.model.BusinessRulesModel;
-import com.packsendme.microservice.businessrulesa.service.BusinessRuleSenderService;
+import com.packsendme.microservice.businessrule.sa.service.BusinessRuleSenderService;
 
 
 @RestController
