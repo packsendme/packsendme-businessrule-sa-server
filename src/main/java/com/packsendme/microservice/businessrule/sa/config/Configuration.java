@@ -1,4 +1,4 @@
-package com.packsendme.microservice.businessrulesa.config;
+package com.packsendme.microservice.businessrule.sa.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

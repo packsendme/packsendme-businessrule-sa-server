@@ -1,4 +1,4 @@
-package com.packsendme.microservice.businessrulesa.config;
+package com.packsendme.microservice.businessrule.sa.config;
 
 import java.util.HashMap;
 import java.util.Map;
