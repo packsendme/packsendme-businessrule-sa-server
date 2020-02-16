@@ -1,4 +1,4 @@
-package com.packsendme.microservice.businessrule;
+package com.packsendme.microservice.businessrulesa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
