@@ -10,9 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
-import org.springframework.stereotype.Component;
 
-@Component
+@org.springframework.context.annotation.Configuration
 public class SenderConfig {
 
 	@Value("${spring.kafka.producer.bootstrap-servers}")
