@@ -33,9 +33,11 @@ public class BusinessRuleSenderService {
 
 		try {
 			String ruleJson = mapper.writeValueAsString(businessrule);
+			
+			System.out.println("+++++++++++++++++++  PORT +++++++++++++++++++++ :: "+ configuration.topic_simulation_southamerica);
 	        
-		       Message<BusinessRulesModel> message = MessageBuilder
-		                .withPayload(businessrule)
+		       Message<String> message = MessageBuilder
+		                .withPayload(ruleJson)
 		                .setHeader(KafkaHeaders.TOPIC, configuration.topic_simulation_southamerica)
 		                .setHeader(KafkaHeaders.MESSAGE_KEY, "999")
 		                .setHeader(KafkaHeaders.PARTITION_ID, 0)
