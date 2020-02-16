@@ -15,7 +15,6 @@ import com.packsendme.lib.businessrule.model.BusinessRulesModel;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.microservice.businessrule.sa.config.Configuration;
-import com.packsendme.microservice.businessrule.sa.config.SenderConfig;
  
 @Service
 public class BusinessRuleSenderService {
