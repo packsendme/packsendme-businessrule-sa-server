@@ -5,7 +5,7 @@ pipeline {
         NAME_CONTAINER = "businessrulesa-microservice-psm"
         NAME_IMAGE = "businessrulesa-image-psm:1"
         ID_CONTAINER = null 
-        PORT_CONTAINER = "9100: 9100"
+        PORT_CONTAINER = "9100:9100"
     }
 
     stages {
