@@ -38,17 +38,19 @@ public class BusinessRuleSenderService {
 			System.out.println(" ");
 			System.out.println("+++++++++++++++++++  JSON +++++++++++++++++++++ :: "+ ruleJson);
 			System.out.println(" ");
+			
+			
 			String msg = "Ricardo CHegou"; 
-			/*
+			
 		       Message<String> message = MessageBuilder
 		                .withPayload(msg)
-		                .setHeader(KafkaHeaders.TOPIC, configuration.topicBusinessRuleSouthAmericaDev)
+		                .setHeader(KafkaHeaders.TOPIC, "topicBusinessRuleSouthAmericaDev5")
 		                .setHeader(KafkaHeaders.MESSAGE_KEY, "999")
 		                .setHeader(KafkaHeaders.PARTITION_ID, 0)
 		                .setHeader("X-Custom-Header", "Sending Custom Header with Spring Kafka")
-		                .build(); */
+		                .build();
 
-		    this.kafkaTemplate.send("topicBusinessRuleSouthAmericaDev5", msg);
+		    this.kafkaTemplate.send(message);
 	        responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), ruleJson);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 			
