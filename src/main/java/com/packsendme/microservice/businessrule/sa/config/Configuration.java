@@ -11,6 +11,6 @@ public class Configuration {
 	
 	@Setter
 	@Getter
-	public String topic_simulation_southamerica;
+	public String topicBusinessRuleSouthAmericaDev;
 
 }

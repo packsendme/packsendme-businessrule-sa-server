@@ -33,11 +33,16 @@ public class BusinessRuleSenderService {
 		try {
 			String ruleJson = mapper.writeValueAsString(businessrule);
 			
-			System.out.println("+++++++++++++++++++  PORT +++++++++++++++++++++ :: "+ configuration.topic_simulation_southamerica);
-	        
+			System.out.println(" ");
+			System.out.println("+++++++++++++++++++  TOPIC +++++++++++++++++++++ :: "+ configuration.topicBusinessRuleSouthAmericaDev);
+			System.out.println(" ");
+			System.out.println("+++++++++++++++++++  JSON +++++++++++++++++++++ :: "+ ruleJson);
+			System.out.println(" ");
+			String msg = "Ricardo CHegou"; 
+			
 		       Message<String> message = MessageBuilder
-		                .withPayload(ruleJson)
-		                .setHeader(KafkaHeaders.TOPIC, configuration.topic_simulation_southamerica)
+		                .withPayload(msg)
+		                .setHeader(KafkaHeaders.TOPIC, configuration.topicBusinessRuleSouthAmericaDev)
 		                .setHeader(KafkaHeaders.MESSAGE_KEY, "999")
 		                .setHeader(KafkaHeaders.PARTITION_ID, 0)
 		                .setHeader("X-Custom-Header", "Sending Custom Header with Spring Kafka")

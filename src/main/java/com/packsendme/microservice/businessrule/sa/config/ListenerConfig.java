@@ -22,7 +22,7 @@ public class ListenerConfig {
 
     @Value("${spring.kafka.consumer.bootstrap-servers}")
     private String bootstrapServers;
-
+/*
     @Bean
     public Map<String, Object> consumerConfigs() {
         Map<String, Object> props = new HashMap<>();
@@ -50,5 +50,6 @@ public class ListenerConfig {
     public DefaultKafkaHeaderMapper headerMapper(){
         return new DefaultKafkaHeaderMapper();
     }
+    */
 
 }
