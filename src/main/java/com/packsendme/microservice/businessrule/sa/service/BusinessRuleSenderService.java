@@ -48,7 +48,7 @@ public class BusinessRuleSenderService {
 		                .setHeader("X-Custom-Header", "Sending Custom Header with Spring Kafka")
 		                .build(); */
 
-		    this.kafkaTemplate.send("topicBusinessRuleSouthAmericaDevxx", msg);
+		    this.kafkaTemplate.send("topicBusinessRuleSouthAmericaDev5", msg);
 	        responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), ruleJson);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 			
