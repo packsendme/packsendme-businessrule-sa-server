@@ -14,7 +14,7 @@ import org.springframework.kafka.core.ProducerFactory;
 @org.springframework.context.annotation.Configuration
 public class SenderConfig {
 
-	/*
+	
 	@Value("${spring.kafka.producer.bootstrap-servers}")
     private String bootstrapServers;
 
@@ -40,5 +40,5 @@ public class SenderConfig {
         return new KafkaTemplate<>(producerFactory());
     }
 
-*/
+
 }
