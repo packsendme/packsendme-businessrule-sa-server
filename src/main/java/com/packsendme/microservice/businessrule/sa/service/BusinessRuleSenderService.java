@@ -44,7 +44,7 @@ public class BusinessRuleSenderService {
 			
 		       Message<String> message = MessageBuilder
 		                .withPayload(msg)
-		                .setHeader(KafkaHeaders.TOPIC, "topicBusinessRuleSouthAmericaDev5")
+		                .setHeader(KafkaHeaders.TOPIC, configuration.topicBusinessRuleSouthAmericaDev)
 		                .setHeader(KafkaHeaders.MESSAGE_KEY, "999")
 		                .setHeader(KafkaHeaders.PARTITION_ID, 0)
 		                .setHeader("X-Custom-Header", "Sending Custom Header with Spring Kafka")
