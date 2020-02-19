@@ -45,15 +45,13 @@ public class BusinessRuleSenderService {
 			
 		       Message<String> message = MessageBuilder
 		                .withPayload(msg)
-		                .setHeader(KafkaHeaders.TOPIC, configuration.topicBusinessRuleSouthAmericaDev)
+		                .setHeader(KafkaHeaders.TOPIC, "topicBusinessRuleSouthAmericaDev")
 		                .setHeader(KafkaHeaders.MESSAGE_KEY, "999")
-		                .setHeader(KafkaHeaders.PARTITION_ID, 0)
-		                .setHeader("X-Custom-Header", "Sending Custom Header with Spring Kafka")
+		                .setHeader(KafkaHeaders.PARTITION_ID, 1)
 		                .build();
-			 
-			
-		    kafkaTemplate.send(message);
-	        responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), ruleJson);
+			this.kafkaTemplate.send(message);
+	        
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), ruleJson);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 			
 		} catch (JsonProcessingException e) {
