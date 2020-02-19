@@ -42,7 +42,7 @@ public class BusinessRuleSenderService {
 			
 			String msg = "Ricardo CHegou"; 
 			
-			/*
+			
 		       Message<String> message = MessageBuilder
 		                .withPayload(msg)
 		                .setHeader(KafkaHeaders.TOPIC, configuration.topicBusinessRuleSouthAmericaDev)
@@ -50,9 +50,9 @@ public class BusinessRuleSenderService {
 		                .setHeader(KafkaHeaders.PARTITION_ID, 0)
 		                .setHeader("X-Custom-Header", "Sending Custom Header with Spring Kafka")
 		                .build();
-			 */
+			 
 			
-		    kafkaTemplate.send(configuration.topicBusinessRuleSouthAmericaDev,msg);
+		    kafkaTemplate.send(message);
 	        responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), ruleJson);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 			
