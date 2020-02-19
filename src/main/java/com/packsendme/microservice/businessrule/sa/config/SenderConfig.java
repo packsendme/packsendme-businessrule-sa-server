@@ -19,8 +19,7 @@ public class SenderConfig {
     private String bootstrapServers;
 
     @Bean
-    public Map<String, Object> producerConfigs() {
-    	
+    public ProducerFactory<String, String> producerFactory() {    	
 		System.out.println("+++++++++++++++++++  bootstrapServers +++++++++++++++++++++ :: "+ bootstrapServers);
 
         Map<String, Object> props = new HashMap<>();
@@ -28,12 +27,7 @@ public class SenderConfig {
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG,300000);
-        return props;
-    }
-
-    @Bean
-    public ProducerFactory<String, String> producerFactory() {
-        return new DefaultKafkaProducerFactory<>(producerConfigs());
+        return new DefaultKafkaProducerFactory<>(props);
     }
 
     @Bean
