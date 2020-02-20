@@ -33,7 +33,7 @@ public class SenderConfig {
         props.put(ProducerConfig.CLIENT_ID_CONFIG,InetAddress.getLocalHost().getHostName());
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
-        props.put(ProducerConfig.LINGER_MS_CONFIG,1);
+        props.put(ProducerConfig.LINGER_MS_CONFIG,100);
         props.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
         return new DefaultKafkaProducerFactory<>(props);
         
