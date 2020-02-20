@@ -29,9 +29,12 @@ public class SenderConfig {
         Map<String, Object> props = new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"167.172.152.184:29092");
         props.put(ProducerConfig.ACKS_CONFIG,"all");
+        props.put(ProducerConfig.RETRIES_CONFIG, 0);
         props.put(ProducerConfig.CLIENT_ID_CONFIG,InetAddress.getLocalHost().getHostName());
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
+        props.put(ProducerConfig.LINGER_MS_CONFIG,1);
+        props.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
         return new DefaultKafkaProducerFactory<>(props);
         
         /*props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"167.172.152.184:9092");
