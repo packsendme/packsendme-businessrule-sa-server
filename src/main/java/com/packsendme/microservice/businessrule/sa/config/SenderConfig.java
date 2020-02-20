@@ -29,11 +29,11 @@ public class SenderConfig {
         props.put(ProducerConfig.ACKS_CONFIG,"all");
         props.put(ProducerConfig.RETRIES_CONFIG,0);
         props.put(ProducerConfig.BATCH_SIZE_CONFIG,100);
-        props.put(ProducerConfig.LINGER_MS_CONFIG,10);
+        props.put(ProducerConfig.LINGER_MS_CONFIG,1);
         props.put(ProducerConfig.BUFFER_MEMORY_CONFIG,33554432);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
-        props.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG,600000);
+        props.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG,300000);
         return new DefaultKafkaProducerFactory<>(props);
     }
 
