@@ -27,7 +27,7 @@ public class SenderConfig {
 		System.out.println("+++++++++++++++++++  bootstrapServers +++++++++++++++++++++ :: "+ bootstrapServers);
 
         Map<String, Object> props = new HashMap<>();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"167.172.152.184:29092");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"167.172.152.184:9092");
         props.put(ProducerConfig.ACKS_CONFIG,"all");
         props.put(ProducerConfig.CLIENT_ID_CONFIG,InetAddress.getLocalHost().getHostName());
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
