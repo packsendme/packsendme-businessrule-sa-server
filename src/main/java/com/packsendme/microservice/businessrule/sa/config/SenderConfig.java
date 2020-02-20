@@ -36,7 +36,7 @@ public class SenderConfig {
         props.put(ProducerConfig.BATCH_SIZE_CONFIG, 100000);
         props.put(ProducerConfig.BUFFER_MEMORY_CONFIG,33554432);
         props.put(ProducerConfig.MAX_BLOCK_MS_CONFIG,5000);
-        props.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG,30000);
+        props.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG,90000);
         return new DefaultKafkaProducerFactory<>(props);
         
         /*props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"167.172.152.184:9092");
