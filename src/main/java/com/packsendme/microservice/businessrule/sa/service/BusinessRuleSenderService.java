@@ -5,9 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,6 +34,21 @@ public class BusinessRuleSenderService {
 		Response<String> responseObj = null;
 
 		try {
+			
+			 ListenableFuture<SendResult<String, String>> result = kafkaTemplate.send("topicBusinessRuleSouthAmericaDev", "ALICIA DE BENEVIDES MARZOCHI");
+		        result.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
+		            @Override
+		            public void onSuccess(SendResult<String, String> result) {
+		            	System.out.println("@ SUCCESSS @");
+		            }
+
+		            @Override
+		            public void onFailure(Throwable ex) {
+		            	System.out.println("@ ERRO @ "+ ex.getMessage());
+		            }
+		        });
+			
+			/*
 			String ruleJson = mapper.writeValueAsString(businessrule);
 			
 			System.out.println(" ");
@@ -49,12 +67,12 @@ public class BusinessRuleSenderService {
 		                .setHeader(KafkaHeaders.MESSAGE_KEY, "999")
 		                .setHeader(KafkaHeaders.PARTITION_ID, 1)
 		                .build();
-			this.kafkaTemplate.send(message);
+			this.kafkaTemplate.send(message); */
 	        
-			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), ruleJson);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), "ruleJson");
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 			
-		} catch (JsonProcessingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
