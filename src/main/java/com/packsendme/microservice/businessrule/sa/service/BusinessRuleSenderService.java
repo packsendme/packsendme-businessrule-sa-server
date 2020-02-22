@@ -35,7 +35,7 @@ public class BusinessRuleSenderService {
 
 		try {
 			
-			 ListenableFuture<SendResult<String, String>> result = kafkaTemplate.send("topicBusinessRuleSouthAmericaDevAA", "ALICIA DE BENEVIDES MARZOCHI");
+			 ListenableFuture<SendResult<String, String>> result = kafkaTemplate.send("topicBusinessRuleSouthAmericaDev", "ALICIA");
 		        result.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
 		            @Override
 		            public void onSuccess(SendResult<String, String> result) {
