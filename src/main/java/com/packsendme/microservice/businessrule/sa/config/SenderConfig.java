@@ -1,6 +1,5 @@
 package com.packsendme.microservice.businessrule.sa.config;
 
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +25,15 @@ public class SenderConfig {
     public ProducerFactory<String, String> producerFactory() throws UnknownHostException {    	
 		System.out.println("+++++++++++++++++++  bootstrapServers +++++++++++++++++++++ :: "+ bootstrapServers);
 
+		Map<String, Object> configProps = new HashMap<>();
+		configProps.put(
+		ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServers);
+		configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
+		configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
+		return new DefaultKafkaProducerFactory<>(configProps);
+		
+		
+		/*
         Map<String, Object> props = new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"167.172.152.184:29092");
         props.put(ProducerConfig.ACKS_CONFIG,"0");
@@ -38,7 +46,8 @@ public class SenderConfig {
         props.put(ProducerConfig.MAX_BLOCK_MS_CONFIG,2000);
         props.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG,900000);
         return new DefaultKafkaProducerFactory<>(props);
-        
+        */
+		
         /*props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"167.172.152.184:9092");
         props.put(ProducerConfig.ACKS_CONFIG,"all");
         props.put(ProducerConfig.RETRIES_CONFIG,0);
