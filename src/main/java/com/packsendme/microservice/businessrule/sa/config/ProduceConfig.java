@@ -34,7 +34,7 @@ public class ProduceConfig {
 		configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,JsonSerializer.class);
 		configProps.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
 		configProps.put(ProducerConfig.RETRY_BACKOFF_MS_CONFIG,60000);
-	//	configProps.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG,50000);
+		configProps.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG,50000);
 	//	configProps.put(ProducerConfig.BATCH_SIZE_CONFIG, 10);
 
 		return new DefaultKafkaProducerFactory<>(configProps);
