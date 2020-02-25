@@ -78,6 +78,7 @@ public class ProduceSenderBusinessRuleService {
 		ListenableFuture<SendResult<String, String>> future = 
 		kafkaTemplate.send("topicBusinessRuleSouthAmericaDev", "ALICIA");
 		
+		/*
 		future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
 
             @Override
@@ -88,7 +89,7 @@ public class ProduceSenderBusinessRuleService {
             public void onFailure(Throwable ex) {
             	System.out.println("Unable to send message=["+ message + "] due to : " + ex.getMessage());
             }
-        });
+        }); */
 	}
 
 }
