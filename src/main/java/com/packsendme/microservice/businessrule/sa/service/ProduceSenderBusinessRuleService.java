@@ -1,7 +1,11 @@
 package com.packsendme.microservice.businessrule.sa.service;
 
+import java.util.Properties;
+
 import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -73,6 +77,13 @@ public class ProduceSenderBusinessRuleService {
 	} */
 	
 	public void sendMessage(String message) {
+		 Properties properties= new Properties();
+		 
+		 properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"167.172.152.184:29092");
+		 properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+	     properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+	     producer = new KafkaProducer<String, String>(properties);
+	        
 		ProducerRecord<String,String> record = new ProducerRecord<String, String>("topicBusinessRuleSouthAmericaDev","Alicia");
 		producer.send(record);
 	    producer.flush();
