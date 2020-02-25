@@ -7,6 +7,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.packsendme.microservice.businessrule.sa.config.Configuration;
@@ -15,11 +16,15 @@ import com.packsendme.microservice.businessrule.sa.config.Configuration;
 public class ProduceSenderBusinessRuleService {
 	
 	
-	@Autowired
     private KafkaProducer<String,String> producer;
 	
 	@Autowired
 	private Configuration configuration;
+	
+	
+	@Value("${spring.kafka.producer.bootstrap-servers}")
+    private String bootstrapServers;
+
 	
 	
 	
@@ -77,11 +82,12 @@ public class ProduceSenderBusinessRuleService {
 	} */
 	
 	public void sendMessage(String message) {
+		
 		 Properties properties= new Properties();
-		 
-		 properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"167.172.152.184:29092");
+		 properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
 		 properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 	     properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+	     properties.setProperty(ProducerConfig.ACKS_CONFIG, "all");
 	     producer = new KafkaProducer<String, String>(properties);
 	        
 		ProducerRecord<String,String> record = new ProducerRecord<String, String>("topicBusinessRuleSouthAmericaDev","Alicia");
