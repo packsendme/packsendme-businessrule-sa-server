@@ -12,7 +12,7 @@ pipeline {
         
         stage('Git Checkout Repositorio') {
             steps {
-                git branch: 'release/0.2.0',
+                git branch: 'develop',
                 url: 'https://github.com/packsendme/packsendme-businessrulesa-server.git'
             }
         }

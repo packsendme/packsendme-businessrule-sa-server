@@ -21,12 +21,9 @@ public class ProduceConfig {
     private String bootstrapServers;
 
     @Bean
-    public ProducerFactory<String, String> producerFactory() throws UnknownHostException {    	
-		System.out.println("+++++++++++++++++++  bootstrapServers +++++++++++++++++++++ :: "+ bootstrapServers);
-
+    public ProducerFactory<String, String> producerFactory() throws UnknownHostException {
 		Map<String, Object> configProps = new HashMap<>();
-		configProps.put(
-		ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServers);
+		configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServers);
 		//configProps.put(ProducerConfig.LINGER_MS_CONFIG,160000);
 		configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
 		configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
@@ -35,39 +32,13 @@ public class ProduceConfig {
 		configProps.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG,30000);
 		configProps.put(ProducerConfig.BATCH_SIZE_CONFIG, 1000);
 		return new DefaultKafkaProducerFactory<>(configProps);
-		
-		
-		/*
-        Map<String, Object> props = new HashMap<>();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"167.172.152.184:29092");
-        props.put(ProducerConfig.ACKS_CONFIG,"0");
-        props.put(ProducerConfig.RETRIES_CONFIG, 0);
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
-        props.put(ProducerConfig.LINGER_MS_CONFIG,10);
-        props.put(ProducerConfig.BATCH_SIZE_CONFIG, 500000);
-        props.put(ProducerConfig.BUFFER_MEMORY_CONFIG,33554432);
-        props.put(ProducerConfig.MAX_BLOCK_MS_CONFIG,2000);
-        props.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG,900000);
-        return new DefaultKafkaProducerFactory<>(props);
-        */
-		
-        /*props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"167.172.152.184:9092");
-        props.put(ProducerConfig.ACKS_CONFIG,"all");
-        props.put(ProducerConfig.RETRIES_CONFIG,0);
-        props.put(ProducerConfig.BATCH_SIZE_CONFIG,100);
-        props.put(ProducerConfig.LINGER_MS_CONFIG,1);
-        props.put(ProducerConfig.BUFFER_MEMORY_CONFIG,33554432);
-         props.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG,300000); */
-        
-    }
+	}
 
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate() {
         try {
 			return new KafkaTemplate<>(producerFactory());
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
