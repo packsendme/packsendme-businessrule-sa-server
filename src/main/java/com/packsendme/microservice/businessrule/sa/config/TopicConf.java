@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @org.springframework.context.annotation.Configuration
 @ConfigurationProperties(prefix="packsendme-businessrulesa-server")
-public class Configuration {
+public class TopicConf {
 	
 	@Setter
 	@Getter

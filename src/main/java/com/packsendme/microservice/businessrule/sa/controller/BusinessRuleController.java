@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.packsendme.lib.businessrule.model.BusinessRulesModel;
-import com.packsendme.microservice.businessrule.sa.service.ProduceSenderBusinessRuleService;
+import com.packsendme.microservice.businessrule.sa.service.ProduceSenderBRService;
 
 
 @RestController
@@ -17,7 +17,7 @@ public class BusinessRuleController {
 
 	
 	@Autowired
-	private ProduceSenderBusinessRuleService businessRuleSA; 
+	private ProduceSenderBRService businessRuleSA; 
 
 	
 	@PostMapping("/businessrule/sa")
