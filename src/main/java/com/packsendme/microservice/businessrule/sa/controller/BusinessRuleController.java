@@ -28,7 +28,7 @@ public class BusinessRuleController {
 			return businessRuleSA.sendMessage(brObject);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
-		};
-		return new ResponseEntity<>(brObject, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(brObject, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 }
