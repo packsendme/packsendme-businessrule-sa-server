@@ -11,6 +11,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.packsendme.lib.businessrule.model.BusinessRulesModel;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.microservice.businessrule.sa.config.TopicConf;
@@ -27,10 +28,10 @@ public class ProduceSenderBRService {
 	
 	
 	
-	public ResponseEntity<?>  sendMessage(String msgRule) throws JsonProcessingException {
+	public ResponseEntity<?> sendMessage(BusinessRulesModel brObject) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		Response<String> responseObj = null;
-		String msgJson = mapper.writeValueAsString(msgRule);
+		String msgJson = mapper.writeValueAsString(brObject);
 		
 		System.out.println(" TOPIC INSTANCE "+ topic.topicBusinessRuleSouthAmericaDev);
 		try {
