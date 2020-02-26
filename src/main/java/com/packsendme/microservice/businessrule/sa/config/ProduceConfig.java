@@ -26,7 +26,7 @@ public class ProduceConfig {
 
 		Map<String, Object> configProps = new HashMap<>();
 		configProps.put(
-		ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"167.172.152.184:29092");
+		ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServers);
 		//configProps.put(ProducerConfig.LINGER_MS_CONFIG,160000);
 		configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,StringSerializer.class);
 		configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class);

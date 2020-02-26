@@ -76,7 +76,7 @@ public class ProduceSenderBusinessRuleService {
 	
 	public void sendMessage(String message) {
 		ListenableFuture<SendResult<String, String>> future = 
-		kafkaTemplate.send("topicBusinessRuleSouthAmericaDev", "ALICIA");
+		kafkaTemplate.send("topicBusinessRuleSouthAmericaDev", "MARZOCHI");
 		
 		/*
 		future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
