@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.packsendme.lib.businessrule.model.BusinessRulesModel;
 import com.packsendme.microservice.businessrule.sa.service.ProduceSenderBRService;
 
@@ -22,8 +23,12 @@ public class BusinessRuleController {
 	
 	@PostMapping("/businessrule/sa")
 	public ResponseEntity<?> postBusinessRuleSouthAmerica(
-			@Validated @RequestBody BusinessRulesModel businessruleSA) {		
-		 businessRuleSA.sendMessage("Ricardo");
-		return new ResponseEntity<>("SUCCESS", HttpStatus.FOUND);
+			@Validated @RequestBody BusinessRulesModel brObject) {		
+		try {
+			return businessRuleSA.sendMessage(brObject);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		};
+		return new ResponseEntity<>(brObject, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
