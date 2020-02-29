@@ -11,6 +11,18 @@ public class TopicConf {
 	
 	@Setter
 	@Getter
-	public String topicBusinessRuleSouthAmericaDev;
+	public String topic_businessrule_sa;
+	
+	@Setter
+	@Getter
+	public String topic_roadway_sa;
+	
+	@Setter
+	@Getter
+	public String topic_airway_sa;
+
+	@Setter
+	@Getter
+	public String topic_maritimeway_sa;
 
 }
