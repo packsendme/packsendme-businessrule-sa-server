@@ -1,9 +1,7 @@
 package com.packsendme.microservice.businessrule.sa.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
@@ -15,8 +13,7 @@ public class BusinessRuleConsumer_Service {
 
 	private String businessruleJson;
 	
-	@Autowired
-	private MultiMethodsConsumer_Component multiConsumer; 
+	private MultiMethodsConsumer_Component multiConsumer = new MultiMethodsConsumer_Component(); 
 	
 	/*
 	//@KafkaListener(topics = "${topicConfig:topic_businessrule_sa}")
