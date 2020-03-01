@@ -12,7 +12,7 @@ import com.packsendme.lib.common.response.Response;
 public class AirwayBREConsumer_Service {
 
 	private String airwayJson;
-	
+	/*
 	@KafkaListener(topics = "${topic_Config:topic_airway_bre_sa}")
     public void receive(String data) {
 		this.airwayJson = data;
@@ -30,6 +30,6 @@ public class AirwayBREConsumer_Service {
 			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	}
+	}*/
 	
 }

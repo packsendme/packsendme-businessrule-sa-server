@@ -12,7 +12,7 @@ import com.packsendme.lib.common.response.Response;
 public class MaritimewayBREConsumer_Service {
 
 	private String maritimewayJson;
-	
+	/*
 	@KafkaListener(topics = "${topic_Config:topic_maritimeway_bre_sa}")
     public void receive(String data) {
 		this.maritimewayJson = data;
@@ -31,5 +31,5 @@ public class MaritimewayBREConsumer_Service {
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+	*/
 }
