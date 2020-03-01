@@ -14,7 +14,7 @@ public class BusinessRuleConsumer_Service {
 	private String businessruleJson;
 	
 	//@KafkaListener(topics = "${topicConfig:topic_businessrule_sa}")
-	@KafkaListener(topics = "${topicConfig.topic_businessrule_sa}")
+	@KafkaListener(topics = "${packsendme-businessrule-sa-server.topic_businessrule_sa}")
     public void receive(String data) {
 		this.businessruleJson = data;
 		System.out.println(" ---------------------------- ");
