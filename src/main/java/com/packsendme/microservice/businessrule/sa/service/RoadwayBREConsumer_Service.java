@@ -13,7 +13,7 @@ public class RoadwayBREConsumer_Service {
 
 	private String roadwayJson;
 	
-	@KafkaListener(topics = "${topicConf:topic_roadway_bre_sa}")
+	@KafkaListener(topics = "${topic_Config:topic_roadway_bre_sa}")
     public void receive(String data) {
 		this.roadwayJson = data;
 		System.out.println(" ---------------------------- ");
