@@ -13,7 +13,8 @@ public class BusinessRuleConsumer_Service {
 
 	private String businessruleJson;
 	
-	@KafkaListener(topics = "${topicConfig:topic_businessrule_sa}")
+	//@KafkaListener(topics = "${topicConfig:topic_businessrule_sa}")
+	@KafkaListener(id = "BusinessRule", topics = "#{'${topicConfig:topic_businessrule_sa,BusinessRule}'.split(',')}")
     public void receive(String data) {
 		this.businessruleJson = data;
 		System.out.println(" ---------------------------- ");
