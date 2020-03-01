@@ -17,7 +17,7 @@ import com.packsendme.lib.bre.maritimeway.model.MaritimewayBRE_Model;
 import com.packsendme.lib.bre.roadway.model.RoadwayBRE_Model;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
-import com.packsendme.microservice.businessrule.sa.config.Topic_Config;
+import com.packsendme.microservice.businessrule.sa.config.TopicConfig;
  
 @Service
 public class GenericBREProduce_Service {
@@ -27,7 +27,7 @@ public class GenericBREProduce_Service {
     private KafkaTemplate<String, String> kafkaTemplate;
 	
 	@Autowired
-	private Topic_Config topic;
+	private TopicConfig topic;
 	
 	
 	
