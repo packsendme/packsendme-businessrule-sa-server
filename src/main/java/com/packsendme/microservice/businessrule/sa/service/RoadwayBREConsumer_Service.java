@@ -12,8 +12,8 @@ import com.packsendme.lib.common.response.Response;
 public class RoadwayBREConsumer_Service {
 
 	private String roadwayJson;
-	/*
-	@KafkaListener(topics = "${topic_Config:topic_roadway_bre_sa}")
+	
+	@KafkaListener(topics = "${topicConfig:topic_roadway_bre_sa}")
     public void receive(String data) {
 		this.roadwayJson = data;
 		System.out.println(" ---------------------------- ");
@@ -31,5 +31,5 @@ public class RoadwayBREConsumer_Service {
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	*/
+	
 }

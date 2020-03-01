@@ -76,7 +76,7 @@ public class BusinessRuleSA_Controller {
 			return new ResponseEntity<>(breObject, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	/*
+	
 	@GetMapping("/businessrule/sa/roadway")
 	public ResponseEntity<?> getRoadwayBRE_SA() {		
 		try {
@@ -87,7 +87,7 @@ public class BusinessRuleSA_Controller {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-*/
+
 	// METHOD POST/GET :: AIRWAY BRE
 
 	@PostMapping("/businessrule/sa/airway")
