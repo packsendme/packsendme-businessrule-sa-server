@@ -100,25 +100,25 @@
 		
 		<dependency>
 			<groupId>com.packsendme.lib.bre.businessrule</groupId>
-  			<artifactId>packsendme-businessrulebre-lib</artifactId>
+  			<artifactId>packsendme-businessrule-bre-lib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>com.packsendme.lib.bre.roadway</groupId>
-  			<artifactId>packsendme-roadwaybre-lib</artifactId>
+  			<artifactId>packsendme-roadway-bre-lib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>com.packsendme.lib.bre.airway</groupId>
-  			<artifactId>packsendme-airwaybre-lib</artifactId>
+  			<artifactId>packsendme-airway-bre-lib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.packsendme.lib.bre.maritimeway</groupId>
-  			<artifactId>packsendme-maritimewaybre-lib</artifactId>
+  			<artifactId>packsendme-maritimeway-bre-lib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>		
 		

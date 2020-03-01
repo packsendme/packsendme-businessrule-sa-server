@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @org.springframework.context.annotation.Configuration
 @ConfigurationProperties(prefix="packsendme-businessrulesa-server")
-public class TopicConf {
+public class Topic_Config {
 	
 	@Setter
 	@Getter
@@ -15,14 +15,14 @@ public class TopicConf {
 	
 	@Setter
 	@Getter
-	public String topic_roadway_sa;
+	public String topic_roadway_bre_sa;
 	
 	@Setter
 	@Getter
-	public String topic_airway_sa;
+	public String topic_airway_bre_sa;
 
 	@Setter
 	@Getter
-	public String topic_maritimeway_sa;
+	public String topic_maritimeway_bre_sa;
 
 }

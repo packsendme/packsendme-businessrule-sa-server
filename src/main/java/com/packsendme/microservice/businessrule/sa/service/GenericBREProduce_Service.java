@@ -11,25 +11,27 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.packsendme.lib.bre.airway.model.AirwayBRE_Model;
+import com.packsendme.lib.bre.businessrule.model.BusinessRules_Model;
+import com.packsendme.lib.bre.maritimeway.model.MaritimewayBRE_Model;
 import com.packsendme.lib.bre.roadway.model.RoadwayBRE_Model;
-import com.packsendme.lib.businessrule.model.BusinessRulesModel;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
-import com.packsendme.microservice.businessrule.sa.config.TopicConf;
+import com.packsendme.microservice.businessrule.sa.config.Topic_Config;
  
 @Service
-public class ProduceSenderService {
+public class GenericBREProduce_Service {
 	
 	
 	@Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 	
 	@Autowired
-	private TopicConf topic;
+	private Topic_Config topic;
 	
 	
 	
-	public ResponseEntity<?> sendBusinessRule(BusinessRulesModel brObject) throws JsonProcessingException {
+	public ResponseEntity<?> sendBusinessRule(BusinessRules_Model brObject) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		Response<String> responseObj = null;
 		String msgJson = mapper.writeValueAsString(brObject);
@@ -62,9 +64,9 @@ public class ProduceSenderService {
 		Response<String> responseObj = null;
 		String msgJson = mapper.writeValueAsString(roadwayObj);
 		
-		System.out.println(" TOPIC INSTANCE "+ topic.topic_roadway_sa);
+		System.out.println(" TOPIC INSTANCE "+ topic.topic_roadway_bre_sa);
 		try {
-			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_roadway_sa, msgJson);
+			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_roadway_bre_sa, msgJson);
 			future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
 					@Override
 		            public void onSuccess(SendResult<String, String> result) {
@@ -85,14 +87,14 @@ public class ProduceSenderService {
 		}
 	}
 	
-	public ResponseEntity<?> sendAirway(RoadwayBRE_Model roadwayObj) throws JsonProcessingException {
+	public ResponseEntity<?> sendAirway(AirwayBRE_Model airwayObj) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		Response<String> responseObj = null;
-		String msgJson = mapper.writeValueAsString(roadwayObj);
+		String msgJson = mapper.writeValueAsString(airwayObj);
 		
-		System.out.println(" TOPIC INSTANCE "+ topic.topic_airway_sa);
+		System.out.println(" TOPIC INSTANCE "+ topic.topic_airway_bre_sa);
 		try {
-			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_airway_sa, msgJson);
+			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_airway_bre_sa, msgJson);
 			future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
 					@Override
 		            public void onSuccess(SendResult<String, String> result) {
@@ -113,14 +115,14 @@ public class ProduceSenderService {
 		}
 	}
 	
-	public ResponseEntity<?> sendMaritimeway(RoadwayBRE_Model roadwayObj) throws JsonProcessingException {
+	public ResponseEntity<?> sendMaritimeway(MaritimewayBRE_Model maritimewayObj) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		Response<String> responseObj = null;
-		String msgJson = mapper.writeValueAsString(roadwayObj);
+		String msgJson = mapper.writeValueAsString(maritimewayObj);
 		
-		System.out.println(" TOPIC INSTANCE "+ topic.topic_maritimeway_sa);
+		System.out.println(" TOPIC INSTANCE "+ topic.topic_maritimeway_bre_sa);
 		try {
-			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_airway_sa, msgJson);
+			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_airway_bre_sa, msgJson);
 			future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
 					@Override
 		            public void onSuccess(SendResult<String, String> result) {

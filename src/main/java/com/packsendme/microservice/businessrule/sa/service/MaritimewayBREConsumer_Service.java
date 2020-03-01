@@ -9,22 +9,22 @@ import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
 
 @Service
-public class BusinessRuleConsumerSenderService {
+public class MaritimewayBREConsumer_Service {
 
-	private String businessruleJson;
+	private String maritimewayJson;
 	
-	@KafkaListener(topics = "${topicConf:topic_businessrule_sa}")
+	@KafkaListener(topics = "${topicConf:topic_maritimeway_bre_sa}")
     public void receive(String data) {
-		this.businessruleJson = data;
+		this.maritimewayJson = data;
 		System.out.println(" ---------------------------- ");
-		System.out.println(" BusinessRuleListenerService "+ data);
+		System.out.println(" maritimeway "+ data);
 		System.out.println(" ---------------------------- ");
 	}
 	
 	public ResponseEntity<?> consumerMessage() {
 		Response<String> responseObj = null;
 		try {
-			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), businessruleJson);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), maritimewayJson);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), null);
