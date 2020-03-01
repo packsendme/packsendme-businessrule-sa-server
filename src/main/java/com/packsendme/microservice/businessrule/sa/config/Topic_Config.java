@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @org.springframework.context.annotation.Configuration
-@ConfigurationProperties(prefix="packsendme-businessrulesa-server")
+@ConfigurationProperties(prefix="packsendme-businessrule-sa-server")
 public class Topic_Config {
 	
 	@Setter
