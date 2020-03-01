@@ -3,13 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.packsendme.microservice.businessrule.sa</groupId>
-	<artifactId>packsendme-businessrulesa-server</artifactId>
+	<groupId>com.packsendme.microservice.sa.businessrule</groupId>
+	<artifactId>packsendme-businessrule-sa-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-
-	<name>packsendme-land-sa-server</name>
-	<description>Microservice Business Rule - Queue </description>
+	<name>packsendme-businessrule-sa-server</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -101,10 +99,28 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>com.packsendme.lib.businessrule</groupId>
-  			<artifactId>packsendme-businessrule-lib</artifactId>
+			<groupId>com.packsendme.lib.bre.businessrule</groupId>
+  			<artifactId>packsendme-businessrule-bre-lib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.packsendme.lib.bre.roadway</groupId>
+  			<artifactId>packsendme-roadway-bre-lib</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.packsendme.lib.bre.airway</groupId>
+  			<artifactId>packsendme-airway-bre-lib</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.packsendme.lib.bre.maritimeway</groupId>
+  			<artifactId>packsendme-maritimeway-bre-lib</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>		
 		
 		<dependency>
 		    <groupId>org.apache.kafka</groupId>
