@@ -13,7 +13,7 @@ public class MaritimewayBREConsumer_Service {
 
 	private String maritimewayJson;
 	
-	@KafkaListener(topics = "${topicConf:topic_maritimeway_bre_sa}")
+	@KafkaListener(topics = "${topic_Config:topic_maritimeway_bre_sa}")
     public void receive(String data) {
 		this.maritimewayJson = data;
 		System.out.println(" ---------------------------- ");

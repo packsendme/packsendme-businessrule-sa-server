@@ -13,7 +13,7 @@ public class AirwayBREConsumer_Service {
 
 	private String airwayJson;
 	
-	@KafkaListener(topics = "${topicConf:topic_airway_bre_sa}")
+	@KafkaListener(topics = "${topic_Config:topic_airway_bre_sa}")
     public void receive(String data) {
 		this.airwayJson = data;
 		System.out.println(" ---------------------------- ");
