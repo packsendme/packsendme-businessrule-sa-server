@@ -76,7 +76,7 @@ public class BusinessRuleSA_Controller {
 			return new ResponseEntity<>(breObject, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+	/*
 	@GetMapping("/businessrule/sa/roadway")
 	public ResponseEntity<?> getRoadwayBRE_SA() {		
 		try {
@@ -87,7 +87,7 @@ public class BusinessRuleSA_Controller {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+*/
 	// METHOD POST/GET :: AIRWAY BRE
 
 	@PostMapping("/businessrule/sa/airway")
@@ -100,7 +100,7 @@ public class BusinessRuleSA_Controller {
 			return new ResponseEntity<>(breObject, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+/*
 	@GetMapping("/businessrule/sa/airway")
 	public ResponseEntity<?> getAirwayBRE_SA() {		
 		try {
@@ -110,7 +110,7 @@ public class BusinessRuleSA_Controller {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+	*/
 	// METHOD POST/GET :: MARITIME BRE
 
 	@PostMapping("/businessrule/sa/maritime")
@@ -123,7 +123,7 @@ public class BusinessRuleSA_Controller {
 			return new ResponseEntity<>(breObject, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+	/*
 	@GetMapping("/businessrule/sa/maritime")
 	public ResponseEntity<?> getMaritimewayBRE_SA() {		
 		try {
@@ -133,5 +133,5 @@ public class BusinessRuleSA_Controller {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+*/
 }
