@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.packsendme.lib.bre.businessrule.model.BusinessRules_Model;
-import com.packsendme.microservice.businessrule.sa.service.BREConsumer_Service;
 import com.packsendme.microservice.businessrule.sa.service.BREProduce_Service;
+import com.packsendme.microservice.businessrule.sa.service.Consumer_Service;
 
 @RestController
 public class BusinessRuleSA_Controller {
@@ -22,7 +22,7 @@ public class BusinessRuleSA_Controller {
 	private BREProduce_Service produceRuleSA; 
 	
 	@Autowired
-	private BREConsumer_Service consumerRuleSA; 
+	private Consumer_Service consumerRuleSA; 
 	
 
 	// Method POST/GET :: BusinessRule BRE
