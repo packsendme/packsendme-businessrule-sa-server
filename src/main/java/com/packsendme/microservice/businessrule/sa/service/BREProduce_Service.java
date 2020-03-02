@@ -57,6 +57,7 @@ public class BREProduce_Service {
 		}
 	}
 	
+	/*
 	public ResponseEntity<?> sendRoadway(RoadwayBRE_Model roadwayObj) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		Response<String> responseObj = null;
@@ -140,5 +141,6 @@ public class BREProduce_Service {
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	*/
 
 }
