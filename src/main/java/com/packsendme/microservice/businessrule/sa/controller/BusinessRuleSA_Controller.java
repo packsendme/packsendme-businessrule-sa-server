@@ -14,32 +14,20 @@ import com.packsendme.lib.bre.airway.model.AirwayBRE_Model;
 import com.packsendme.lib.bre.businessrule.model.BusinessRules_Model;
 import com.packsendme.lib.bre.maritimeway.model.MaritimewayBRE_Model;
 import com.packsendme.lib.bre.roadway.model.RoadwayBRE_Model;
-import com.packsendme.microservice.businessrule.sa.service.AirwayBREConsumer_Service;
-import com.packsendme.microservice.businessrule.sa.service.BusinessRuleConsumer_Service;
-import com.packsendme.microservice.businessrule.sa.service.GenericBREProduce_Service;
-import com.packsendme.microservice.businessrule.sa.service.MaritimewayBREConsumer_Service;
-import com.packsendme.microservice.businessrule.sa.service.RoadwayBREConsumer_Service;
+import com.packsendme.microservice.businessrule.sa.service.BREConsumer_Service;
+import com.packsendme.microservice.businessrule.sa.service.BREProduce_Service;
 
 @RestController
 public class BusinessRuleSA_Controller {
 
 	
 	@Autowired
-	private GenericBREProduce_Service produceRuleSA; 
+	private BREProduce_Service produceRuleSA; 
 	
 	@Autowired
-	private BusinessRuleConsumer_Service consumerRuleSA; 
+	private BREConsumer_Service consumerRuleSA; 
 	
-	@Autowired
-	private RoadwayBREConsumer_Service roadwayConsumer;
-	
-	@Autowired
-	private AirwayBREConsumer_Service airwayConsumer;
-	
-	@Autowired
-	private MaritimewayBREConsumer_Service maritimewayConsumer;
 
-	
 	// Method POST/GET :: BusinessRule BRE
 	
 	@PostMapping("/businessrule/sa")
@@ -57,7 +45,7 @@ public class BusinessRuleSA_Controller {
 	public ResponseEntity<?> getBusinessRuleBRE_SA() {		
 		try {
 			System.out.println(" getBusinessRuleSouthAmerica ");
-			return consumerRuleSA.consumerMessage();
+			return consumerRuleSA.consumerBusinessRuleBRE();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -81,7 +69,7 @@ public class BusinessRuleSA_Controller {
 	public ResponseEntity<?> getRoadwayBRE_SA() {		
 		try {
 			System.out.println(" getRoadwayBRE_SA ");
-			return roadwayConsumer.consumerMessage();
+			return consumerRuleSA.consumerRoadwayBRE();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -100,17 +88,17 @@ public class BusinessRuleSA_Controller {
 			return new ResponseEntity<>(breObject, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-/*
+
 	@GetMapping("/businessrule/sa/airway")
 	public ResponseEntity<?> getAirwayBRE_SA() {		
 		try {
-			return airwayConsumer.consumerMessage();
+			return consumerRuleSA.consumerAirwayBRE();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	*/
+	
 	// METHOD POST/GET :: MARITIME BRE
 
 	@PostMapping("/businessrule/sa/maritime")
@@ -123,15 +111,15 @@ public class BusinessRuleSA_Controller {
 			return new ResponseEntity<>(breObject, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	/*
+
 	@GetMapping("/businessrule/sa/maritime")
 	public ResponseEntity<?> getMaritimewayBRE_SA() {		
 		try {
-			return maritimewayConsumer.consumerMessage();
+			return consumerRuleSA.consumerMaritimewayBRE();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-*/
+
 }
