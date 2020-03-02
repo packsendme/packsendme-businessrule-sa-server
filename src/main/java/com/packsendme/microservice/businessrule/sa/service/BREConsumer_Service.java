@@ -2,12 +2,12 @@ package com.packsendme.microservice.businessrule.sa.service;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.microservice.sa.component.AirwayConsumer_Component;
-import com.packsendme.microservice.sa.component.BusinessRuleConsumer_Component;
 import com.packsendme.microservice.sa.component.MaritimewayConsumer_Component;
 import com.packsendme.microservice.sa.component.RoadwayConsumer_Component;
 
@@ -21,6 +21,14 @@ public class BREConsumer_Service {
 	
 
 //	private BusinessRuleConsumer_Component businessruleConsumer = new BusinessRuleConsumer_Component();
+	
+	
+	@KafkaListener(topics = "${kafka.topic.businessrule}")
+	public void receiveTopic(String msg) {
+		System.out.println(" ---------------------------- ");
+		System.out.println(" topic_businessRule_sa "+ msg);
+		System.out.println(" ---------------------------- ");
+	}
 	
 	
 	public ResponseEntity<?> consumerBusinessRuleBRE() {
