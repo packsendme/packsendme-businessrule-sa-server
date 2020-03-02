@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,10 +21,10 @@ public class BusinessRuleSA_Controller {
 	@Autowired
 	private BREProduce_Service produceRuleSA; 
 	
-	/*
+	
 	@Autowired
 	private Consumer consumerRuleSA; 
-	*/
+	
 
 	// Method POST/GET :: BusinessRule BRE
 	
@@ -38,18 +39,18 @@ public class BusinessRuleSA_Controller {
 		}
 	}
 	
-/*
+
 	@GetMapping("/businessrule/sa")
 	public ResponseEntity<?> getBusinessRuleBRE_SA() {		
 		try {
 			System.out.println(" getBusinessRuleSouthAmerica ");
-			return consumerRuleSA.contextMsg();
+			return consumerRuleSA.consumerTopic();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	*/
+	
 
 
 	// METHOD POST/GET :: ROADWAY BRE
