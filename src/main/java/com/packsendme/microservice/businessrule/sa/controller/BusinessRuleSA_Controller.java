@@ -41,19 +41,22 @@ public class BusinessRuleSA_Controller {
 		}
 	}
 	
+
 	@GetMapping("/businessrule/sa")
 	public ResponseEntity<?> getBusinessRuleBRE_SA() {		
 		try {
 			System.out.println(" getBusinessRuleSouthAmerica ");
-			return consumerRuleSA.consumerBusinessRuleBRE();
+			return consumerRuleSA.contextMsg();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+
 
 	// METHOD POST/GET :: ROADWAY BRE
-
+	/*
 	@PostMapping("/businessrule/sa/roadway")
 	public ResponseEntity<?> postRoadwayBRE_SA(
 			@Validated @RequestBody RoadwayBRE_Model breObject) {		
@@ -75,9 +78,9 @@ public class BusinessRuleSA_Controller {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+	*/
 	// METHOD POST/GET :: AIRWAY BRE
-
+	/*
 	@PostMapping("/businessrule/sa/airway")
 	public ResponseEntity<?> postAirwayBRE_SA(
 			@Validated @RequestBody AirwayBRE_Model breObject) {		
@@ -98,9 +101,9 @@ public class BusinessRuleSA_Controller {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+	*/
 	// METHOD POST/GET :: MARITIME BRE
-
+	/*
 	@PostMapping("/businessrule/sa/maritime")
 	public ResponseEntity<?> postMaritimewayBRE_SA(
 			@Validated @RequestBody MaritimewayBRE_Model breObject) {		
@@ -121,5 +124,5 @@ public class BusinessRuleSA_Controller {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+	*/
 }
