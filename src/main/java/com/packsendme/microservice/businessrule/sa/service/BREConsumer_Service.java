@@ -31,7 +31,7 @@ public class BREConsumer_Service {
 		String airwayMsg;
 		Response<String> responseObj = null;
 		try {
-			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), airwayMsg);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), null);
