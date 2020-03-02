@@ -1,16 +1,14 @@
 package com.packsendme.microservice.businessrule.sa.config;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @org.springframework.context.annotation.Configuration
-@ConfigurationProperties(prefix="packsendme-businessrule-sa-server")
 public class TopicConfig {
 	
-	@Setter
-	@Getter
+	@Value("${name}")
 	public String topic_businessrule_sa;
 	
 	@Setter

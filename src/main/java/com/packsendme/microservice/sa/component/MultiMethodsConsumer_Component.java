@@ -5,7 +5,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
-@KafkaListener(id = "multiConsumers", topics = {"packsendme-businessrule-sa-server.topic_businessrule_sa"})
+@KafkaListener(topics = "#{'${kafka.listener_topics}'.split(',')}")
 public class MultiMethodsConsumer_Component {
 
 	public String topic_msg;
