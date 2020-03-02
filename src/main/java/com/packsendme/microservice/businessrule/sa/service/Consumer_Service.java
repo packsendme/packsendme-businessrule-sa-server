@@ -20,10 +20,10 @@ public class Consumer_Service {
 	public String airwayMsg;
 	
 	@KafkaListener(topics = "${kafka.topic.businessrule}")
-	public void listen(String message) {
-		airwayMsg = message;
+	public void receive(String data) {
+		airwayMsg = data;
 		System.out.println(" ------------------------------- ");
-		System.out.println(" topic_businessRule_sa "+ message);
+		System.out.println(" topic_businessRule_sa "+ data);
 		System.out.println(" ------------------------------- ");
 	}
 	
