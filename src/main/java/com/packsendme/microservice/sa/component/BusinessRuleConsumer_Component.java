@@ -1,7 +1,9 @@
 package com.packsendme.microservice.sa.component;
 
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BusinessRuleConsumer_Component {
 
 	private String businessRuleMsg; 
