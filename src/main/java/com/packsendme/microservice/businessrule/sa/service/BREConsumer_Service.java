@@ -1,6 +1,5 @@
 package com.packsendme.microservice.businessrule.sa.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -20,14 +19,14 @@ public class BREConsumer_Service {
 	private MaritimewayConsumer_Component maritimewayConsumer = new MaritimewayConsumer_Component(); 
 //	private BusinessRuleConsumer_Component businessruleConsumer = new BusinessRuleConsumer_Component(); 
 	
-	@Autowired
-	private BusinessRuleConsumer_Component businessruleConsumer;
+
+//	private BusinessRuleConsumer_Component businessruleConsumer = new BusinessRuleConsumer_Component();
 	
 	
 	public ResponseEntity<?> consumerBusinessRuleBRE() {
 		Response<String> responseObj = null;
 		try {
-			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), businessruleConsumer.contextMsg());
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), null);
