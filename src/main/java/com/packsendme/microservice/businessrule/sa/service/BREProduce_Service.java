@@ -20,7 +20,7 @@ import com.packsendme.lib.common.response.Response;
 import com.packsendme.microservice.businessrule.sa.config.TopicConfig;
  
 @Service
-public class GenericBREProduce_Service {
+public class BREProduce_Service {
 	
 	
 	@Autowired
@@ -28,8 +28,6 @@ public class GenericBREProduce_Service {
 	
 	@Autowired
 	private TopicConfig topic;
-	
-	
 	
 	public ResponseEntity<?> sendBusinessRule(BusinessRules_Model brObject) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
