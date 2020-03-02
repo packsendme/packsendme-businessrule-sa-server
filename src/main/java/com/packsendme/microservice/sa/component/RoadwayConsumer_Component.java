@@ -8,7 +8,6 @@ public class RoadwayConsumer_Component implements BREConsumer_Interface {
 	
 	private String roadwayMsg;
 
-	@Override
 	@KafkaListener(topics = "${kafka.topic.roadwaybre}")
 	public void receiveTopic(String msg) {
 		this.roadwayMsg = msg;

@@ -8,7 +8,6 @@ public class MaritimewayConsumer_Component implements BREConsumer_Interface  {
 
 	private String maritimewayMsg;
 	
-	@Override
 	@KafkaListener(topics = "${kafka.topic.maritimewaybre}")
 	public void receiveTopic(String msg) {
 		this.maritimewayMsg = msg;
