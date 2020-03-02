@@ -18,17 +18,17 @@ public class BREConsumer_Service {
 	
 
 //	private BusinessRuleConsumer_Component businessruleConsumer = new BusinessRuleConsumer_Component();
-	public String airwayMsg;
+
 	
-	@KafkaListener(topics = "topicBusinessRuleSouthAmerica")
-	public void receiveTopic(String msg) {
-		airwayMsg = msg;
+	@KafkaListener(topics = "topicBusinessRuleSouthAmerica", groupId = "group_id")
+	public void listen(String message) {
 		System.out.println(" ---------------------------- ");
-		System.out.println(" topic_businessRule_sa "+ msg);
+		System.out.println(" topic_businessRule_sa "+ message);
 		System.out.println(" ---------------------------- ");
 	}
 	
 	public  ResponseEntity<?>  contextMsg() {
+		String airwayMsg;
 		Response<String> responseObj = null;
 		try {
 			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), airwayMsg);
