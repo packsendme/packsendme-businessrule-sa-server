@@ -8,7 +8,6 @@ public class AirwayConsumer_Component  implements BREConsumer_Interface  {
 
 	private String airwayMsg; 
 	
-	@Override
 	@KafkaListener(topics = "${kafka.topic.airwaybre}")
 	public void receiveTopic(String msg) {
 		this.airwayMsg = msg;
