@@ -13,8 +13,8 @@ public class RoadwayBREConsumer_Service {
 
 	private String roadwayJson;
 	
-	/*
-	@KafkaListener(topics = "${topicConfig:topic_roadway_bre_sa}")
+	
+	@KafkaListener(topics = "${packsendme-businessrule-sa-server.topic_roadway_bre_sa}")
     public void receive(String data) {
 		this.roadwayJson = data;
 		System.out.println(" ---------------------------- ");
@@ -31,6 +31,6 @@ public class RoadwayBREConsumer_Service {
 			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	} */
+	}
 	
 }
