@@ -8,7 +8,8 @@ import lombok.Setter;
 @org.springframework.context.annotation.Configuration
 public class TopicConfig {
 	
-	@Value("${kafka.consumer.topic.name}")
+	@Setter
+	@Getter
 	public String topic_businessrule_sa;
 	
 	@Setter
