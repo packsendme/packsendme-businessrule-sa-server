@@ -17,7 +17,7 @@ import com.packsendme.lib.bre.maritimeway.model.MaritimewayBRE_Model;
 import com.packsendme.lib.bre.roadway.model.RoadwayBRE_Model;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
-import com.packsendme.microservice.businessrule.sa.config.TopicConfig;
+import com.packsendme.microservice.businessrule.sa.config.Topic_Config;
  
 @Service
 public class BREProduce_Service {
@@ -27,7 +27,7 @@ public class BREProduce_Service {
     private KafkaTemplate<String, String> kafkaTemplate;
 	
 	@Autowired
-	private TopicConfig topic;
+	private Topic_Config topic;
 	
 	public ResponseEntity<?> sendBusinessRule(BusinessRules_Model brObject) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
