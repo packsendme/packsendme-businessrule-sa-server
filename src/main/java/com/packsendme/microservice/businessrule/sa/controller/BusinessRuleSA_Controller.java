@@ -20,9 +20,10 @@ public class BusinessRuleSA_Controller {
 	@Autowired
 	private BREProduce_Service produceRuleSA; 
 	
+	/*
 	@Autowired
 	private Consumer consumerRuleSA; 
-	
+	*/
 
 	// Method POST/GET :: BusinessRule BRE
 	
