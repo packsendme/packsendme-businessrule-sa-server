@@ -2,8 +2,7 @@ package com.packsendme.microservice.sa.component;
 
 import org.springframework.kafka.annotation.KafkaListener;
 
-
-public class BusinessRuleConsumer_Component implements BREConsumer_Interface  {
+public class BusinessRuleConsumer_Component {
 
 	private String businessRuleMsg; 
 	
@@ -15,7 +14,6 @@ public class BusinessRuleConsumer_Component implements BREConsumer_Interface  {
 		System.out.println(" ---------------------------- ");
 	}
 
-	@Override
 	public String contextMsg() {
 		return businessRuleMsg;
 	}
