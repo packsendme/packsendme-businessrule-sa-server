@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.packsendme.lib.bre.businessrule.model.BusinessRules_Model;
 import com.packsendme.microservice.businessrule.sa.service.BREProduce_Service;
-import com.packsendme.microservice.businessrule.sa.service.Consumer_Service;
+import com.packsendme.microservice.businessrule.sa.service.Consumer;
 
 @RestController
 public class BusinessRuleSA_Controller {
@@ -22,7 +21,7 @@ public class BusinessRuleSA_Controller {
 	private BREProduce_Service produceRuleSA; 
 	
 	@Autowired
-	private Consumer_Service consumerRuleSA; 
+	private Consumer consumerRuleSA; 
 	
 
 	// Method POST/GET :: BusinessRule BRE
@@ -38,7 +37,7 @@ public class BusinessRuleSA_Controller {
 		}
 	}
 	
-
+/*
 	@GetMapping("/businessrule/sa")
 	public ResponseEntity<?> getBusinessRuleBRE_SA() {		
 		try {
@@ -49,7 +48,7 @@ public class BusinessRuleSA_Controller {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+	*/
 
 
 	// METHOD POST/GET :: ROADWAY BRE
