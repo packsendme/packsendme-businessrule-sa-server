@@ -20,7 +20,7 @@ public class BREConsumer_Service {
 //	private BusinessRuleConsumer_Component businessruleConsumer = new BusinessRuleConsumer_Component();
 	public String airwayMsg;
 	
-	@KafkaListener(topics = "${kafka.topic.businessrule}")
+	@KafkaListener(topics = "topicBusinessRuleSouthAmerica")
 	public void receiveTopic(String msg) {
 		airwayMsg = msg;
 		System.out.println(" ---------------------------- ");
