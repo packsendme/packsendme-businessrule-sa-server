@@ -27,6 +27,7 @@ public class ProduceBRE_Controller {
 	@Autowired
 	private Consumer consumerRuleSA; 
 	
+	@Autowired
 	private ConsumerRoadway consumerRoadway;
 	
 
@@ -55,7 +56,6 @@ public class ProduceBRE_Controller {
 		}
 	}
 	
-
 
 	// METHOD POST/GET :: ROADWAY BRE
 
