@@ -2,6 +2,7 @@ package com.packsendme.microservice.businessrule.sa.service;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ public class Consumer {
 	public String msg;
 	
 	@KafkaListener(topics = "${kafka.topic.boot}")
+	@KafkaHandler
 	public void receive(String data) {
 		msg = data;
 		System.out.println(" ------------------------------- ");
