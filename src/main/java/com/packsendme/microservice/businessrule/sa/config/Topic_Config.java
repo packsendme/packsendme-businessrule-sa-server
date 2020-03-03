@@ -8,4 +8,7 @@ public class Topic_Config {
 	
 	@Value(value = "${kafka.topic.boot}")
 	public String topic_businessrule_sa;
+	
+	@Value(value = "${kafka.topic.roadway}")
+	public String topic_roadway_sa;
 }

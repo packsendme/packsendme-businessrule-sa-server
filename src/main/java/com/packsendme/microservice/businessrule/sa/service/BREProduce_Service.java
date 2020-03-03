@@ -57,15 +57,15 @@ public class BREProduce_Service {
 		}
 	}
 	
-	/*
+	
 	public ResponseEntity<?> sendRoadway(RoadwayBRE_Model roadwayObj) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		Response<String> responseObj = null;
 		String msgJson = mapper.writeValueAsString(roadwayObj);
 		
-		System.out.println(" TOPIC INSTANCE "+ topic.topic_roadway_bre_sa);
+		System.out.println(" TOPIC INSTANCE "+ topic.topic_roadway_sa);
 		try {
-			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_roadway_bre_sa, msgJson);
+			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_roadway_sa, msgJson);
 			future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
 					@Override
 		            public void onSuccess(SendResult<String, String> result) {
@@ -86,6 +86,7 @@ public class BREProduce_Service {
 		}
 	}
 	
+	/*
 	public ResponseEntity<?> sendAirway(AirwayBRE_Model airwayObj) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		Response<String> responseObj = null;
