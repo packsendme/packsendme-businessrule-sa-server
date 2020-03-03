@@ -74,7 +74,7 @@ public class ProduceBRE_Controller {
 	public ResponseEntity<?> getRoadwayBRE_SA() {		
 		try {
 			System.out.println(" getRoadwayBRE_SA ");
-			return consumerRuleSA.consumerTopic();
+			return consumerRoadway.consumerTopic();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
