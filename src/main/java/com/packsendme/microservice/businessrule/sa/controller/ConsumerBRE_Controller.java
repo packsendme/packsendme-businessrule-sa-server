@@ -33,7 +33,7 @@ public class ConsumerBRE_Controller {
 
 	@RequestMapping(value = "/producer/consume-message/{topic}", method = { RequestMethod.GET })
 	@ResponseBody
-	public String consumeMessage(@PathVariable String topic) {
+	public String consumeMessage(@PathVariable String topic) throws InterruptedException {
 
 		ConsumerFactory<String, Object> consumerFactory = consumerFactory();
 		Consumer<String, Object> consumer = consumerFactory.createConsumer();
