@@ -17,7 +17,7 @@ import com.packsendme.microservice.businessrule.sa.service.Consumer;
 import com.packsendme.microservice.businessrule.sa.service.ConsumerRoadway;
 
 @RestController
-public class BusinessRuleSA_Controller {
+public class ProduceBRE_Controller {
 
 	
 	@Autowired
