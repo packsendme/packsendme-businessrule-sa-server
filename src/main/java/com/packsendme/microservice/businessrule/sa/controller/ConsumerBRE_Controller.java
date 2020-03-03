@@ -41,6 +41,7 @@ public class ConsumerBRE_Controller {
 		consumer.subscribe(Collections.singletonList(topic));
 		
 		ConsumerRecords<String, Object> consumerRecords = consumer.poll(Duration.ofDays(1)); 
+		
 		consumerRecords.forEach(action ->{
 			System.out.println(" :: KAFKA RESPONSE :: "+ action.value());
 		});
@@ -52,7 +53,7 @@ public class ConsumerBRE_Controller {
 		configs.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
 		configs.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		configs.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-		configs.put(ConsumerConfig.GROUP_ID_CONFIG, "anyIdForGroup");
+		configs.put(ConsumerConfig.GROUP_ID_CONFIG, "group-id");
 		configs.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 15000);
 		configs.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, 1000);
 		ConsumerFactory<String, Object> consumerFactory = new DefaultKafkaConsumerFactory<>(configs);
