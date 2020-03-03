@@ -34,7 +34,7 @@ public class ConsumerBRE_Controller {
 	@RequestMapping(value = "/producer/consume-message/{topic}", method = { RequestMethod.GET })
 	@ResponseBody
 	public String consumeMessage(@PathVariable String topic) {
-		
+
 		ConsumerFactory<String, Object> consumerFactory = consumerFactory();
 		Consumer<String, Object> consumer = consumerFactory.createConsumer();
 		
@@ -42,9 +42,15 @@ public class ConsumerBRE_Controller {
 		
 		ConsumerRecords<String, Object> consumerRecords = consumer.poll(Duration.ofDays(1)); 
 		
-		consumerRecords.forEach(action ->{
-			System.out.println(" :: KAFKA RESPONSE :: "+ action.value());
-		});
+		 if (consumerRecords.count()==0) {
+				System.out.println(" :: KAFKA RESPONSE :: 0 ");
+
+		 }else {
+			 
+			consumerRecords.forEach(action ->{
+				System.out.println(" :: KAFKA RESPONSE :: "+ action.value());
+			});
+		 }
 		return "Success";
 	}
 	
