@@ -2,7 +2,6 @@ package com.packsendme.microservice.businessrule.sa.controller;
 
 import java.time.Duration;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.kafka.clients.consumer.Consumer;
@@ -11,7 +10,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +22,6 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.packsendme.microservice.businessrule.sa.config.Consumer_Config;
 
 @RestController
-@EnableKafka
 public class ConsumerBRE_Controller {
 	
 	@Autowired

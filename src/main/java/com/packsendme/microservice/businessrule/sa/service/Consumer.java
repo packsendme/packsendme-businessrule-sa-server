@@ -11,7 +11,7 @@ import com.packsendme.lib.common.response.Response;
 @Service
 public class Consumer {
 	
-	private String msg;
+	public String msg;
 	
 	@KafkaListener(topics = "${kafka.topic.boot}")
 	public void receive(String data) {
