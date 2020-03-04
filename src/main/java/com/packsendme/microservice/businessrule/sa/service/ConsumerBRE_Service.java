@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
-import com.packsendme.microservice.sa.component.Airway_Component;
-import com.packsendme.microservice.sa.component.BusinessRule_Component;
-import com.packsendme.microservice.sa.component.Maritimeway_Component;
-import com.packsendme.microservice.sa.component.Roadway_Component;
+import com.packsendme.microservice.sa.component.AirwayBREConsumer_Component;
+import com.packsendme.microservice.sa.component.ExecutionBREConsumer_Component;
+import com.packsendme.microservice.sa.component.MaritimewayBREConsumer_Component;
+import com.packsendme.microservice.sa.component.RoadwayBREConsumer_Component;
 
 @Service
 @ComponentScan({"com.packsendme.microservice.sa.component"})
@@ -19,27 +19,27 @@ public class ConsumerBRE_Service {
 	
 
 	@Autowired
-	private Airway_Component airwayConsumer;
+	private AirwayBREConsumer_Component airwayConsumer;
 	
 	@Autowired
-	private Roadway_Component roadwayConsumer;
+	private RoadwayBREConsumer_Component roadwayConsumer;
 	
 	@Autowired
-	private BusinessRule_Component businessRuleConsumer;
+	private ExecutionBREConsumer_Component executionConsumer;
 	
 	@Autowired
-	private Maritimeway_Component maritimewayConsumer;
+	private MaritimewayBREConsumer_Component maritimewayConsumer;
 	
 	
-	public ResponseEntity<?> consumerBusinessRuleTopic() {
+	public ResponseEntity<?> consumerExecutionTopic() {
 		Response<String> responseObj = null;
 		try {
-			String msgTopic = businessRuleConsumer.consumerTopic();
-			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), msgTopic);
-			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
+				String msgTopic = executionConsumer.consumerTopic();
+				responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), msgTopic);
+				return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
-			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), null);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -48,11 +48,11 @@ public class ConsumerBRE_Service {
 		Response<String> responseObj = null;
 		try {
 			String msgTopic = airwayConsumer.consumerTopic();
-			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), msgTopic);
-			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), msgTopic);
+			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
-			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), null);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -61,11 +61,11 @@ public class ConsumerBRE_Service {
 		Response<String> responseObj = null;
 		try {
 			String msgTopic = maritimewayConsumer.consumerTopic();
-			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), msgTopic);
-			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), msgTopic);
+			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
-			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), null);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -75,11 +75,11 @@ public class ConsumerBRE_Service {
 		Response<String> responseObj = null;
 		try {
 			String msgTopic = roadwayConsumer.consumerTopic();
-			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), msgTopic);
-			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), msgTopic);
+			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
-			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), null);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
