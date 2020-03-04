@@ -12,7 +12,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.packsendme.lib.bre.airway.model.AirwayBRE_Model;
-import com.packsendme.lib.bre.businessrule.model.BusinessRules_Model;
+import com.packsendme.lib.bre.execution.model.Execution_Model;
 import com.packsendme.lib.bre.maritimeway.model.MaritimewayBRE_Model;
 import com.packsendme.lib.bre.roadway.model.RoadwayBRE_Model;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
@@ -28,7 +28,7 @@ public class ProduceBRE_Service {
 	@Autowired
 	private Topic_Config topic;
 	
-	public ResponseEntity<?> sendExecutionRuleTopic(BusinessRules_Model brObject) throws JsonProcessingException {
+	public ResponseEntity<?> sendExecutionTopic(Execution_Model brObject) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		Response<String> responseObj = null;
 		String msgJson = mapper.writeValueAsString(brObject);

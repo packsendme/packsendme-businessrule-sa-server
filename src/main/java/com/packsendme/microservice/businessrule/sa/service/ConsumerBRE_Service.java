@@ -25,16 +25,16 @@ public class ConsumerBRE_Service {
 	private RoadwayBREConsumer_Component roadwayConsumer;
 	
 	@Autowired
-	private ExecutionBREConsumer_Component businessRuleConsumer;
+	private ExecutionBREConsumer_Component executionConsumer;
 	
 	@Autowired
 	private MaritimewayBREConsumer_Component maritimewayConsumer;
 	
 	
-	public ResponseEntity<?> consumerBusinessRuleTopic() {
+	public ResponseEntity<?> consumerExecutionTopic() {
 		Response<String> responseObj = null;
 		try {
-				String msgTopic = businessRuleConsumer.consumerTopic();
+				String msgTopic = executionConsumer.consumerTopic();
 				responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), msgTopic);
 				return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 

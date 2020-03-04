@@ -99,8 +99,8 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>com.packsendme.lib.bre.businessrule</groupId>
-  			<artifactId>packsendme-businessrule-bre-lib</artifactId>
+			<groupId>com.packsendme.lib.bre.execution</groupId>
+  			<artifactId>packsendme-execution-bre-lib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
