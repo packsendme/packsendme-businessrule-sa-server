@@ -33,7 +33,6 @@ public class Consumer_Config {
 	    return new DefaultKafkaConsumerFactory<>(props);
 	}
 	 
-	
 	@Bean
 	public ConcurrentKafkaListenerContainerFactory<String, String> 
 		kafkaListenerContainerFactory() {
