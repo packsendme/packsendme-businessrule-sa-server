@@ -1,18 +1,18 @@
-package com.packsendme.microservice.sa.component;
+	package com.packsendme.microservice.sa.component;
 
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BusinessRule_Component {
+public class MaritimewayBREConsumer_Component implements BRE_Consumer {
 
-private String msg;
+	private String msg;
 	
-	@KafkaListener(topics = "${kafka.topic.businessrule}")
+	@KafkaListener(topics = "${kafka.topic.maritimeway}")
 	public void receive(String data) {
 		this.msg = data;
 		System.out.println(" ------------------------------- ");
-		System.out.println(" topic_businessrule_sa "+ data);
+		System.out.println(" topic_maritimeway_sa "+ data);
 		System.out.println(" ------------------------------- ");
 	}
 	

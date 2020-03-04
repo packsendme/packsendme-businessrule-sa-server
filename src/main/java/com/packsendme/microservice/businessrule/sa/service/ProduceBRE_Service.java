@@ -28,18 +28,18 @@ public class ProduceBRE_Service {
 	@Autowired
 	private Topic_Config topic;
 	
-	public ResponseEntity<?> sendBusinessRuleTopic(BusinessRules_Model brObject) throws JsonProcessingException {
+	public ResponseEntity<?> sendExecutionRuleTopic(BusinessRules_Model brObject) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		Response<String> responseObj = null;
 		String msgJson = mapper.writeValueAsString(brObject);
 		
-		System.out.println(" TOPIC INSTANCE "+ topic.topic_businessrule_sa);
+		System.out.println(" TOPIC INSTANCE "+ topic.topic_executionrule_sa);
 		try {
-			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_businessrule_sa, msgJson);
+			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_executionrule_sa, msgJson);
 			future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
 					@Override
 		            public void onSuccess(SendResult<String, String> result) {
-		            	System.out.println("Sent message=[" + msgJson + "] with offset=[" + result.getRecordMetadata().offset() + "]");  
+		            	System.out.println("<> Sent message=[" + msgJson + "] with offset=[" + result.getRecordMetadata().offset() + "]");  
 		            }
 		            
 		            @Override
@@ -51,7 +51,7 @@ public class ProduceBRE_Service {
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
-			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), null);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -68,19 +68,19 @@ public class ProduceBRE_Service {
 			future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
 					@Override
 		            public void onSuccess(SendResult<String, String> result) {
-		            	System.out.println("Sent message=[" + msgJson + "] with offset=[" + result.getRecordMetadata().offset() + "]");  
+		            	System.out.println("< ROADWAY > Success: sent message=[" + msgJson + "] with offset=[" + result.getRecordMetadata().offset() + "]");  
 		            }
 		            
 		            @Override
 		            public void onFailure(Throwable ex) {
-		            	System.out.println("Unable to send message=["+ msgJson + "] due to : " + ex.getMessage());
+		            	System.out.println("< ROADWAY > ERROR: send message=["+ msgJson + "] due to : " + ex.getMessage());
 		            }
 	       	});
 			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), msgJson);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
-			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), null);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -96,19 +96,19 @@ public class ProduceBRE_Service {
 			future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
 					@Override
 		            public void onSuccess(SendResult<String, String> result) {
-		            	System.out.println("Sent message=[" + msgJson + "] with offset=[" + result.getRecordMetadata().offset() + "]");  
+		            	System.out.println("< AIRWAY > SUCCESS: sent message=[" + msgJson + "] with offset=[" + result.getRecordMetadata().offset() + "]");  
 		            }
 		            
 		            @Override
 		            public void onFailure(Throwable ex) {
-		            	System.out.println("Unable to send message=["+ msgJson + "] due to : " + ex.getMessage());
+		            	System.out.println("< AIRWAY > ERROR: send message=["+ msgJson + "] due to : " + ex.getMessage());
 		            }
 	       	});
 			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), msgJson);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
-			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), null);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -120,23 +120,23 @@ public class ProduceBRE_Service {
 		
 		System.out.println(" TOPIC INSTANCE "+ topic.topic_maritimeway_sa);
 		try {
-			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_airway_sa, msgJson);
+			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_maritimeway_sa, msgJson);
 			future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
 					@Override
 		            public void onSuccess(SendResult<String, String> result) {
-		            	System.out.println("Sent message=[" + msgJson + "] with offset=[" + result.getRecordMetadata().offset() + "]");  
+		            	System.out.println("< MARITIME > SUCCESS: sent message=[" + msgJson + "] with offset=[" + result.getRecordMetadata().offset() + "]");  
 		            }
 		            
 		            @Override
 		            public void onFailure(Throwable ex) {
-		            	System.out.println("Unable to send message=["+ msgJson + "] due to : " + ex.getMessage());
+		            	System.out.println("< MARITIME > ERROR: send message=["+ msgJson + "] due to : " + ex.getMessage());
 		            }
 	       	});
 			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), msgJson);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
-			responseObj = new Response<String>(0,HttpExceptionPackSend.FAIL_EXECUTION.getAction(), null);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
