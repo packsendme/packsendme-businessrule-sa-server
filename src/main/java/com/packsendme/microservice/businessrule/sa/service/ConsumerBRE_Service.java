@@ -17,7 +17,6 @@ import com.packsendme.microservice.sa.component.RoadwayBREConsumer_Component;
 @ComponentScan({"com.packsendme.microservice.sa.component"})
 public class ConsumerBRE_Service {
 	
-
 	@Autowired
 	private AirwayBREConsumer_Component airwayConsumer;
 	
