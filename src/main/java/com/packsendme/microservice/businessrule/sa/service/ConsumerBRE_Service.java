@@ -1,16 +1,11 @@
 package com.packsendme.microservice.businessrule.sa.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
-import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.packsendme.lib.bre.businessrule.model.BusinessRules_Model;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.microservice.sa.component.Airway_Component;
@@ -19,6 +14,7 @@ import com.packsendme.microservice.sa.component.Maritimeway_Component;
 import com.packsendme.microservice.sa.component.Roadway_Component;
 
 @Service
+@ComponentScan({"com.packsendme.microservice.sa.component"})
 public class ConsumerBRE_Service {
 	
 

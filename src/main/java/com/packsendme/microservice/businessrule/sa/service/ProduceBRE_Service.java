@@ -22,7 +22,6 @@ import com.packsendme.microservice.businessrule.sa.config.Topic_Config;
 @Service
 public class ProduceBRE_Service {
 	
-	
 	@Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 	
