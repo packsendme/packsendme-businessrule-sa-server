@@ -8,7 +8,7 @@ public class RoadwayBREConsumer_Component implements BRE_Consumer {
 
 	private String msg;
 	
-	@KafkaListener(topics = "${kafka.topic.roadway}")
+	@KafkaListener(topics = "${kafka.topic.roadwayBRE}")
 	public void receive(String data) {
 		this.msg = data;
 		System.out.println(" ------------------------------- ");
