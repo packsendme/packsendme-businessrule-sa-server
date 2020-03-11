@@ -1,4 +1,4 @@
-package com.packsendme.microservice.businessrule.sa.service;
+package com.packsendme.microservice.sa.businessrule.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,13 +11,13 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.packsendme.lib.bre.airway.model.AirwayBRE_Model;
-import com.packsendme.lib.bre.execution.model.Execution_Model;
-import com.packsendme.lib.bre.maritimeway.model.MaritimewayBRE_Model;
-import com.packsendme.lib.bre.roadway.model.RoadwayBRE_Model;
+import com.packsendme.airway.bre.rule.model.AirwayBRE_Model;
+import com.packsendme.execution.bre.rule.model.ExecutionBRE_Model;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
-import com.packsendme.microservice.businessrule.sa.config.Topic_Config;
+import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
+import com.packsendme.microservice.sa.businessrule.config.Topic_Config;
+import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
  
 @Service
 public class ProduceBRE_Service {
@@ -28,7 +28,7 @@ public class ProduceBRE_Service {
 	@Autowired
 	private Topic_Config topic;
 	
-	public ResponseEntity<?> sendExecutionTopic(Execution_Model brObject) throws JsonProcessingException {
+	public ResponseEntity<?> sendExecutionTopic(ExecutionBRE_Model brObject) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		Response<String> responseObj = null;
 		String msgJson = mapper.writeValueAsString(brObject);

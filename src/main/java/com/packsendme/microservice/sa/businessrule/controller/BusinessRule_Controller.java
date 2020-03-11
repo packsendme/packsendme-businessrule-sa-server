@@ -1,4 +1,4 @@
-package com.packsendme.microservice.businessrule.sa.controller;
+package com.packsendme.microservice.sa.businessrule.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.packsendme.lib.bre.airway.model.AirwayBRE_Model;
-import com.packsendme.lib.bre.execution.model.Execution_Model;
-import com.packsendme.lib.bre.maritimeway.model.MaritimewayBRE_Model;
-import com.packsendme.lib.bre.roadway.model.RoadwayBRE_Model;
-import com.packsendme.microservice.businessrule.sa.service.ConsumerBRE_Service;
-import com.packsendme.microservice.businessrule.sa.service.ProduceBRE_Service;
+import com.packsendme.airway.bre.rule.model.AirwayBRE_Model;
+import com.packsendme.execution.bre.rule.model.ExecutionBRE_Model;
+import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
+import com.packsendme.microservice.sa.businessrule.service.ConsumerBRE_Service;
+import com.packsendme.microservice.sa.businessrule.service.ProduceBRE_Service;
+import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 
 @RestController
-@RequestMapping("/businessrule/sa")
-public class BRE_Controller {
+@RequestMapping("/businessrule/sa/bre")
+public class BusinessRule_Controller {
 
 	
 	@Autowired
@@ -32,9 +32,9 @@ public class BRE_Controller {
 
 	// Method POST/GET :: BusinessRule BRE
 	
-	@PostMapping("/executionbre")
+	@PostMapping("/execution")
 	public ResponseEntity<?> postExecuteBRE_SA(
-			@Validated @RequestBody Execution_Model breObject) {		
+			@Validated @RequestBody ExecutionBRE_Model breObject) {		
 		try {
 			return produceRuleSA.sendExecutionTopic(breObject);
 		} catch (JsonProcessingException e) {
@@ -42,9 +42,8 @@ public class BRE_Controller {
 			return new ResponseEntity<>(breObject, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
 
-	@GetMapping("/executionbre")
+	@GetMapping("/execution")
 	public ResponseEntity<?> getBusinessRuleBRE_SA() {		
 		try {
 			System.out.println(" getBusinessRuleSouthAmerica ");
@@ -58,7 +57,7 @@ public class BRE_Controller {
 
 	// METHOD POST/GET :: ROADWAY BRE
 
-	@PostMapping("/roadwaybre")
+	@PostMapping("/roadway")
 	public ResponseEntity<?> postRoadwayBRE_SA(
 			@Validated @RequestBody RoadwayBRE_Model breObject) {		
 		try {
@@ -69,7 +68,7 @@ public class BRE_Controller {
 		}
 	}
 	
-	@GetMapping("/roadwaybre")
+	@GetMapping("/roadway")
 	public ResponseEntity<?> getRoadwayBRE_SA() {		
 		try {
 			System.out.println(" getRoadwayBRE_SA ");
@@ -81,7 +80,7 @@ public class BRE_Controller {
 	}
 	
 	// METHOD POST/GET :: AIRWAY BRE
-	@PostMapping("/airwaybre")
+	@PostMapping("/airway")
 	public ResponseEntity<?> postAirwayBRE_SA(
 			@Validated @RequestBody AirwayBRE_Model breObject) {		
 		try {
@@ -92,7 +91,7 @@ public class BRE_Controller {
 		}
 	}
 
-	@GetMapping("/airwaybre")
+	@GetMapping("/airway")
 	public ResponseEntity<?> getAirwayBRE_SA() {		
 		try {
 			return consumerRuleSA.consumerAirwayTopic();
@@ -103,7 +102,7 @@ public class BRE_Controller {
 	}
 
 	// METHOD POST/GET :: MARITIME BRE
-	@PostMapping("/maritimebre")
+	@PostMapping("/maritime")
 	public ResponseEntity<?> postMaritimewayBRE_SA(
 			@Validated @RequestBody MaritimewayBRE_Model breObject) {		
 		try {
@@ -114,7 +113,7 @@ public class BRE_Controller {
 		}
 	}
 
-	@GetMapping("/maritimebre")
+	@GetMapping("/maritime")
 	public ResponseEntity<?> getMaritimewayBRE_SA() {		
 		try {
 			return consumerRuleSA.consumerMaritimewayTopic();

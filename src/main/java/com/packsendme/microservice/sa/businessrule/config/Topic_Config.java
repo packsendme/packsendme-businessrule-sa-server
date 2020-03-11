@@ -1,4 +1,4 @@
-package com.packsendme.microservice.businessrule.sa.config;
+package com.packsendme.microservice.sa.businessrule.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

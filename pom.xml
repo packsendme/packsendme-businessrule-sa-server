@@ -99,26 +99,26 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>com.packsendme.lib.bre.execution</groupId>
-  			<artifactId>packsendme-execution-bre-lib</artifactId>
+			<groupId>com.packsendme.bre.execution</groupId>
+  			<artifactId>packsendme-execution-bre</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 		<dependency>
-			<groupId>com.packsendme.lib.bre.roadway</groupId>
-  			<artifactId>packsendme-roadway-bre-lib</artifactId>
+			<groupId>com.packsendme.bre.roadway</groupId>
+  			<artifactId>packsendme-roadway-bre</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 		<dependency>
-			<groupId>com.packsendme.lib.bre.airway</groupId>
-  			<artifactId>packsendme-airway-bre-lib</artifactId>
+			<groupId>com.packsendme.bre.airway</groupId>
+  			<artifactId>packsendme-airway-bre</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
-			<groupId>com.packsendme.lib.bre.maritimeway</groupId>
-  			<artifactId>packsendme-maritimeway-bre-lib</artifactId>
+			<groupId>com.packsendme.bre.maritimeway</groupId>
+  			<artifactId>packsendme-maritimeway-bre</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>		
 		
