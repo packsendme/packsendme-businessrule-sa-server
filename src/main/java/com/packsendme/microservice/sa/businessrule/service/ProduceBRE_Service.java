@@ -1,53 +1,42 @@
 package com.packsendme.microservice.sa.businessrule.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
-import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.packsendme.airway.bre.rule.model.AirwayBRE_Model;
+import com.packsendme.airway.bre.rule.model.AirwayCostsBRE_Model;
+import com.packsendme.execution.bre.rule.instance.model.AirwayInstanceBRE_Model;
+import com.packsendme.execution.bre.rule.instance.model.MaritimewayInstanceBRE_Model;
 import com.packsendme.execution.bre.rule.model.ExecutionBRE_Model;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
+import com.packsendme.lib.common.constants.Topic_SA_Constants;
 import com.packsendme.lib.common.response.Response;
-import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
-import com.packsendme.microservice.sa.businessrule.config.Topic_Config;
-import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
+import com.packsendme.maritimeway.bre.rule.model.MaritimewayCostsBRE_Model;
+import com.packsendme.microservice.sa.component.ProduceBRE_Component;
+import com.packsendme.roadway.bre.rule.model.RoadwayCostsBRE_Model;
+import com.packsendme.roadway.bre.rule.model.RoadwayInstanceBRE_Model;
  
 @Service
+@ComponentScan("com.packsendme.microservice.sa.component")
 public class ProduceBRE_Service {
 	
 	@Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+	private ProduceBRE_Component produceBREComponent;
 	
-	@Autowired
-	private Topic_Config topic;
+	private ObjectMapper mapper = new ObjectMapper();
+
 	
 	public ResponseEntity<?> sendExecutionTopic(ExecutionBRE_Model brObject) throws JsonProcessingException {
-		ObjectMapper mapper = new ObjectMapper();
 		Response<String> responseObj = null;
 		String msgJson = mapper.writeValueAsString(brObject);
-		
-		System.out.println(" TOPIC INSTANCE "+ topic.topic_executionrule_sa);
+		String responseTopic = null; 
 		try {
-			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_executionrule_sa, msgJson);
-			future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
-					@Override
-		            public void onSuccess(SendResult<String, String> result) {
-		            	System.out.println("<> Sent message=[" + msgJson + "] with offset=[" + result.getRecordMetadata().offset() + "]");  
-		            }
-		            
-		            @Override
-		            public void onFailure(Throwable ex) {
-		            	System.out.println("Unable to send message=["+ msgJson + "] due to : " + ex.getMessage());
-		            }
-	       	});
-			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), msgJson);
+			responseTopic = produceBREComponent.sendTopic(msgJson, Topic_SA_Constants.TOPIC_EXECUTION_SA);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), responseTopic);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
@@ -56,27 +45,54 @@ public class ProduceBRE_Service {
 		}
 	}
 	
+	//========================================================================================
+	// METHOD-SERVICE :: ROADWAY-BRE
+	//========================================================================================//
+
+	public ResponseEntity<?> sendRoadwayInstanceTopic(RoadwayInstanceBRE_Model breObj) throws JsonProcessingException {
+		Response<String> responseObj = null;
+		String msgJson = mapper.writeValueAsString(breObj);
+		String responseTopic = null; 
+		try {
+			responseTopic = produceBREComponent.sendTopic(msgJson, Topic_SA_Constants.TOPIC_ROADWAY_SA_Instance);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), responseTopic);
+			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
+
+		} catch (Exception e) {
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
+			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
-	public ResponseEntity<?> sendRoadwayTopic(RoadwayBRE_Model roadwayObj) throws JsonProcessingException {
+	public ResponseEntity<?> sendRoadwayCostsTopic(RoadwayCostsBRE_Model breObj) throws JsonProcessingException {
+		Response<String> responseObj = null;
+		String msgJson = mapper.writeValueAsString(breObj);
+		String responseTopic = null; 
+		try {
+			responseTopic = produceBREComponent.sendTopic(msgJson, Topic_SA_Constants.TOPIC_ROADWAY_SA_Costs);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), responseTopic);
+			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
+
+		} catch (Exception e) {
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
+			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	
+	
+	//========================================================================================
+	// METHOD-SERVICE :: AIRWAY-BRE
+	//========================================================================================//
+
+	public ResponseEntity<?> sendAirwayInstanceTopic(AirwayInstanceBRE_Model breObj) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		Response<String> responseObj = null;
-		String msgJson = mapper.writeValueAsString(roadwayObj);
-		
-		System.out.println(" TOPIC INSTANCE "+ topic.topic_roadway_sa);
+		String msgJson = mapper.writeValueAsString(breObj);
+		String responseTopic = null; 
 		try {
-			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_roadway_sa, msgJson);
-			future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
-					@Override
-		            public void onSuccess(SendResult<String, String> result) {
-		            	System.out.println("< ROADWAY > Success: sent message=[" + msgJson + "] with offset=[" + result.getRecordMetadata().offset() + "]");  
-		            }
-		            
-		            @Override
-		            public void onFailure(Throwable ex) {
-		            	System.out.println("< ROADWAY > ERROR: send message=["+ msgJson + "] due to : " + ex.getMessage());
-		            }
-	       	});
-			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), msgJson);
+			responseTopic = produceBREComponent.sendTopic(msgJson, Topic_SA_Constants.TOPIC_AIRWAY_SA_Instance);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), responseTopic);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
@@ -85,26 +101,14 @@ public class ProduceBRE_Service {
 		}
 	}
 	
-	public ResponseEntity<?> sendAirwayTopic(AirwayBRE_Model airwayObj) throws JsonProcessingException {
+	public ResponseEntity<?> sendAirwayCostsTopic(AirwayCostsBRE_Model breObj) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		Response<String> responseObj = null;
-		String msgJson = mapper.writeValueAsString(airwayObj);
-		
-		System.out.println(" TOPIC INSTANCE "+ topic.topic_airway_sa);
+		String msgJson = mapper.writeValueAsString(breObj);
+		String responseTopic = null; 
 		try {
-			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_airway_sa, msgJson);
-			future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
-					@Override
-		            public void onSuccess(SendResult<String, String> result) {
-		            	System.out.println("< AIRWAY > SUCCESS: sent message=[" + msgJson + "] with offset=[" + result.getRecordMetadata().offset() + "]");  
-		            }
-		            
-		            @Override
-		            public void onFailure(Throwable ex) {
-		            	System.out.println("< AIRWAY > ERROR: send message=["+ msgJson + "] due to : " + ex.getMessage());
-		            }
-	       	});
-			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), msgJson);
+			responseTopic = produceBREComponent.sendTopic(msgJson, Topic_SA_Constants.TOPIC_AIRWAY_SA_Costs);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), responseTopic);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
@@ -113,26 +117,18 @@ public class ProduceBRE_Service {
 		}
 	}
 	
-	public ResponseEntity<?> sendMaritimewayTopic(MaritimewayBRE_Model maritimewayObj) throws JsonProcessingException {
+	//========================================================================================
+	// METHOD-SERVICE :: MARITIMEWAY-BRE
+	//========================================================================================//
+
+	public ResponseEntity<?> sendMaritimewayInstanceTopic(MaritimewayInstanceBRE_Model maritimewayObj) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		Response<String> responseObj = null;
 		String msgJson = mapper.writeValueAsString(maritimewayObj);
-		
-		System.out.println(" TOPIC INSTANCE "+ topic.topic_maritimeway_sa);
+		String responseTopic = null; 
 		try {
-			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic.topic_maritimeway_sa, msgJson);
-			future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
-					@Override
-		            public void onSuccess(SendResult<String, String> result) {
-		            	System.out.println("< MARITIME > SUCCESS: sent message=[" + msgJson + "] with offset=[" + result.getRecordMetadata().offset() + "]");  
-		            }
-		            
-		            @Override
-		            public void onFailure(Throwable ex) {
-		            	System.out.println("< MARITIME > ERROR: send message=["+ msgJson + "] due to : " + ex.getMessage());
-		            }
-	       	});
-			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), msgJson);
+			responseTopic = produceBREComponent.sendTopic(msgJson, Topic_SA_Constants.TOPIC_MARITIMEWAY_SA_Instance);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), responseTopic);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
@@ -140,5 +136,21 @@ public class ProduceBRE_Service {
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	public ResponseEntity<?> sendMaritimewayCostsTopic(MaritimewayCostsBRE_Model maritimewayObj) throws JsonProcessingException {
+		Response<String> responseObj = null;
+		String msgJson = mapper.writeValueAsString(maritimewayObj);
+		String responseTopic = null; 
+		try {
+			responseTopic = produceBREComponent.sendTopic(msgJson, Topic_SA_Constants.TOPIC_MARITIMEWAY_SA_Costs);
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), responseTopic);
+			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
+
+		} catch (Exception e) {
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
+			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 
 }
