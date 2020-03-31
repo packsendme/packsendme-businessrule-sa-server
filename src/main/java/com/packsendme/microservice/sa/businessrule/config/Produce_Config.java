@@ -1,4 +1,4 @@
-package com.packsendme.microservice.businessrule.sa.config;
+package com.packsendme.microservice.sa.businessrule.config;
 
 import java.net.UnknownHostException;
 import java.util.HashMap;
