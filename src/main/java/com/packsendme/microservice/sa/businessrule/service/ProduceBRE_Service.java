@@ -21,7 +21,7 @@ import com.packsendme.roadway.bre.rule.model.RoadwayCostsBRE_Model;
 import com.packsendme.roadway.bre.rule.model.RoadwayInstanceBRE_Model;
  
 @Service
-@ComponentScan({"com.packsendme.microservice.sa.component"})
+@ComponentScan({"com.packsendme.microservice.sa.businessrule.service"})
 public class ProduceBRE_Service {
 	
 	@Autowired

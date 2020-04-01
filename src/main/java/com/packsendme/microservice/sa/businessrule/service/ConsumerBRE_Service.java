@@ -14,7 +14,7 @@ import com.packsendme.microservice.sa.businessrule.component.MaritimewayBREConsu
 import com.packsendme.microservice.sa.businessrule.component.RoadwayBREConsumer_Component;
 
 @Service
-@ComponentScan({"com.packsendme.microservice.sa.component"})
+@ComponentScan({"com.packsendme.microservice.sa.businessrule.service"})
 public class ConsumerBRE_Service {
 	
 	@Autowired
