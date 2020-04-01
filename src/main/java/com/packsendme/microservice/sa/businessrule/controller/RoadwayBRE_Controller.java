@@ -19,7 +19,6 @@ import com.packsendme.roadway.bre.rule.model.RoadwayInstanceBRE_Model;
 
 @RestController
 @RequestMapping("/bre/sa")
-@ComponentScan({"com.packsendme.microservice.sa.service"})
 public class RoadwayBRE_Controller {
 	
 	@Autowired
