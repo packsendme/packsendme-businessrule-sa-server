@@ -3,12 +3,14 @@ package com.packsendme.microservice.sa.component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
+import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import com.packsendme.lib.common.constants.Topic_SA_Constants;
 import com.packsendme.microservice.sa.businessrule.config.Topic_Config;
 
+@Component
 public class ProduceBRE_Component implements BRE_Produce {
 
 	@Autowired
