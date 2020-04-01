@@ -1,6 +1,7 @@
 package com.packsendme.microservice.sa.businessrule.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -18,8 +19,8 @@ import com.packsendme.roadway.bre.rule.model.RoadwayInstanceBRE_Model;
 
 @RestController
 @RequestMapping("/bre/sa")
+@ComponentScan({"com.packsendme.microservice.sa.service"})
 public class RoadwayBRE_Controller {
-
 	
 	@Autowired
 	private ProduceBRE_Service produceRuleSA; 
