@@ -54,7 +54,7 @@ public class RoadwayBRE_Controller {
 	@GetMapping("/topic/instance")
 	public ResponseEntity<?> getRoadwayInstanceBRE_SA() {		
 		try {
-			return consumerRuleSA.consumerRoadwayTopic();
+			return consumerRuleSA.consumerRoadwayTopicInstance();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -64,7 +64,7 @@ public class RoadwayBRE_Controller {
 	@GetMapping("/topic/costs")
 	public ResponseEntity<?> getRoadwayCostsBRE_SA() {		
 		try {
-			return consumerRuleSA.consumerRoadwayTopic();
+			return consumerRuleSA.consumerRoadwayTopicCosts();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
