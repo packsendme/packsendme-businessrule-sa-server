@@ -16,7 +16,7 @@ import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.constants.Topic_SA_Constants;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.maritimeway.bre.rule.model.MaritimewayCostsBRE_Model;
-import com.packsendme.microservice.sa.businessrule.component.ProduceBRE_Component;
+import com.packsendme.microservice.sa.businessrule.produce.component.ProduceBRE_Component;
 import com.packsendme.roadway.bre.rule.model.RoadwayCostsBRE_Model;
 import com.packsendme.roadway.bre.rule.model.RoadwayInstanceBRE_Model;
  

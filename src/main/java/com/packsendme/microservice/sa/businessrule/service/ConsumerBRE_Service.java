@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
-import com.packsendme.microservice.sa.businessrule.component.AirwayBREConsumer_Component;
-import com.packsendme.microservice.sa.businessrule.component.ExecutionBREConsumer_Component;
-import com.packsendme.microservice.sa.businessrule.component.MaritimewayBREConsumer_Component;
-import com.packsendme.microservice.sa.businessrule.component.RoadwayBREConsumer_Component;
+import com.packsendme.microservice.sa.businessrule.consumer.component.AirwayBREConsumer_Component;
+import com.packsendme.microservice.sa.businessrule.consumer.component.ConsumerBRE_Abstract;
+import com.packsendme.microservice.sa.businessrule.consumer.component.ExecutionBREConsumer_Component;
+import com.packsendme.microservice.sa.businessrule.consumer.component.MaritimewayBREConsumer_Component;
+import com.packsendme.microservice.sa.businessrule.consumer.component.RoadwayBREConsumer_Component;
 
 @Service
 @ComponentScan({"com.packsendme.microservice.sa.businessrule.service"})
@@ -72,8 +73,9 @@ public class ConsumerBRE_Service {
 	
 	public ResponseEntity<?> consumerRoadwayTopic() {
 		Response<String> responseObj = null;
+		ConsumerBRE_Abstract consumer = new RoadwayBREConsumer_Component();
 		try {
-			String msgTopic = roadwayConsumer.consumerTopic();
+			String msgTopic = consumer.getMsg_Topic_instance();
 			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), msgTopic);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 

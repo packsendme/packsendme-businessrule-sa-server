@@ -14,6 +14,8 @@ import com.packsendme.execution.bre.rule.instance.model.AirwayInstanceBRE_Model;
 import com.packsendme.microservice.sa.businessrule.service.ConsumerBRE_Service;
 import com.packsendme.microservice.sa.businessrule.service.ProduceBRE_Service;
 
+//@RestController
+//@RequestMapping("/bre/sa/airway")
 public class AirwayBRE_Controller {
 
 	

@@ -13,6 +13,8 @@ import com.packsendme.execution.bre.rule.model.ExecutionBRE_Model;
 import com.packsendme.microservice.sa.businessrule.service.ConsumerBRE_Service;
 import com.packsendme.microservice.sa.businessrule.service.ProduceBRE_Service;
 
+//@RestController
+//@RequestMapping("/bre/sa/execute")
 public class Execute_Controller {
 
 	
