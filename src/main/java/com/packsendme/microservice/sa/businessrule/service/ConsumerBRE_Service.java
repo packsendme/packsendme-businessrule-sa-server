@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
-import com.packsendme.microservice.sa.component.AirwayBREConsumer_Component;
-import com.packsendme.microservice.sa.component.ExecutionBREConsumer_Component;
-import com.packsendme.microservice.sa.component.MaritimewayBREConsumer_Component;
-import com.packsendme.microservice.sa.component.RoadwayBREConsumer_Component;
+import com.packsendme.microservice.sa.businessrule.component.AirwayBREConsumer_Component;
+import com.packsendme.microservice.sa.businessrule.component.ExecutionBREConsumer_Component;
+import com.packsendme.microservice.sa.businessrule.component.MaritimewayBREConsumer_Component;
+import com.packsendme.microservice.sa.businessrule.component.RoadwayBREConsumer_Component;
 
 @Service
 @ComponentScan({"com.packsendme.microservice.sa.component"})
