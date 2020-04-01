@@ -4,4 +4,3 @@ spring:
   cloud:
     config:
       uri: http://192.241.133.13:9090
-      profile: dev
