@@ -17,7 +17,7 @@ import com.packsendme.roadway.bre.rule.model.RoadwayCostsBRE_Model;
 import com.packsendme.roadway.bre.rule.model.RoadwayInstanceBRE_Model;
 
 @RestController
-@RequestMapping("/businessrule/sa/roadway")
+@RequestMapping("/bre/sa")
 public class RoadwayBRE_Controller {
 
 	
@@ -32,7 +32,7 @@ public class RoadwayBRE_Controller {
 	// METHOD POST|GET :: ROADWAY-BRE
 	//========================================================================================//
 
-	@PostMapping("/topic/instance")
+	@PostMapping("/roadway/instance")
 	public ResponseEntity<?> postRoadwayInstanceBRE_SA(@Validated @RequestBody RoadwayInstanceBRE_Model breObject) {		
 		try {
 			return produceRuleSA.sendRoadwayInstanceTopic(breObject);
@@ -42,7 +42,7 @@ public class RoadwayBRE_Controller {
 		}
 	}
 	
-	@PostMapping("/topic/costs")
+	@PostMapping("/roadway/costs")
 	public ResponseEntity<?> postRoadwayCostsBRE_SA(@Validated @RequestBody RoadwayCostsBRE_Model breObject) {		
 		try {
 			return produceRuleSA.sendRoadwayCostsTopic(breObject);
