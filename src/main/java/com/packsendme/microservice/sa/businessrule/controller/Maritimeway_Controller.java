@@ -14,6 +14,8 @@ import com.packsendme.maritimeway.bre.rule.model.MaritimewayCostsBRE_Model;
 import com.packsendme.microservice.sa.businessrule.service.ConsumerBRE_Service;
 import com.packsendme.microservice.sa.businessrule.service.ProduceBRE_Service;
 
+//@RestController
+//@RequestMapping("/bre/sa/maritimeway")
 public class Maritimeway_Controller {
 
 	

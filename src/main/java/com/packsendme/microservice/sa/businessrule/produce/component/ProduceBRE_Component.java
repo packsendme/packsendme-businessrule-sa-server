@@ -1,4 +1,4 @@
-package com.packsendme.microservice.sa.businessrule.component;
+package com.packsendme.microservice.sa.businessrule.produce.component;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
