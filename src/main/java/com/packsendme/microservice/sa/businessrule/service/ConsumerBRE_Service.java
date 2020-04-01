@@ -70,8 +70,22 @@ public class ConsumerBRE_Service {
 		}
 	}
 	
+	public ResponseEntity<?> consumerRoadwayTopicInstance() {
+		Response<String> responseObj = null;
+		ConsumerBRE_Abstract consumer = new RoadwayBREConsumer_Component();
+		try {
+			
+			String msgTopic = maritimewayConsumer.consumerTopic();
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), msgTopic);
+			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
+
+		} catch (Exception e) {
+			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
+			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
-	public ResponseEntity<?> consumerRoadwayTopic() {
+	public ResponseEntity<?> consumerRoadwayTopicCosts() {
 		Response<String> responseObj = null;
 		ConsumerBRE_Abstract consumer = new RoadwayBREConsumer_Component();
 		try {
