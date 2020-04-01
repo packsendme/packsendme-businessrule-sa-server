@@ -1,4 +1,4 @@
-package com.packsendme.microservice.sa.component;
+package com.packsendme.microservice.sa.businessrule.component;
 
 public interface BRE_Produce{
 	
