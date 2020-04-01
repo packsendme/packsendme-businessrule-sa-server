@@ -8,7 +8,7 @@ public class AirwayBREConsumer_Component implements BRE_Consumer{
 
 	private String msg;
 	
-	@KafkaListener(topics = "${kafka.topic.airwayBRE}")
+	@KafkaListener(topics = "${kafka.topic.airwayBRE_SA_Instance}")
 	public void receive(String data) {
 		this.msg = data;
 		System.out.println(" ------------------------------- ");
