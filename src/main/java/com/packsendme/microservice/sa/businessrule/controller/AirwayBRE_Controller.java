@@ -7,20 +7,13 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.packsendme.airway.bre.rule.model.AirwayCostsBRE_Model;
 import com.packsendme.execution.bre.rule.instance.model.AirwayInstanceBRE_Model;
-import com.packsendme.execution.bre.rule.model.ExecutionBRE_Model;
 import com.packsendme.microservice.sa.businessrule.service.ConsumerBRE_Service;
 import com.packsendme.microservice.sa.businessrule.service.ProduceBRE_Service;
-import com.packsendme.roadway.bre.rule.model.RoadwayCostsBRE_Model;
-import com.packsendme.roadway.bre.rule.model.RoadwayInstanceBRE_Model;
 
-@RestController
-@RequestMapping("/businessrule/sa/airway")
 public class AirwayBRE_Controller {
 
 	
