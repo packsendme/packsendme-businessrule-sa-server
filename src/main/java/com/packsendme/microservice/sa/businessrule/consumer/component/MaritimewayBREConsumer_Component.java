@@ -23,7 +23,6 @@ public class MaritimewayBREConsumer_Component implements BRE_ConsumerT {
 
 		KafkaConsumer<String, String> consumer = consumer_Config.consumerFactory();
 		consumer.subscribe(Arrays.asList("topicRoadwayBRE_SA_Instance"));
-		final int minBatchSize = 200;
 	    List<ConsumerRecord<String, String>> buffer = new ArrayList<ConsumerRecord<String, String>>();
 	    while (true) {
 	        ConsumerRecords<String, String> records = consumer.poll(100);
@@ -31,13 +30,9 @@ public class MaritimewayBREConsumer_Component implements BRE_ConsumerT {
 	        for (ConsumerRecord<String, String> record : records) {
 	            buffer.add(record);
 		        System.out.println("==================================================================="); 
-	            System.err.println(buffer.size() + "----->" + record);
+	            System.err.println(buffer.size() + "----->" + record.value());
 		        System.out.println("==================================================================="); 
 
-	        }
-	        if (buffer.size() >= minBatchSize) {
-	            consumer.commitSync();
-	            buffer.clear();
 	        }
 	    }
 		/*final int giveUp = 100;   int noRecordsCount = 0;
