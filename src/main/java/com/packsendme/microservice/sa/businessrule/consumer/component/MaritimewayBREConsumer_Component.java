@@ -17,6 +17,10 @@ public class MaritimewayBREConsumer_Component implements BRE_ConsumerT {
 	Consumer_Config consumer_Config = new Consumer_Config();
 
 	public void receive() {
+        System.out.println("==================================================================="); 
+        System.out.println(" RECEIVE"); 
+        System.out.println("==================================================================="); 
+
 		KafkaConsumer<String, String> consumer = consumer_Config.consumerFactory();
 		consumer.subscribe(Arrays.asList("topicRoadwayBRE_SA_Instance"));
 		final int minBatchSize = 200;
