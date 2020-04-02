@@ -1,6 +1,5 @@
 package com.packsendme.microservice.sa.businessrule.consumer.component;
 
-import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -29,7 +28,7 @@ public class MaritimewayBREConsumer_Component implements BRE_ConsumerT {
 	        properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,   StringDeserializer.class.getName());  
 	        properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,StringDeserializer.class.getName());  
 	        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG,grp_id);  
-	        properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");  
+	       // properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");  
 
 		
 		
@@ -44,7 +43,12 @@ public class MaritimewayBREConsumer_Component implements BRE_ConsumerT {
 		boolean result = true;
 	    while (result) {
 	        ConsumerRecords<String, String> records = consumer.poll(1000);
-	        System.out.println(records.count());
+	        
+	        System.out.println("==================================================================="); 
+	        System.out.println(" TOTAL REGISTER :: "+ records.count());
+	        System.out.println("==================================================================="); 
+
+
 
 	        for (ConsumerRecord<String, String> record : records) {
 		        System.out.println("==================================================================="); 
@@ -54,25 +58,6 @@ public class MaritimewayBREConsumer_Component implements BRE_ConsumerT {
 	        }
 	        result = false;
 	    }
-		/*final int giveUp = 100;   int noRecordsCount = 0;
-	        while (true) {
-	            final ConsumerRecords<Long, String> consumerRecords = consumer.poll(1000);
-	            if (consumerRecords.count()==0) {
-	                noRecordsCount++;
-	                if (noRecordsCount > giveUp) break;
-	                else continue;
-	            }
-	            consumerRecords.forEach(record -> {
-	                System.out.printf("Consumer Record:(%d, %s, %d, %d)\n",
-	                        record.key(), record.value(),
-	                        record.partition(), record.offset());
-	                
-	            });
-	            
-	            consumer.commitAsync();
-	        }
-	        consumer.close();
-	        System.out.println("DONE"); */
 	}
 	
 	
