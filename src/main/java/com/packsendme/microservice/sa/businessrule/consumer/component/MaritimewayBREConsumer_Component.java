@@ -1,8 +1,6 @@
 package com.packsendme.microservice.sa.businessrule.consumer.component;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -20,17 +18,15 @@ public class MaritimewayBREConsumer_Component implements BRE_ConsumerT {
         System.out.println("==================================================================="); 
         System.out.println(" RECEIVE"); 
         System.out.println("==================================================================="); 
-
+        
 		KafkaConsumer<String, String> consumer = consumer_Config.consumerFactory();
 		consumer.subscribe(Arrays.asList("topicRoadwayBRE_SA_Instance"));
-	    List<ConsumerRecord<String, String>> buffer = new ArrayList<ConsumerRecord<String, String>>();
 	    while (true) {
 	        ConsumerRecords<String, String> records = consumer.poll(100);
 
 	        for (ConsumerRecord<String, String> record : records) {
-	            buffer.add(record);
 		        System.out.println("==================================================================="); 
-	            System.err.println(buffer.size() + "----->" + record.value());
+	            System.err.println(" VALUE ----->" + record.value());
 		        System.out.println("==================================================================="); 
 
 	        }

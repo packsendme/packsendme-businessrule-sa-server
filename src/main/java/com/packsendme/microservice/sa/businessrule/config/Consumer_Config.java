@@ -28,7 +28,6 @@ public class Consumer_Config {
 	    props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
 	    props.put(ConsumerConfig.GROUP_ID_CONFIG, "groupId");
 	    props.put(ConsumerConfig.RETRY_BACKOFF_MS_CONFIG, 0);
-	    props.put("acks", "all");
 	    props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 	    props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
 	    props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
