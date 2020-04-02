@@ -1,7 +1,12 @@
 package com.packsendme.microservice.sa.businessrule.consumer.component;
 
-import org.apache.kafka.clients.consumer.Consumer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.springframework.stereotype.Component;
 
 import com.packsendme.microservice.sa.businessrule.config.Consumer_Config;
@@ -12,9 +17,26 @@ public class MaritimewayBREConsumer_Component implements BRE_ConsumerT {
 	Consumer_Config consumer_Config = new Consumer_Config();
 
 	public void receive() {
-		 final Consumer<Long, String> consumer = consumer_Config.consumerFactory();
-		 String msg = "";
-	        final int giveUp = 100;   int noRecordsCount = 0;
+		KafkaConsumer<String, String> consumer = consumer_Config.consumerFactory();
+		consumer.subscribe(Arrays.asList("topicRoadwayBRE_SA_Instance"));
+		final int minBatchSize = 200;
+	    List<ConsumerRecord<String, String>> buffer = new ArrayList<ConsumerRecord<String, String>>();
+	    while (true) {
+	        ConsumerRecords<String, String> records = consumer.poll(100);
+
+	        for (ConsumerRecord<String, String> record : records) {
+	            buffer.add(record);
+		        System.out.println("==================================================================="); 
+	            System.err.println(buffer.size() + "----->" + record);
+		        System.out.println("==================================================================="); 
+
+	        }
+	        if (buffer.size() >= minBatchSize) {
+	            consumer.commitSync();
+	            buffer.clear();
+	        }
+	    }
+		/*final int giveUp = 100;   int noRecordsCount = 0;
 	        while (true) {
 	            final ConsumerRecords<Long, String> consumerRecords = consumer.poll(1000);
 	            if (consumerRecords.count()==0) {
@@ -32,8 +54,12 @@ public class MaritimewayBREConsumer_Component implements BRE_ConsumerT {
 	            consumer.commitAsync();
 	        }
 	        consumer.close();
-	        System.out.println("DONE");
+	        System.out.println("DONE"); */
 	}
+	
+	
+	  
+	
 	
 	public String consumerTopic(){
 		return "DONE";
