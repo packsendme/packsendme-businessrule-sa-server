@@ -1,5 +1,6 @@
 package com.packsendme.microservice.sa.businessrule.consumer.component;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -41,7 +42,8 @@ public class MaritimewayBREConsumer_Component implements BRE_ConsumerT {
 		KafkaConsumer<String, String> consumer = new KafkaConsumer<String,String>(properties);
 		consumer.subscribe(Arrays.asList(topic));
 	    while (true) {
-	        ConsumerRecords<String, String> records = consumer.poll(100);
+	        ConsumerRecords<String, String> records = consumer.poll(1000);
+	        System.out.println(records.count());
 
 	        for (ConsumerRecord<String, String> record : records) {
 		        System.out.println("==================================================================="); 
