@@ -3,11 +3,9 @@ package com.packsendme.microservice.sa.businessrule.consumer.component;
 import java.util.Arrays;
 import java.util.Properties;
 
-import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.stereotype.Component;
 
 import com.packsendme.microservice.sa.businessrule.config.Consumer_Config;
@@ -34,16 +32,33 @@ public class MaritimewayBREConsumer_Component implements BRE_ConsumerT {
 	     props.put("value.deserializer",
 	        "org.apache.kafka.common.serializa-tion.StringDeserializer");
 	     
-	     KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
-	     consumer.subscribe(Arrays.asList(topic));
-	     System.out.println("Subscribed to topic " + topic);
-	     int i = 0;
-	     while (true) {
-	        ConsumerRecords<String, String> records = consumer.poll(100);
-	           for (ConsumerRecord<String, String> record : records)
-	              System.out.printf("offset = %d, key = %s, value = %s\n",
-	              record.offset(), record.key(), record.value());
-	     }
+	     
+	     System.out.println("==================================================================="); 
+	     System.out.println(" RECEIVE"); 
+	     System.out.println("==================================================================="); 
+
+	     KafkaConsumer<String, String> consumer = new KafkaConsumer<String,String>(props);
+			consumer.subscribe(Arrays.asList(topic));
+
+			System.out.println("==================================================================="); 
+			System.out.println("Subscribed to topic " + topic);
+	        System.out.println("==================================================================="); 
+
+			boolean result = true;
+		    while (true) {
+		        ConsumerRecords<String, String> records = consumer.poll(100);
+		        
+		        System.out.println("==================================================================="); 
+		        System.out.println(" TOTAL REGISTER :: "+ records.count());
+		        System.out.println("==================================================================="); 
+
+		        for (ConsumerRecord<String, String> record : records) {
+			        System.out.println("==================================================================="); 
+		            System.out.printf("offset = %d, key = %s, value = %s\n", 
+		                    record.offset(), record.key(), record.value());
+			        System.out.println("==================================================================="); 
+		        }
+		    }
 	  }
 	
 	    
