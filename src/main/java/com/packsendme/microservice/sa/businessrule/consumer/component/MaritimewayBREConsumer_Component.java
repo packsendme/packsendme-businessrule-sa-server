@@ -41,7 +41,8 @@ public class MaritimewayBREConsumer_Component implements BRE_ConsumerT {
         
 		KafkaConsumer<String, String> consumer = new KafkaConsumer<String,String>(properties);
 		consumer.subscribe(Arrays.asList(topic));
-	    while (true) {
+		boolean result = true;
+	    while (result) {
 	        ConsumerRecords<String, String> records = consumer.poll(1000);
 	        System.out.println(records.count());
 
@@ -51,6 +52,7 @@ public class MaritimewayBREConsumer_Component implements BRE_ConsumerT {
 		        System.out.println("==================================================================="); 
 
 	        }
+	        result = false;
 	    }
 		/*final int giveUp = 100;   int noRecordsCount = 0;
 	        while (true) {
