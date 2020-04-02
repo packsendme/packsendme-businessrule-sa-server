@@ -21,7 +21,7 @@ public class MaritimewayBREConsumer_Component implements BRE_ConsumerT {
 	public void receive() {
 		
 	     String bootstrapServers="167.172.152.184:9092";  
-	        String grp_id="group-id";  
+	        String grp_id="Java";  
 	        String topic="topicRoadwayBRE_SA_Instance";  
 	        //Creating consumer properties  
 	        Properties properties=new Properties();  
