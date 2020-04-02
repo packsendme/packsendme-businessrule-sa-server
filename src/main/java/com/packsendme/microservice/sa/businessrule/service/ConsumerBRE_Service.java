@@ -75,7 +75,8 @@ public class ConsumerBRE_Service {
 		ConsumerBRE_Abstract consumer = new RoadwayBREConsumer_Component();
 		try {
 			
-			String msgTopic = maritimewayConsumer.consumerTopic();
+			String msgTopic = "OK";  //maritimewayConsumer.consumerTopic();
+			maritimewayConsumer.receive();
 			responseObj = new Response<String>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), msgTopic);
 			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 
