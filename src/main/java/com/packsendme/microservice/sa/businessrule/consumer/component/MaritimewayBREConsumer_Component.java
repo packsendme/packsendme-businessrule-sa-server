@@ -1,10 +1,13 @@
 package com.packsendme.microservice.sa.businessrule.consumer.component;
 
 import java.util.Arrays;
+import java.util.Properties;
 
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.stereotype.Component;
 
 import com.packsendme.microservice.sa.businessrule.config.Consumer_Config;
@@ -15,12 +18,28 @@ public class MaritimewayBREConsumer_Component implements BRE_ConsumerT {
 	Consumer_Config consumer_Config = new Consumer_Config();
 
 	public void receive() {
+		
+	     String bootstrapServers="167.172.152.184:9092";  
+	        String grp_id="groupId";  
+	        String topic="topicRoadwayBRE_SA_Instance";  
+	        //Creating consumer properties  
+	        Properties properties=new Properties();  
+	        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServers);  
+	        properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,   StringDeserializer.class.getName());  
+	        properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,StringDeserializer.class.getName());  
+	        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG,grp_id);  
+	        properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");  
+
+		
+		
+		
+		
         System.out.println("==================================================================="); 
         System.out.println(" RECEIVE"); 
         System.out.println("==================================================================="); 
         
-		KafkaConsumer<String, String> consumer = consumer_Config.consumerFactory();
-		consumer.subscribe(Arrays.asList("topicRoadwayBRE_SA_Instance"));
+		KafkaConsumer<String, String> consumer = new KafkaConsumer<String,String>(properties);
+		consumer.subscribe(Arrays.asList(topic));
 	    while (true) {
 	        ConsumerRecords<String, String> records = consumer.poll(100);
 
