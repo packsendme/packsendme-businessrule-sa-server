@@ -1,8 +1,13 @@
 package com.packsendme.microservice.sa.businessrule.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +36,8 @@ public class RoadwayBRE_Controller {
 	// METHOD POST|GET :: ROADWAY-BRE
 	//========================================================================================//
 
+	private List<String> messages = new ArrayList<String>();
+	
 	@PostMapping("/topic/instance")
 	public ResponseEntity<?> postRoadwayInstanceBRE_SA(@Validated @RequestBody RoadwayInstanceBRE_Model breObject) {		
 		try {
@@ -52,14 +59,17 @@ public class RoadwayBRE_Controller {
 	}
 	
 	@GetMapping("/topic/instance")
-	public ResponseEntity<?> getRoadwayInstanceBRE_SA() {		
-		try {
-			return consumerRuleSA.consumerRoadwayTopicInstance();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+	public List<String> getRoadwayInstanceBRE_SA() {		
+		return messages;
 	}
+	
+	@KafkaListener(groupId = "Java", topics = "topicRoadwayBRE_SA_Instance", containerFactory = "kafkaListenerContainerFactory")
+	public List<String> getMessages(String data) {		
+		messages.add(data);
+		return messages;
+	}
+	
+	
 	
 	@GetMapping("/topic/costs")
 	public ResponseEntity<?> getRoadwayCostsBRE_SA() {		
