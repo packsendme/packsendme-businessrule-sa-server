@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
 
+@Repository
 public class MaritimewayImpl_DAO implements IBusinessRule_DAO<MaritimewayBRE_Model> {
 
 	private RedisTemplate<String, MaritimewayBRE_Model> redisTemplate;

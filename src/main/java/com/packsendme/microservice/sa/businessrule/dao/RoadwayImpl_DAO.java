@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 
+@Repository
 public class RoadwayImpl_DAO implements IBusinessRule_DAO<RoadwayBRE_Model> {
 
 	private RedisTemplate<String, RoadwayBRE_Model> redisTemplate;

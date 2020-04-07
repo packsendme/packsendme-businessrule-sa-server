@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.packsendme.execution.bre.rule.model.ExecutionBRE_Model;
 
+@Repository
 public class ExecutionImpl_DAO implements IBusinessRule_DAO<ExecutionBRE_Model>{
 
 	private RedisTemplate<String, ExecutionBRE_Model> redisTemplate;
