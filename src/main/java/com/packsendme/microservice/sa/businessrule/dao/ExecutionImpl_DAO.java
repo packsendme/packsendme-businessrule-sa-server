@@ -5,33 +5,36 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-import com.packsendme.execution.bre.rule.model.ExecutionBRE_Model;
+@Component
+@Repository
+public class ExecutionImpl_DAO<T> implements IBusinessRule_DAO<T>{
 
-public class ExecutionImpl_DAO implements IBusinessRule_DAO<ExecutionBRE_Model>{
-
-	private RedisTemplate<String, ExecutionBRE_Model> redisTemplate;
+	@Autowired
+	private RedisTemplate<String, T> redisTemplate;
 
 	@Override
-	public void add(ExecutionBRE_Model object) {
-		redisTemplate.opsForValue().set(object.id_rule, object);
+	public void add(T object) {
+		redisTemplate.opsForValue().set("Execution", object);
 	}
 
 	@Override
-	public void delete(ExecutionBRE_Model object) {
-		String key = object.id_rule;
-		redisTemplate.opsForValue().getOperations().delete(key);
-	}
-	
-	@Override
-	public ExecutionBRE_Model findOne(String key) {
-		return redisTemplate.opsForValue().get(key);
+	public void delete(String key) {
+		redisTemplate.opsForValue().getOperations().delete(key);		
 	}
 
 	@Override
-	public List<ExecutionBRE_Model> findAll(String id) {
-		List<ExecutionBRE_Model> roadwayL = new ArrayList<ExecutionBRE_Model>();
+	public T findOne(String id) {
+		return redisTemplate.opsForValue().get(id);
+	}
+
+	@Override
+	public List<T> findAll(String id) {
+		List<T> roadwayL = new ArrayList<T>();
 		Set<String> keys = redisTemplate.keys("*");
 		Iterator<String> it = keys.iterator();
 			
@@ -40,5 +43,7 @@ public class ExecutionImpl_DAO implements IBusinessRule_DAO<ExecutionBRE_Model>{
 		}
 		return roadwayL;
 	}
+
+	 
  
 }

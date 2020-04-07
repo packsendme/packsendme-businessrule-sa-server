@@ -1,16 +1,35 @@
 package com.packsendme.microservice.sa.businessrule.dao;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-
-import org.springframework.data.redis.core.RedisTemplate;
 
 import com.packsendme.airway.bre.rule.model.AirwayBRE_Model;
 
 public class AirwayImpl_DAO implements IBusinessRule_DAO<AirwayBRE_Model> {
 
+	@Override
+	public void add(AirwayBRE_Model object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(String key) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public AirwayBRE_Model findOne(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<AirwayBRE_Model> findAll(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+/*
 	private RedisTemplate<String, AirwayBRE_Model> redisTemplate;
 
 	@Override
@@ -19,8 +38,7 @@ public class AirwayImpl_DAO implements IBusinessRule_DAO<AirwayBRE_Model> {
 	}
 
 	@Override
-	public void delete(AirwayBRE_Model object) {
-		String key = object.id_rule;
+	public void delete(String key) {
 		redisTemplate.opsForValue().getOperations().delete(key);
 	}
 	
@@ -39,6 +57,6 @@ public class AirwayImpl_DAO implements IBusinessRule_DAO<AirwayBRE_Model> {
 			roadwayL.add(findOne(it.next()));
 		}
 		return roadwayL;
-	}
+	}*/
  
 }
