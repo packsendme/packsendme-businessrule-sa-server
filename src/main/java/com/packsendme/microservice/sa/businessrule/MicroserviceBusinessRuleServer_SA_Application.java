@@ -1,13 +1,14 @@
 package com.packsendme.microservice.sa.businessrule;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-@SpringBootApplication
+@SpringBootApplication(
+		exclude = { RedisRepositoriesAutoConfiguration.class }
+)
 @EnableEurekaClient
-@EnableAutoConfiguration
 public class MicroserviceBusinessRuleServer_SA_Application {
 
 	public static void main(String[] args) {
