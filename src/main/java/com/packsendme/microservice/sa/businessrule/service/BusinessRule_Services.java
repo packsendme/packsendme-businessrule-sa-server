@@ -28,7 +28,7 @@ public class BusinessRule_Services {
 	private MaritimewayImpl_DAO maritimewayDAO;
 	
 	@Autowired
-	private ExecutionImpl_DAO executionDAO;
+	private ExecutionImpl_DAO<ExecutionBRE_Model> executionDAO;
 	
 	
 	public enum Operation_Enum {

@@ -6,11 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Repository;
 
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 
-@Repository
 public class RoadwayImpl_DAO implements IBusinessRule_DAO<RoadwayBRE_Model> {
 
 	private RedisTemplate<String, RoadwayBRE_Model> redisTemplate;
@@ -21,10 +19,10 @@ public class RoadwayImpl_DAO implements IBusinessRule_DAO<RoadwayBRE_Model> {
 	}
 
 	@Override
-	public void delete(RoadwayBRE_Model object) {
-		String key = object.getId_rule();
+	public void delete(String key) {
 		redisTemplate.opsForValue().getOperations().delete(key);
 	}
+
 	
 	@Override
 	public RoadwayBRE_Model findOne(String key) {

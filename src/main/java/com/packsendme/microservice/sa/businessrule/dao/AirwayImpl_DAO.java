@@ -6,11 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Repository;
 
 import com.packsendme.airway.bre.rule.model.AirwayBRE_Model;
 
-@Repository
 public class AirwayImpl_DAO implements IBusinessRule_DAO<AirwayBRE_Model> {
 
 	private RedisTemplate<String, AirwayBRE_Model> redisTemplate;
@@ -21,8 +19,7 @@ public class AirwayImpl_DAO implements IBusinessRule_DAO<AirwayBRE_Model> {
 	}
 
 	@Override
-	public void delete(AirwayBRE_Model object) {
-		String key = object.id_rule;
+	public void delete(String key) {
 		redisTemplate.opsForValue().getOperations().delete(key);
 	}
 	
