@@ -1,11 +1,9 @@
 package com.packsendme.microservice.sa.businessrule.dao;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,30 +14,33 @@ public class BusinessRuleImpl_DAO<T> implements IBusinessRule_DAO<T>{
 
 	@Autowired
 	private RedisTemplate<String, T> redisTemplate;
-
+	private HashOperations hashOps;
+	
+	@PostConstruct
+	private void init() {
+		hashOps = redisTemplate.opsForHash();
+	}
+	
 	@Override
-	public void add(T object) {
+	public void add(String cache, int value, T object) {
 		System.out.println(" +++++++++++++++++++++++ BusinessRuleImpl_DAO ");
-		try{
-			redisTemplate.opsForValue().set("Roadway", object);
-			//opsForList().leftPush("Roadway", object);
-		}
-		catch (Exception e) {
-			System.out.println(e);
-		}
+		//redisTemplate.opsForValue().set("Roadway", object);
+		redisTemplate.opsForHash().delete(cache,value);  
+		redisTemplate.opsForHash().put(cache, value, object);
 	}
 
 	@Override
-	public void delete(String key) {
-		redisTemplate.opsForValue().getOperations().delete(key);		
+	public void delete(String cache, int value) {
+		//redisTemplate.opsForValue().getOperations().delete(key);
+		redisTemplate.opsForHash().delete(cache,value);  
 	}
 
 	@Override
-	public T findOne(String id) {
-		return redisTemplate.opsForValue().get(id);
+	public T findOne(String cache,int value) {
+		return (T) redisTemplate.opsForHash().get(cache, value);
 	}
 
-	@Override
+	/*@Override
 	public List<T> findAll(String id) {
 		List<T> roadwayL = new ArrayList<T>();
 		Set<String> keys = redisTemplate.keys("*");
@@ -49,7 +50,7 @@ public class BusinessRuleImpl_DAO<T> implements IBusinessRule_DAO<T>{
 			roadwayL.add(findOne(it.next()));
 		}
 		return roadwayL;
-	}
+	} */
 
 	 
  
