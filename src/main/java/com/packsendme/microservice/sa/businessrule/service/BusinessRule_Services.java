@@ -47,7 +47,7 @@ public class BusinessRule_Services {
 	}
 	
 	public ResponseEntity<?> roadwayOperation(RoadwayBRE_Model roadway, String operation) {
-		System.out.println(" +++++++++++++++++++++++ roadwayOperation ");
+		System.out.println(" +++++++++++++++++++++++ roadwayOperation "+ roadway.id_rule);
 		Response<RoadwayBRE_Model> responseObj = null;
 		RoadwayBRE_Model roadwayObj = new RoadwayBRE_Model();
 		BusinessRuleImpl_DAO<RoadwayBRE_Model> businessRuleImpl_DAO = new BusinessRuleImpl_DAO<RoadwayBRE_Model>();
@@ -67,6 +67,7 @@ public class BusinessRule_Services {
 			 return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			responseObj = new Response<RoadwayBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
