@@ -1,6 +1,5 @@
 package com.packsendme.microservice.sa.businessrule.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,10 +10,7 @@ import com.packsendme.execution.bre.rule.model.ExecutionBRE_Model;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
-import com.packsendme.microservice.sa.businessrule.dao.AirwayImpl_DAO;
 import com.packsendme.microservice.sa.businessrule.dao.BusinessRuleImpl_DAO;
-import com.packsendme.microservice.sa.businessrule.dao.MaritimewayImpl_DAO;
-import com.packsendme.microservice.sa.businessrule.dao.RoadwayImpl_DAO;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 
 @Service
@@ -51,6 +47,7 @@ public class BusinessRule_Services {
 	}
 	
 	public ResponseEntity<?> roadwayOperation(RoadwayBRE_Model roadway, String operation) {
+		System.out.println(" +++++++++++++++++++++++ roadwayOperation ");
 		Response<RoadwayBRE_Model> responseObj = null;
 		RoadwayBRE_Model roadwayObj = new RoadwayBRE_Model();
 		BusinessRuleImpl_DAO<RoadwayBRE_Model> businessRuleImpl_DAO = new BusinessRuleImpl_DAO<RoadwayBRE_Model>();
@@ -63,6 +60,7 @@ public class BusinessRule_Services {
 				 roadwayObj = businessRuleImpl_DAO.findOne(roadway.id_rule);
 			 }
 			 else if(operation.equals(Operation_Enum.POST.toString())) {
+				 System.out.println(" -------------------- roadwayOperation POST ");
 				 businessRuleImpl_DAO.add(roadway);
 			 }
 			responseObj = new Response<RoadwayBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), roadwayObj);
