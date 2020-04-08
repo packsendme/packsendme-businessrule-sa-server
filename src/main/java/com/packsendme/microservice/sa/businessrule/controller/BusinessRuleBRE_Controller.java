@@ -145,7 +145,7 @@ public class BusinessRuleBRE_Controller {
 		}
 	}
 	
-	@GetMapping("/maritimeway")
+	@GetMapping("/maritimeway/{id_rule}")
 	public ResponseEntity<?> getMaritimewayBRE_SA(@Validated @PathVariable ("id_rule") int id_rule) {		
 		try {
 			return businessRule_Services.maritimewayOperation(id_rule,null,"GET");
@@ -155,7 +155,7 @@ public class BusinessRuleBRE_Controller {
 		}
 	}
 	
-	@DeleteMapping("/maritimeway")
+	@DeleteMapping("/maritimeway/{id_rule}")
 	public ResponseEntity<?> deleteMaritimewayBRE_SA(@Validated @PathVariable ("id_rule") int id_rule) {		
 		try {
 			return businessRule_Services.maritimewayOperation(id_rule,null,"DELETE");
