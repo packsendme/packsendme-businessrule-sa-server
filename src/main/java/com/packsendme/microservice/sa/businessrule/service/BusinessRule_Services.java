@@ -3,6 +3,7 @@ package com.packsendme.microservice.sa.businessrule.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.packsendme.airway.bre.rule.model.AirwayBRE_Model;
 import com.packsendme.execution.bre.rule.model.ExecutionBRE_Model;
@@ -15,7 +16,7 @@ import com.packsendme.microservice.sa.businessrule.dao.MaritimewayImpl_DAO;
 import com.packsendme.microservice.sa.businessrule.dao.RoadwayImpl_DAO;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 
-
+@Service
 public class BusinessRule_Services {
 	
 	@Autowired
