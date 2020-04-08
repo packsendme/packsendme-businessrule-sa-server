@@ -13,13 +13,13 @@ import org.springframework.stereotype.Repository;
 public class BusinessRuleImpl_DAO<T> implements IBusinessRule_DAO<T>{
 
 	@Autowired
-	private RedisTemplate<String, Object> redisTemplate;
+	private RedisTemplate<String, T> redisTemplate;
 
 	@Override
 	public void add(T object) {
 		System.out.println(" +++++++++++++++++++++++ BusinessRuleImpl_DAO ");
 
-		redisTemplate.opsForValue().set("Execution", object);
+		redisTemplate.opsForList().leftPush("Execution", object);
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class BusinessRuleImpl_DAO<T> implements IBusinessRule_DAO<T>{
 
 	@Override
 	public T findOne(String id) {
-		return (T) redisTemplate.opsForValue().get(id);
+		return redisTemplate.opsForValue().get(id);
 	}
 
 	@Override
