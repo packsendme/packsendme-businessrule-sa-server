@@ -59,7 +59,7 @@ public class BusinessRule_Services {
 	}
 	
 	public ResponseEntity<?> roadwayOperation(int id_rule, RoadwayBRE_Model roadway, String operation) {
-		System.out.println(" +++++++++++++++++++++++ roadwayOperation "+ roadway.id_rule);
+		System.out.println(" +++++++++++++++++++++++ roadwayOperation ");
 		Response<RoadwayBRE_Model> responseObj = null;
 		RoadwayBRE_Model roadwayObj = new RoadwayBRE_Model();
 
