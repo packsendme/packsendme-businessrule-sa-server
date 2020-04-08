@@ -8,8 +8,10 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
+@Transactional
 public class BusinessRuleImpl_DAO<T> implements IBusinessRule_DAO<T>{
 
 	@Autowired
@@ -19,7 +21,7 @@ public class BusinessRuleImpl_DAO<T> implements IBusinessRule_DAO<T>{
 	public void add(T object) {
 		System.out.println(" +++++++++++++++++++++++ BusinessRuleImpl_DAO ");
 
-		redisTemplate.opsForList().leftPush("Execution", object);
+		redisTemplate.opsForList().leftPush("Roadway", object);
 	}
 
 	@Override
