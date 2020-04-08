@@ -20,8 +20,13 @@ public class BusinessRuleImpl_DAO<T> implements IBusinessRule_DAO<T>{
 	@Override
 	public void add(T object) {
 		System.out.println(" +++++++++++++++++++++++ BusinessRuleImpl_DAO ");
-
-		redisTemplate.opsForList().leftPush("Roadway", object);
+		try{
+			redisTemplate.opsForValue().set("Roadway", object);
+			//opsForList().leftPush("Roadway", object);
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 	@Override
