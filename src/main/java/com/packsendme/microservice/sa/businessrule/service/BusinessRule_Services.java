@@ -12,7 +12,7 @@ import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
 import com.packsendme.microservice.sa.businessrule.dao.AirwayImpl_DAO;
-import com.packsendme.microservice.sa.businessrule.dao.ExecutionImpl_DAO;
+import com.packsendme.microservice.sa.businessrule.dao.BusinessRuleImpl_DAO;
 import com.packsendme.microservice.sa.businessrule.dao.MaritimewayImpl_DAO;
 import com.packsendme.microservice.sa.businessrule.dao.RoadwayImpl_DAO;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
@@ -20,19 +20,6 @@ import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 @Service
 @ComponentScan("com.packsendme.microservice.sa.businessrule.dao")
 public class BusinessRule_Services {
-	
-	@Autowired
-	private RoadwayImpl_DAO roadwayDAO;
-	
-	@Autowired
-	private AirwayImpl_DAO airwayDAO;
-	
-	@Autowired
-	private MaritimewayImpl_DAO maritimewayDAO;
-	
-	@Autowired
-	private ExecutionImpl_DAO<ExecutionBRE_Model> executionDAO;
-	
 	
 	public enum Operation_Enum {
 		GET, POST, DELETE;
@@ -42,15 +29,17 @@ public class BusinessRule_Services {
 	public ResponseEntity<?> executeOperation(ExecutionBRE_Model executionBRE, String operation) {
 		Response<ExecutionBRE_Model> responseObj = null;
 		ExecutionBRE_Model executionObj = new ExecutionBRE_Model();
+		BusinessRuleImpl_DAO<ExecutionBRE_Model> businessRuleImpl_DAO = new BusinessRuleImpl_DAO<ExecutionBRE_Model>();
+		
 		try {
 			 if(operation.equals(Operation_Enum.GET.toString())) {
-				 executionObj = executionDAO.findOne(executionBRE.status);
+				 executionObj = businessRuleImpl_DAO.findOne(executionBRE.status);
 			 }
 			 else if(operation.equals(Operation_Enum.DELETE.toString())) {
-				 executionObj = executionDAO.findOne(executionBRE.id_rule);
+				 executionObj = businessRuleImpl_DAO.findOne(executionBRE.id_rule);
 			 }
 			 else if(operation.equals(Operation_Enum.POST.toString())) {
-				 executionDAO.add(executionBRE);
+				 businessRuleImpl_DAO.add(executionBRE);
 			 }
 			responseObj = new Response<ExecutionBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), executionObj);
 			 return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
@@ -64,15 +53,17 @@ public class BusinessRule_Services {
 	public ResponseEntity<?> roadwayOperation(RoadwayBRE_Model roadway, String operation) {
 		Response<RoadwayBRE_Model> responseObj = null;
 		RoadwayBRE_Model roadwayObj = new RoadwayBRE_Model();
+		BusinessRuleImpl_DAO<RoadwayBRE_Model> businessRuleImpl_DAO = new BusinessRuleImpl_DAO<RoadwayBRE_Model>();
+
 		try {
 			 if(operation.equals(Operation_Enum.GET.toString())) {
-				 roadwayObj = roadwayDAO.findOne(roadway.status);
+				 roadwayObj = businessRuleImpl_DAO.findOne(roadway.status);
 			 }
 			 else if(operation.equals(Operation_Enum.DELETE.toString())) {
-				 roadwayObj = roadwayDAO.findOne(roadway.id_rule);
+				 roadwayObj = businessRuleImpl_DAO.findOne(roadway.id_rule);
 			 }
 			 else if(operation.equals(Operation_Enum.POST.toString())) {
-				 roadwayDAO.add(roadway);
+				 businessRuleImpl_DAO.add(roadway);
 			 }
 			responseObj = new Response<RoadwayBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), roadwayObj);
 			 return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
@@ -86,15 +77,17 @@ public class BusinessRule_Services {
 	public ResponseEntity<?> airwayOperation(AirwayBRE_Model airway, String operation) {
 		Response<AirwayBRE_Model> responseObj = null;
 		AirwayBRE_Model airwayObj = new AirwayBRE_Model();
+		BusinessRuleImpl_DAO<AirwayBRE_Model> businessRuleImpl_DAO = new BusinessRuleImpl_DAO<AirwayBRE_Model>();
+
 		try {
 			 if(operation.equals(Operation_Enum.GET.toString())) {
-				 airwayObj = airwayDAO.findOne(airway.status);
+				 airwayObj = businessRuleImpl_DAO.findOne(airway.status);
 			 }
 			 else if(operation.equals(Operation_Enum.DELETE.toString())) {
-				 airwayObj = airwayDAO.findOne(airway.id_rule);
+				 airwayObj = businessRuleImpl_DAO.findOne(airway.id_rule);
 			 }
 			 else if(operation.equals(Operation_Enum.POST.toString())) {
-				 airwayDAO.add(airway);
+				 businessRuleImpl_DAO.add(airway);
 			 }
 			responseObj = new Response<AirwayBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), airwayObj);
 			 return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
@@ -108,15 +101,17 @@ public class BusinessRule_Services {
 	public ResponseEntity<?> maritimewayOperation(MaritimewayBRE_Model maritimeway, String operation) {
 		Response<MaritimewayBRE_Model> responseObj = null;
 		MaritimewayBRE_Model maritimewayObj = new MaritimewayBRE_Model();
+		BusinessRuleImpl_DAO<MaritimewayBRE_Model> businessRuleImpl_DAO = new BusinessRuleImpl_DAO<MaritimewayBRE_Model>();
+
 		try {
 			 if(operation.equals(Operation_Enum.GET.toString())) {
-				 maritimewayObj = maritimewayDAO.findOne(maritimeway.status);
+				 maritimewayObj = businessRuleImpl_DAO.findOne(maritimeway.status);
 			 }
 			 else if(operation.equals(Operation_Enum.DELETE.toString())) {
-				 maritimewayObj = maritimewayDAO.findOne(maritimeway.id_rule);
+				 maritimewayObj = businessRuleImpl_DAO.findOne(maritimeway.id_rule);
 			 }
 			 else if(operation.equals(Operation_Enum.POST.toString())) {
-				 maritimewayDAO.add(maritimeway);
+				 businessRuleImpl_DAO.add(maritimeway);
 			 }
 			responseObj = new Response<MaritimewayBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), maritimewayObj);
 			 return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
