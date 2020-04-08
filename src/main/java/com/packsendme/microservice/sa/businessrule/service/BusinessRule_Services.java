@@ -1,5 +1,6 @@
 package com.packsendme.microservice.sa.businessrule.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,10 @@ public class BusinessRule_Services {
 	public enum Operation_Enum {
 		GET, POST, DELETE;
 	}
-			
+	
+	@Autowired
+	BusinessRuleImpl_DAO<RoadwayBRE_Model> businessRuleImpl_DAO;
+
 	
 	public ResponseEntity<?> executeOperation(ExecutionBRE_Model executionBRE, String operation) {
 		Response<ExecutionBRE_Model> responseObj = null;
@@ -50,7 +54,6 @@ public class BusinessRule_Services {
 		System.out.println(" +++++++++++++++++++++++ roadwayOperation "+ roadway.id_rule);
 		Response<RoadwayBRE_Model> responseObj = null;
 		RoadwayBRE_Model roadwayObj = new RoadwayBRE_Model();
-		BusinessRuleImpl_DAO<RoadwayBRE_Model> businessRuleImpl_DAO = new BusinessRuleImpl_DAO<RoadwayBRE_Model>();
 
 		try {
 			 if(operation.equals(Operation_Enum.GET.toString())) {
