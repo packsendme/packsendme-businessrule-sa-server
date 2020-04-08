@@ -132,7 +132,7 @@ public class BusinessRuleBRE_Controller {
 	// METHOD POST|GET :: MARITIMEWAY-BRE
 	//========================================================================================//
 
-	@PostMapping("/airway")
+	@PostMapping("/maritimeway")
 	public ResponseEntity<?> postMaritimewayBRE_SA(@Validated @RequestBody MaritimewayBRE_Model object) {		
 		try {
 			return businessRule_Services.maritimewayOperation(object, "POST");
@@ -142,7 +142,7 @@ public class BusinessRuleBRE_Controller {
 		}
 	}
 	
-	@GetMapping("/airway")
+	@GetMapping("/maritimeway")
 	public ResponseEntity<?> getMaritimewayBRE_SA(@Validated @RequestBody MaritimewayBRE_Model object) {		
 		try {
 			return businessRule_Services.maritimewayOperation(object, "GET");
@@ -152,7 +152,7 @@ public class BusinessRuleBRE_Controller {
 		}
 	}
 	
-	@DeleteMapping("/airway")
+	@DeleteMapping("/maritimeway")
 	public ResponseEntity<?> deleteMaritimewayBRE_SA(@Validated @RequestBody MaritimewayBRE_Model object) {		
 		try {
 			return businessRule_Services.maritimewayOperation(object, "DELETE");
