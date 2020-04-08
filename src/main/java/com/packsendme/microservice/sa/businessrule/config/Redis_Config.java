@@ -22,9 +22,13 @@ public class Redis_Config {
 	@Value(value = "${spring.redis.port}")
 	public int REDIS_PORT;
 	
+	@Value(value = "${spring.redis.password}")
+	public String REDIS_PWD;
+	
 	@Bean
 	protected JedisConnectionFactory jedisConnectionFactory() {
 		RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(REDIS_HOSTNAME,REDIS_PORT);
+		config.setPassword(REDIS_PWD);
 		JedisClientConfiguration jedisClientConfiguration = JedisClientConfiguration.builder().usePooling().build();
 		JedisConnectionFactory factory = new JedisConnectionFactory(config,jedisClientConfiguration);
 		factory.afterPropertiesSet();
