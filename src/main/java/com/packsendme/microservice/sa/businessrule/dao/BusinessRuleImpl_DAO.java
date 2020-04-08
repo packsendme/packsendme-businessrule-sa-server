@@ -37,6 +37,7 @@ public class BusinessRuleImpl_DAO<T> implements IBusinessRule_DAO<T>{
 
 	@Override
 	public T findOne(String cache,int value) {
+		System.out.println(" +++++++++++++++++++++++ findOne "+ cache);
 		return (T) redisTemplate.opsForHash().get(cache, value);
 	}
 
