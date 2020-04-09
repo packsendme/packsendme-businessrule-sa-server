@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.packsendme.airway.bre.rule.model.AirwayBRE_Model;
 import com.packsendme.execution.bre.rule.model.ExecutionBRE_Model;
+import com.packsendme.fuel.bre.rule.model.FuelBRE_Model;
 import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
 import com.packsendme.microservice.sa.businessrule.service.BusinessRule_Services;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
+import com.packsendme.tolls.bre.model.TollsBRE_Model;
 
 @RestController
 @RequestMapping("/businessrule/sa")
@@ -33,7 +35,7 @@ public class BusinessRuleBRE_Controller {
 	@PostMapping("/execution")
 	public ResponseEntity<?> postExecutionBRE_SA(@Validated @RequestBody ExecutionBRE_Model object) {		
 		try {
-			return businessRule_Services.executeOperation(0,object,"POST");
+			return businessRule_Services.executeOperation(null,object,"POST");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(object, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -41,19 +43,19 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	@GetMapping("/execution/{id_rule}")
-	public ResponseEntity<?> getExecutionBRE_SA(@Validated  @PathVariable ("id_rule") int id_rule) {		
+	public ResponseEntity<?> getExecutionBRE_SA(@Validated  @PathVariable ("name_rule") String name_rule) {		
 		try {
-			return businessRule_Services.executeOperation(id_rule,null,"GET");
+			return businessRule_Services.executeOperation(name_rule,null,"GET");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
-	@DeleteMapping("/execution/{id_rule}")
-	public ResponseEntity<?> deleteExecutionBRE_SA(@Validated  @PathVariable ("id_rule") int id_rule) {		
+	@DeleteMapping("/execution/{name_rule}")
+	public ResponseEntity<?> deleteExecutionBRE_SA(@Validated  @PathVariable ("name_rule") String name_rule) {		
 		try {
-			return businessRule_Services.executeOperation(id_rule,null,"DELETE");
+			return businessRule_Services.executeOperation(name_rule,null,"DELETE");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -68,7 +70,7 @@ public class BusinessRuleBRE_Controller {
 	@PostMapping("/roadway")
 	public ResponseEntity<?> postRoadwayBRE_SA(@Validated @RequestBody RoadwayBRE_Model object) {		
 		try {
-			return businessRule_Services.roadwayOperation(0,object, "POST");
+			return businessRule_Services.roadwayOperation(null,object, "POST");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(" +++++++++++++++++++++++ postRoadwayBRE_SA ");
@@ -77,20 +79,20 @@ public class BusinessRuleBRE_Controller {
 		}
 	}
 	
-	@GetMapping("/roadway/{id_rule}")
-	public ResponseEntity<?> getRoadwayBRE_SA(@Validated  @PathVariable ("id_rule") int id_rule) {		
+	@GetMapping("/roadway/{name_rule}")
+	public ResponseEntity<?> getRoadwayBRE_SA(@Validated  @PathVariable ("name_rule") String name_rule) {		
 		try {
-			return businessRule_Services.roadwayOperation(id_rule,null,"GET");
+			return businessRule_Services.roadwayOperation(name_rule,null,"GET");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
-	@DeleteMapping("/roadway/{id_rule}")
-	public ResponseEntity<?> deleteRoadwayBRE_SA(@Validated  @PathVariable ("id_rule") int id_rule) {		
+	@DeleteMapping("/roadway/{name_rule}")
+	public ResponseEntity<?> deleteRoadwayBRE_SA(@Validated  @PathVariable ("name_rule") String name_rule) {		
 		try {
-			return businessRule_Services.roadwayOperation(id_rule,null,"DELETE");
+			return businessRule_Services.roadwayOperation(name_rule,null,"DELETE");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -104,27 +106,27 @@ public class BusinessRuleBRE_Controller {
 	@PostMapping("/airway")
 	public ResponseEntity<?> postAirwayBRE_SA(@Validated @RequestBody AirwayBRE_Model object) {		
 		try {
-			return businessRule_Services.airwayOperation(0,object, "POST");
+			return businessRule_Services.airwayOperation(null,object, "POST");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(object, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
-	@GetMapping("/airway/{id_rule}")
-	public ResponseEntity<?> getAirwayBRE_SA(@Validated  @PathVariable ("id_rule") int id_rule) {		
+	@GetMapping("/airway/{name_rule}")
+	public ResponseEntity<?> getAirwayBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
 		try {
-			return businessRule_Services.airwayOperation(id_rule,null,"GET");
+			return businessRule_Services.airwayOperation(name_rule,null,"GET");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
-	@DeleteMapping("/airway/{id_rule}")
-	public ResponseEntity<?> deleteAirwayBRE_SA(@Validated @PathVariable ("id_rule") int id_rule) {		
+	@DeleteMapping("/airway/{name_rule}")
+	public ResponseEntity<?> deleteAirwayBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
 		try {
-			return businessRule_Services.airwayOperation(id_rule,null,"DELETE");
+			return businessRule_Services.airwayOperation(name_rule,null,"DELETE");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -138,31 +140,100 @@ public class BusinessRuleBRE_Controller {
 	@PostMapping("/maritimeway")
 	public ResponseEntity<?> postMaritimewayBRE_SA(@Validated @RequestBody MaritimewayBRE_Model object) {		
 		try {
-			return businessRule_Services.maritimewayOperation(0,object, "POST");
+			return businessRule_Services.maritimewayOperation(null,object, "POST");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(object, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
-	@GetMapping("/maritimeway/{id_rule}")
-	public ResponseEntity<?> getMaritimewayBRE_SA(@Validated @PathVariable ("id_rule") int id_rule) {		
+	@GetMapping("/maritimeway/{name_rule}")
+	public ResponseEntity<?> getMaritimewayBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
 		try {
-			return businessRule_Services.maritimewayOperation(id_rule,null,"GET");
+			return businessRule_Services.maritimewayOperation(name_rule,null,"GET");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
-	@DeleteMapping("/maritimeway/{id_rule}")
-	public ResponseEntity<?> deleteMaritimewayBRE_SA(@Validated @PathVariable ("id_rule") int id_rule) {		
+	@DeleteMapping("/maritimeway/{name_rule}")
+	public ResponseEntity<?> deleteMaritimewayBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
 		try {
-			return businessRule_Services.maritimewayOperation(id_rule,null,"DELETE");
+			return businessRule_Services.maritimewayOperation(name_rule,null,"DELETE");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	//========================================================================================
+	// METHOD POST|GET :: TOLLS-BRE
+	//========================================================================================//
+
+	@PostMapping("/tolls")
+	public ResponseEntity<?> postTollsBRE_SA(@Validated @RequestBody TollsBRE_Model object) {		
+		try {
+			return businessRule_Services.tollsOperation(null,object, "POST");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(object, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@GetMapping("/tolls/{name_rule}")
+	public ResponseEntity<?> getTollsBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
+		try {
+			return businessRule_Services.tollsOperation(name_rule,null,"GET");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@DeleteMapping("/tolls/{name_rule}")
+	public ResponseEntity<?> deleteTollsBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
+		try {
+			return businessRule_Services.tollsOperation(name_rule,null,"DELETE");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	//========================================================================================
+	// METHOD POST|GET :: FUEL-BRE
+	//========================================================================================//
+
+		@PostMapping("/fuel")
+		public ResponseEntity<?> postFuelBRE_SA(@Validated @RequestBody FuelBRE_Model object) {		
+			try {
+				return businessRule_Services.fuelOperation(null,object,"POST");
+			} catch (Exception e) {
+				e.printStackTrace();
+				return new ResponseEntity<>(object, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}
+		
+		@GetMapping("/fuel/{name_rule}")
+		public ResponseEntity<?> getFuelBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
+			try {
+				return businessRule_Services.fuelOperation(name_rule,null,"GET");
+			} catch (Exception e) {
+				e.printStackTrace();
+				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}
+		
+		@DeleteMapping("/fuel/{name_rule}")
+		public ResponseEntity<?> deleteFuelBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
+			try {
+				return businessRule_Services.fuelOperation(name_rule,null,"DELETE");
+			} catch (Exception e) {
+				e.printStackTrace();
+				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}
+
 	
 }
