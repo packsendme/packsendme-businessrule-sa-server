@@ -42,7 +42,7 @@ public class BusinessRuleBRE_Controller {
 		}
 	}
 	
-	@GetMapping("/execution/{id_rule}")
+	@GetMapping("/execution/{name_rule}")
 	public ResponseEntity<?> getExecutionBRE_SA(@Validated  @PathVariable ("name_rule") String name_rule) {		
 		try {
 			return businessRule_Services.executeOperation(name_rule,null,"GET");
