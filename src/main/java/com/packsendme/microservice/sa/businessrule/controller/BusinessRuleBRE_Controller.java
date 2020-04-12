@@ -33,7 +33,7 @@ public class BusinessRuleBRE_Controller {
 	//========================================================================================//
 
 	@PostMapping("/execution")
-	public ResponseEntity<ExecutionBRE_Model> postExecutionBRE_SA(@Validated @RequestBody ExecutionBRE_Model object) {		
+	public ResponseEntity<?> postExecutionBRE_SA(@Validated @RequestBody ExecutionBRE_Model object) {		
 		try {
 			return businessRule_Services.executeOperation(null,object,"POST");
 		} catch (Exception e) {

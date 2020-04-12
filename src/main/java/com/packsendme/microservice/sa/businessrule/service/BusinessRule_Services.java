@@ -38,7 +38,7 @@ public class BusinessRule_Services {
 	@Autowired
 	BusinessRuleImpl_DAO<TollsBRE_Model> tollsBREImpl_DAO;
 	
-	public ResponseEntity<ExecutionBRE_Model> executeOperation(String name_rule, ExecutionBRE_Model executionBRE, String operation) {
+	public ResponseEntity<?> executeOperation(String name_rule, ExecutionBRE_Model executionBRE, String operation) {
 		Response<ExecutionBRE_Model> responseObj = null;
 		ExecutionBRE_Model executionObj = new ExecutionBRE_Model();
 		
