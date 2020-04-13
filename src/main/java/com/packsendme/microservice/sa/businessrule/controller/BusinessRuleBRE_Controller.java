@@ -18,7 +18,7 @@ import com.packsendme.fuel.bre.rule.model.FuelBRE_Model;
 import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
 import com.packsendme.microservice.sa.businessrule.service.BusinessRule_Services;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
-import com.packsendme.tolls.bre.model.TollsBRE_Model;
+import com.packsendme.tollsfuel.bre.model.TollsFuelBRE_Model;
 
 @RestController
 @RequestMapping("/businessrule/sa")
@@ -168,13 +168,13 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	//========================================================================================
-	// METHOD POST|GET :: TOLLS-BRE
+	// METHOD POST|GET :: TOLLSFUEL-BRE
 	//========================================================================================//
 
-	@PostMapping("/tolls")
-	public ResponseEntity<?> postTollsBRE_SA(@Validated @RequestBody TollsBRE_Model object) {		
+	@PostMapping("/tollsfuel")
+	public ResponseEntity<?> postTollsFuelBRE_SA(@Validated @RequestBody TollsFuelBRE_Model object) {		
 		try {
-			return businessRule_Services.tollsOperation(null,object, "POST");
+			return businessRule_Services.tollsFuelOperation(null,object, "POST");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(object, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -182,9 +182,9 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	@GetMapping("/tolls/{name_rule}")
-	public ResponseEntity<?> getTollsBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
+	public ResponseEntity<?> getTollsFuelBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
 		try {
-			return businessRule_Services.tollsOperation(name_rule,null,"GET");
+			return businessRule_Services.tollsFuelOperation(name_rule,null,"GET");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -192,9 +192,9 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	@DeleteMapping("/tolls/{name_rule}")
-	public ResponseEntity<?> deleteTollsBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
+	public ResponseEntity<?> deleteTollsFuelBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
 		try {
-			return businessRule_Services.tollsOperation(name_rule,null,"DELETE");
+			return businessRule_Services.tollsFuelOperation(name_rule,null,"DELETE");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
