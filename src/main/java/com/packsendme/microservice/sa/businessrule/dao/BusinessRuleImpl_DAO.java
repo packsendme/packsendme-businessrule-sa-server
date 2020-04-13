@@ -15,7 +15,7 @@ public class BusinessRuleImpl_DAO<T> implements IBusinessRule_DAO<T>{
 	@Override
 	public void add(String cache, String value, T object) {
 		redisTemplate.opsForHash().delete(cache,value);  
-		redisTemplate.opsForHash().put(cache, value, object);
+		redisTemplate.opsForHash().put(cache, cache, object);
 	}
 
 	@Override
