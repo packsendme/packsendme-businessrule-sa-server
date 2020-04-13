@@ -15,7 +15,7 @@ import com.packsendme.lib.common.response.Response;
 import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
 import com.packsendme.microservice.sa.businessrule.dao.BusinessRuleImpl_DAO;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
-import com.packsendme.tolls.bre.model.TollsBRE_Model;
+import com.packsendme.tollsfuel.bre.model.TollsFuelBRE_Model;
 
 @Service
 @ComponentScan("com.packsendme.microservice.sa.businessrule.dao")
@@ -36,7 +36,7 @@ public class BusinessRule_Services {
 	@Autowired
 	BusinessRuleImpl_DAO<FuelBRE_Model> fuelBREImpl_DAO;
 	@Autowired
-	BusinessRuleImpl_DAO<TollsBRE_Model> tollsBREImpl_DAO;
+	BusinessRuleImpl_DAO<TollsFuelBRE_Model> tollsFuelBREImpl_DAO;
 	
 	public ResponseEntity<?> executeOperation(String name_rule, ExecutionBRE_Model executionBRE, String operation) {
 		Response<ExecutionBRE_Model> responseObj = null;
@@ -164,28 +164,28 @@ public class BusinessRule_Services {
 		}
 	}
 	
-	public ResponseEntity<?> tollsOperation(String name_rule, TollsBRE_Model tollsEntity, String operation) {
-		Response<TollsBRE_Model> responseObj = null;
-		TollsBRE_Model tollsObj = new TollsBRE_Model();
+	public ResponseEntity<?> tollsFuelOperation(String name_rule, TollsFuelBRE_Model tollsEntity, String operation) {
+		Response<TollsFuelBRE_Model> responseObj = null;
+		TollsFuelBRE_Model tollsFuelObj = new TollsFuelBRE_Model();
 
 		try {
 			 if(operation.equals(Operation_Enum.GET.toString())) {
-				 tollsObj = tollsBREImpl_DAO.findOne(CacheBRE_Constants.TOLLS_BRE_SA_CACHE,name_rule);
-				 responseObj = new Response<TollsBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), tollsObj);
+				 tollsFuelObj = tollsFuelBREImpl_DAO.findOne(CacheBRE_Constants.TOLLS_BRE_SA_CACHE,name_rule);
+				 responseObj = new Response<TollsFuelBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), tollsFuelObj);
 			 }
 			 else if(operation.equals(Operation_Enum.DELETE.toString())) {
-				 tollsBREImpl_DAO.delete(CacheBRE_Constants.TOLLS_BRE_SA_CACHE,name_rule);
-				 responseObj = new Response<TollsBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
+				 tollsFuelBREImpl_DAO.delete(CacheBRE_Constants.TOLLS_BRE_SA_CACHE,name_rule);
+				 responseObj = new Response<TollsFuelBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			 }
 			 else if(operation.equals(Operation_Enum.POST.toString())) {
-				 tollsBREImpl_DAO.add(CacheBRE_Constants.TOLLS_BRE_SA_CACHE, tollsEntity.name_rule, tollsEntity);
+				 tollsFuelBREImpl_DAO.add(CacheBRE_Constants.TOLLS_BRE_SA_CACHE, tollsEntity.name_rule, tollsEntity);
 				 //.add(BRE_SA_Constants.TOLLS_BRE_SA_CACHE,tollsEntity.name_rule,tollsEntity);
-				 responseObj = new Response<TollsBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
+				 responseObj = new Response<TollsFuelBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			 }
 			 return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
-			responseObj = new Response<TollsBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
+			responseObj = new Response<TollsFuelBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
