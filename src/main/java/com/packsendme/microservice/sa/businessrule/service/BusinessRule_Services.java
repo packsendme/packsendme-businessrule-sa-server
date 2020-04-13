@@ -170,15 +170,15 @@ public class BusinessRule_Services {
 
 		try {
 			 if(operation.equals(Operation_Enum.GET.toString())) {
-				 tollsFuelObj = tollsFuelBREImpl_DAO.findOne(CacheBRE_Constants.TOLLS_BRE_SA_CACHE,name_rule);
+				 tollsFuelObj = tollsFuelBREImpl_DAO.findOne(CacheBRE_Constants.TOLLSFUEL_BRE_SA_CACHE,name_rule);
 				 responseObj = new Response<TollsFuelBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), tollsFuelObj);
 			 }
 			 else if(operation.equals(Operation_Enum.DELETE.toString())) {
-				 tollsFuelBREImpl_DAO.delete(CacheBRE_Constants.TOLLS_BRE_SA_CACHE,name_rule);
+				 tollsFuelBREImpl_DAO.delete(CacheBRE_Constants.TOLLSFUEL_BRE_SA_CACHE,name_rule);
 				 responseObj = new Response<TollsFuelBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			 }
 			 else if(operation.equals(Operation_Enum.POST.toString())) {
-				 tollsFuelBREImpl_DAO.add(CacheBRE_Constants.TOLLS_BRE_SA_CACHE, tollsEntity.name_rule, tollsEntity);
+				 tollsFuelBREImpl_DAO.add(CacheBRE_Constants.TOLLSFUEL_BRE_SA_CACHE, tollsEntity.name_rule, tollsEntity);
 				 //.add(BRE_SA_Constants.TOLLS_BRE_SA_CACHE,tollsEntity.name_rule,tollsEntity);
 				 responseObj = new Response<TollsFuelBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 			 }

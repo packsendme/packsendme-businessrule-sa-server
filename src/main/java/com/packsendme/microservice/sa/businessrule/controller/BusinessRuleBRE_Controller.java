@@ -181,7 +181,7 @@ public class BusinessRuleBRE_Controller {
 		}
 	}
 	
-	@GetMapping("/tolls/{name_rule}")
+	@GetMapping("/tollsfuel/{name_rule}")
 	public ResponseEntity<?> getTollsFuelBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
 		try {
 			return businessRule_Services.tollsFuelOperation(name_rule,null,"GET");
@@ -191,7 +191,7 @@ public class BusinessRuleBRE_Controller {
 		}
 	}
 	
-	@DeleteMapping("/tolls/{name_rule}")
+	@DeleteMapping("/tollsfuel/{name_rule}")
 	public ResponseEntity<?> deleteTollsFuelBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
 		try {
 			return businessRule_Services.tollsFuelOperation(name_rule,null,"DELETE");
