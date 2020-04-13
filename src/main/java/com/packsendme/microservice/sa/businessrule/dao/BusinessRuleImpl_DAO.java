@@ -8,25 +8,56 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class BusinessRuleImpl_DAO<T> implements IBusinessRule_DAO<T>{
+	
+	private final boolean RESULT_SUCCESS = true;
+	private final boolean RESULT_ERROR = false;
 
 	@Autowired
 	private RedisTemplate<String, T> redisTemplate;
 	
 	@Override
-	public void add(String cache, String value, T object) {
-		redisTemplate.opsForHash().delete(cache,value);  
-		redisTemplate.opsForHash().put(cache, cache, object);
+	public boolean add(String cache, String value, T object) {
+		try {
+			redisTemplate.opsForHash().delete(cache,value);  
+			redisTemplate.opsForHash().put(cache, cache, object);
+			return RESULT_SUCCESS;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return RESULT_ERROR;
+		}
 	}
 
 	@Override
-	public void delete(String cache, String value) {
-		//redisTemplate.opsForValue().getOperations().delete(key);
-		redisTemplate.opsForHash().delete(cache,value);  
+	public boolean delete(String cache, String value) {
+		long result = 0;
+		try {
+			result = redisTemplate.opsForHash().delete(cache,value);
+			System.out.println(" ===========================================================  ");
+			System.out.println(" RESULT DELETE  "+ result);
+			System.out.println(" ===========================================================  ");
+			if(result > 0) {
+				return RESULT_SUCCESS;
+			}
+			else {
+				return RESULT_ERROR;
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return RESULT_ERROR;
+		}
 	}
 
 	@Override
 	public T findOne(String cache,String value) {
-		return (T) redisTemplate.opsForHash().get(cache, value);
+		try {
+			return (T) redisTemplate.opsForHash().get(cache, value);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
  
