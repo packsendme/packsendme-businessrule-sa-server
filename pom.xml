@@ -142,7 +142,7 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>com.packsendme.bre.tolls</groupId>
+			<groupId>com.packsendme.bre.tollsfuel</groupId>
   			<artifactId>packsendme-tollsfuel-bre</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
