@@ -201,39 +201,4 @@ public class BusinessRuleBRE_Controller {
 		}
 	}
 	
-	//========================================================================================
-	// METHOD POST|GET :: FUEL-BRE
-	//========================================================================================//
-
-		@PostMapping("/fuel")
-		public ResponseEntity<?> postFuelBRE_SA(@Validated @RequestBody FuelBRE_Model object) {		
-			try {
-				return businessRule_Services.fuelOperation(null,object,"POST");
-			} catch (Exception e) {
-				e.printStackTrace();
-				return new ResponseEntity<>(object, HttpStatus.INTERNAL_SERVER_ERROR);
-			}
-		}
-		
-		@GetMapping("/fuel/{name_rule}")
-		public ResponseEntity<?> getFuelBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
-			try {
-				return businessRule_Services.fuelOperation(name_rule,null,"GET");
-			} catch (Exception e) {
-				e.printStackTrace();
-				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-			}
-		}
-		
-		@DeleteMapping("/fuel/{name_rule}")
-		public ResponseEntity<?> deleteFuelBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
-			try {
-				return businessRule_Services.fuelOperation(name_rule,null,"DELETE");
-			} catch (Exception e) {
-				e.printStackTrace();
-				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-			}
-		}
-
-	
 }
