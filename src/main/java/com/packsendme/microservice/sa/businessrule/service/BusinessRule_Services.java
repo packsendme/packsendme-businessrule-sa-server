@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.netflix.discovery.converters.Auto;
 import com.packsendme.airway.bre.rule.model.AirwayBRE_Model;
 import com.packsendme.execution.bre.rule.model.ExecutionBRE_Model;
 import com.packsendme.fuel.bre.rule.model.FuelBRE_Model;
@@ -13,6 +14,7 @@ import com.packsendme.lib.common.constants.CacheBRE_Constants;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
+import com.packsendme.microservice.sa.businessrule.config.Cache_Config;
 import com.packsendme.microservice.sa.businessrule.dao.BusinessRuleImpl_DAO;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 import com.packsendme.tollsfuel.bre.model.TollsFuelBRE_Model;
@@ -24,6 +26,9 @@ public class BusinessRule_Services {
 	public enum Operation_Enum {
 		GET, POST, DELETE;
 	}
+	
+	@Autowired
+	Cache_Config cacheConfig;
 	
 	@Autowired
 	BusinessRuleImpl_DAO<RoadwayBRE_Model> roadwayBREImpl_DAO;
@@ -45,7 +50,7 @@ public class BusinessRule_Services {
 		
 		try {
 			 if(operation.equals(Operation_Enum.GET.toString())) {
-				 executionObj = executeBREImpl_DAO.findOne(CacheBRE_Constants.EXECUTE_BRE_SA_CACHE,name_rule);
+				 executionObj = executeBREImpl_DAO.findOne(cacheConfig.executeBRE_SA,name_rule);
 				 if(executionObj != null) {
 					 responseObj = new Response<ExecutionBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), executionObj);
 				 }
@@ -54,7 +59,7 @@ public class BusinessRule_Services {
 				 }
 			 }
 			 else if(operation.equals(Operation_Enum.DELETE.toString())) {
-				 result = executeBREImpl_DAO.delete(CacheBRE_Constants.EXECUTE_BRE_SA_CACHE,name_rule);
+				 result = executeBREImpl_DAO.delete(cacheConfig.executeBRE_SA,name_rule);
 				 if(result == true) {
 					 responseObj = new Response<ExecutionBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), null);
 				 }
@@ -63,7 +68,7 @@ public class BusinessRule_Services {
 				 }
 			 }
 			 else if(operation.equals(Operation_Enum.POST.toString())) {
-				 result = executeBREImpl_DAO.add(CacheBRE_Constants.EXECUTE_BRE_SA_CACHE,executionBRE.name_rule,executionBRE);
+				 result = executeBREImpl_DAO.add(cacheConfig.executeBRE_SA,executionBRE.name_rule,executionBRE);
 
 				 if(result == true) {
 					 responseObj = new Response<ExecutionBRE_Model>(HttpExceptionPackSend.BUSINESS_RULE.value(),HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
@@ -85,7 +90,7 @@ public class BusinessRule_Services {
 		boolean result;
 		try {
 			 if(operation.equals(Operation_Enum.GET.toString())) {
-				 roadwayObj = roadwayBREImpl_DAO.findOne(CacheBRE_Constants.ROADWAY_BRE_SA_CACHE,name_rule);
+				 roadwayObj = roadwayBREImpl_DAO.findOne(cacheConfig.roadwayBRE_SA,name_rule);
 				 if(roadwayObj != null) {
 					 responseObj = new Response<RoadwayBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), roadwayObj);
 				 }
@@ -94,7 +99,7 @@ public class BusinessRule_Services {
 				 }
 			 }
 			 else if(operation.equals(Operation_Enum.DELETE.toString())) {
-				 result = roadwayBREImpl_DAO.delete(CacheBRE_Constants.ROADWAY_BRE_SA_CACHE,name_rule);
+				 result = roadwayBREImpl_DAO.delete(cacheConfig.roadwayBRE_SA,name_rule);
 				 if(result == true) {
 					 responseObj = new Response<RoadwayBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), null);
 				 }
@@ -103,7 +108,7 @@ public class BusinessRule_Services {
 				 }
 			 }
 			 else if(operation.equals(Operation_Enum.POST.toString())) {
-				 result = roadwayBREImpl_DAO.add(CacheBRE_Constants.ROADWAY_BRE_SA_CACHE,roadway.name_rule,roadway);
+				 result = roadwayBREImpl_DAO.add(cacheConfig.roadwayBRE_SA,roadway.name_rule,roadway);
 				 responseObj = new Response<RoadwayBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 				 
 				 if(result == true) {
@@ -129,7 +134,7 @@ public class BusinessRule_Services {
 		
 		try {
 			 if(operation.equals(Operation_Enum.GET.toString())) {
-				 airwayObj = airwayBREImpl_DAO.findOne(CacheBRE_Constants.AIRWAY_BRE_SA_CACHE,name_rule);
+				 airwayObj = airwayBREImpl_DAO.findOne(cacheConfig.airwayBRE_SA,name_rule);
 				 
 				 if(airwayObj != null) {
 					 responseObj = new Response<AirwayBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), airwayObj);
@@ -139,7 +144,7 @@ public class BusinessRule_Services {
 				 }
 			 }
 			 else if(operation.equals(Operation_Enum.DELETE.toString())) {
-				 result = airwayBREImpl_DAO.delete(CacheBRE_Constants.AIRWAY_BRE_SA_CACHE,name_rule);
+				 result = airwayBREImpl_DAO.delete(cacheConfig.airwayBRE_SA,name_rule);
 
 				 if(result == true) {
 					 responseObj = new Response<AirwayBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), null);
@@ -149,7 +154,7 @@ public class BusinessRule_Services {
 				 }
 			 }
 			 else if(operation.equals(Operation_Enum.POST.toString())) {
-				 result = airwayBREImpl_DAO.add(CacheBRE_Constants.AIRWAY_BRE_SA_CACHE,airway.name_rule,airway);
+				 result = airwayBREImpl_DAO.add(cacheConfig.airwayBRE_SA,airway.name_rule,airway);
 				 
 				 if(result == true) {
 					 responseObj = new Response<AirwayBRE_Model>(HttpExceptionPackSend.BUSINESS_RULE.value(),HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
@@ -173,7 +178,7 @@ public class BusinessRule_Services {
 		
 		try {
 			 if(operation.equals(Operation_Enum.GET.toString())) {
-				 maritimewayObj = maritimewayBREImpl_DAO.findOne(CacheBRE_Constants.MARITIMEWAY_BRE_SA_CACHE,name_rule);
+				 maritimewayObj = maritimewayBREImpl_DAO.findOne(cacheConfig.maritimewayBRE_SA,name_rule);
 				 
 				 if(maritimewayObj != null) {
 					 responseObj = new Response<MaritimewayBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), maritimewayObj);
@@ -183,7 +188,7 @@ public class BusinessRule_Services {
 				 }
 			 }
 			 else if(operation.equals(Operation_Enum.DELETE.toString())) {
-				 result = maritimewayBREImpl_DAO.delete(CacheBRE_Constants.MARITIMEWAY_BRE_SA_CACHE,name_rule);
+				 result = maritimewayBREImpl_DAO.delete(cacheConfig.maritimewayBRE_SA,name_rule);
 
 				 if(result == true) {
 					 responseObj = new Response<MaritimewayBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), null);
@@ -193,7 +198,7 @@ public class BusinessRule_Services {
 				 }
 			 }
 			 else if(operation.equals(Operation_Enum.POST.toString())) {
-				 result = maritimewayBREImpl_DAO.add(CacheBRE_Constants.MARITIMEWAY_BRE_SA_CACHE,maritimeway.name_rule,maritimeway);
+				 result = maritimewayBREImpl_DAO.add(cacheConfig.maritimewayBRE_SA,maritimeway.name_rule,maritimeway);
 				 if(result == true) {
 					 responseObj = new Response<MaritimewayBRE_Model>(HttpExceptionPackSend.BUSINESS_RULE.value(),HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
 				 }
@@ -209,50 +214,6 @@ public class BusinessRule_Services {
 		}
 	}
 	
-	public ResponseEntity<?> fuelOperation(String name_rule, FuelBRE_Model fuelEntity, String operation) {
-		Response<FuelBRE_Model> responseObj = null;
-		FuelBRE_Model fuelObj = null;
-		boolean result;
-		
-		try {
-			 if(operation.equals(Operation_Enum.GET.toString())) {
-				 fuelObj = fuelBREImpl_DAO.findOne(CacheBRE_Constants.FUEL_BRE_SA_CACHE,name_rule);
-				 
-				 if(fuelObj != null) {
-					 responseObj = new Response<FuelBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), fuelObj);
-				 }
-				 else {
-					 responseObj = new Response<FuelBRE_Model>(HttpExceptionPackSend.NOT_BUSINESS_RULE.value(),HttpExceptionPackSend.NOT_BUSINESS_RULE.getAction(), null);
-				 }
-			 }
-			 else if(operation.equals(Operation_Enum.DELETE.toString())) {
-				 result = maritimewayBREImpl_DAO.delete(CacheBRE_Constants.FUEL_BRE_SA_CACHE,name_rule);
-
-				 if(result == true) {
-					 responseObj = new Response<FuelBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), null);
-				 }
-				 else {
-					 responseObj = new Response<FuelBRE_Model>(HttpExceptionPackSend.NOT_BUSINESS_RULE.value(),HttpExceptionPackSend.NOT_BUSINESS_RULE.getAction(), null);
-				 }
-			 }
-			 else if(operation.equals(Operation_Enum.POST.toString())) {
-				 result = fuelBREImpl_DAO.add(CacheBRE_Constants.FUEL_BRE_SA_CACHE,fuelEntity.name_rule,fuelEntity);
-				 
-				 if(result == true) {
-					 responseObj = new Response<FuelBRE_Model>(HttpExceptionPackSend.BUSINESS_RULE.value(),HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
-				 }
-				 else {
-					 responseObj = new Response<FuelBRE_Model>(HttpExceptionPackSend.NOT_BUSINESS_RULE.value(),HttpExceptionPackSend.NOT_BUSINESS_RULE.getAction(), null);
-				 }
-			 }
-			 return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
-
-		} catch (Exception e) {
-			responseObj = new Response<FuelBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
-			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-	
 	public ResponseEntity<?> tollsFuelOperation(String name_rule, TollsFuelBRE_Model tollsEntity, String operation) {
 		Response<TollsFuelBRE_Model> responseObj = null;
 		TollsFuelBRE_Model tollsFuelObj = null;
@@ -260,7 +221,7 @@ public class BusinessRule_Services {
 		
 		try {
 			 if(operation.equals(Operation_Enum.GET.toString())) {
-				 tollsFuelObj = tollsFuelBREImpl_DAO.findOne(CacheBRE_Constants.TOLLSFUEL_BRE_SA_CACHE,name_rule);
+				 tollsFuelObj = tollsFuelBREImpl_DAO.findOne(cacheConfig.tollsfuelBRE_SA,name_rule);
 				 
 				 if(tollsFuelObj != null) {
 					 responseObj = new Response<TollsFuelBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), tollsFuelObj);
@@ -270,7 +231,7 @@ public class BusinessRule_Services {
 				 }
 			 }
 			 else if(operation.equals(Operation_Enum.DELETE.toString())) {
-				 result = tollsFuelBREImpl_DAO.delete(CacheBRE_Constants.TOLLSFUEL_BRE_SA_CACHE,name_rule);
+				 result = tollsFuelBREImpl_DAO.delete(cacheConfig.tollsfuelBRE_SA,name_rule);
 				 
 				 if(result == true) {
 					 responseObj = new Response<TollsFuelBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), null);
@@ -280,7 +241,7 @@ public class BusinessRule_Services {
 				 }
 			 }
 			 else if(operation.equals(Operation_Enum.POST.toString())) {
-				 result = tollsFuelBREImpl_DAO.add(CacheBRE_Constants.TOLLSFUEL_BRE_SA_CACHE, tollsEntity.name_rule, tollsEntity);
+				 result = tollsFuelBREImpl_DAO.add(cacheConfig.tollsfuelBRE_SA, tollsEntity.name_rule, tollsEntity);
 	
 				 if(result == true) {
 					 responseObj = new Response<TollsFuelBRE_Model>(HttpExceptionPackSend.BUSINESS_RULE.value(),HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
