@@ -6,11 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.netflix.discovery.converters.Auto;
 import com.packsendme.airway.bre.rule.model.AirwayBRE_Model;
 import com.packsendme.execution.bre.rule.model.ExecutionBRE_Model;
 import com.packsendme.fuel.bre.rule.model.FuelBRE_Model;
-import com.packsendme.lib.common.constants.CacheBRE_Constants;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
