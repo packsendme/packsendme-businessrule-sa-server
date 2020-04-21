@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.packsendme.airway.bre.rule.model.AirwayBRE_Model;
 import com.packsendme.execution.bre.rule.model.ExecutionBRE_Model;
+import com.packsendme.financecostdelivery.bre.model.FinanceCostDeliveryBRE_Model;
 import com.packsendme.fuel.bre.rule.model.FuelBRE_Model;
 import com.packsendme.lib.common.constants.HttpExceptionPackSend;
 import com.packsendme.lib.common.response.Response;
@@ -40,6 +41,8 @@ public class BusinessRule_Services {
 	BusinessRuleImpl_DAO<FuelBRE_Model> fuelBREImpl_DAO;
 	@Autowired
 	BusinessRuleImpl_DAO<TollsFuelBRE_Model> tollsFuelBREImpl_DAO;
+	@Autowired
+	BusinessRuleImpl_DAO<FinanceCostDeliveryBRE_Model> financeCostDeliveryImpl_DAO;
 	
 	public ResponseEntity<?> executeOperation(String name_rule, ExecutionBRE_Model executionBRE, String operation) {
 		Response<ExecutionBRE_Model> responseObj = null;
@@ -256,5 +259,51 @@ public class BusinessRule_Services {
 			
 		}
 	}
+	
+	
+	public ResponseEntity<?> financeCostDeliveryOperation(String rule_type, FinanceCostDeliveryBRE_Model financeEntity, String operation) {
+		Response<FinanceCostDeliveryBRE_Model> responseObj = null;
+		FinanceCostDeliveryBRE_Model financeCostDeliveryObj = null;
+		boolean result;
+		
+		try {
+			 if(operation.equals(Operation_Enum.GET.toString())) {
+				 financeCostDeliveryObj = financeCostDeliveryImpl_DAO.findOne(cacheConfig.financeCostDeliveryBRE_SA,rule_type);
+				 
+				 if(financeCostDeliveryObj != null) {
+					 responseObj = new Response<FinanceCostDeliveryBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), financeCostDeliveryObj);
+				 }
+				 else {
+					 responseObj = new Response<FinanceCostDeliveryBRE_Model>(HttpExceptionPackSend.NOT_BUSINESS_RULE.value(),HttpExceptionPackSend.NOT_BUSINESS_RULE.getAction(), null);
+				 }
+			 }
+			 else if(operation.equals(Operation_Enum.DELETE.toString())) {
+				 result = financeCostDeliveryImpl_DAO.delete(cacheConfig.financeCostDeliveryBRE_SA,rule_type);
+				 
+				 if(result == true) {
+					 responseObj = new Response<FinanceCostDeliveryBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), null);
+				 }
+				 else {
+					 responseObj = new Response<FinanceCostDeliveryBRE_Model>(HttpExceptionPackSend.NOT_BUSINESS_RULE.value(),HttpExceptionPackSend.NOT_BUSINESS_RULE.getAction(), null);
+				 }
+			 }
+			 else if(operation.equals(Operation_Enum.POST.toString())) {
+				 result = financeCostDeliveryImpl_DAO.add(cacheConfig.financeCostDeliveryBRE_SA, financeEntity.type, financeEntity);
+	
+				 if(result == true) {
+					 responseObj = new Response<FinanceCostDeliveryBRE_Model>(HttpExceptionPackSend.BUSINESS_RULE.value(),HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
+				 }
+				 else {
+					 responseObj = new Response<FinanceCostDeliveryBRE_Model>(HttpExceptionPackSend.NOT_BUSINESS_RULE.value(),HttpExceptionPackSend.NOT_BUSINESS_RULE.getAction(), null);
+				 }
+			 }
+			 return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
+
+		} catch (Exception e) {
+			responseObj = new Response<FinanceCostDeliveryBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
+			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 
 }
