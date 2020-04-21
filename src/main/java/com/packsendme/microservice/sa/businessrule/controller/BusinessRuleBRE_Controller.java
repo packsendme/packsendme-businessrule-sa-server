@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.packsendme.airway.bre.rule.model.AirwayBRE_Model;
 import com.packsendme.execution.bre.rule.model.ExecutionBRE_Model;
-import com.packsendme.fuel.bre.rule.model.FuelBRE_Model;
+import com.packsendme.financecostdelivery.bre.model.FinanceCostDeliveryBRE_Model;
 import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
 import com.packsendme.microservice.sa.businessrule.service.BusinessRule_Services;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
@@ -200,5 +200,39 @@ public class BusinessRuleBRE_Controller {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	//========================================================================================
+		// METHOD POST|GET :: FinanceCostDelivery-BRE
+		//========================================================================================//
+
+		@PostMapping("/financecostdelivery")
+		public ResponseEntity<?> postFinanceCostDeliveryBRE_SA(@Validated @RequestBody FinanceCostDeliveryBRE_Model object) {		
+			try {
+				return businessRule_Services.financeCostDeliveryOperation(null,object, "POST");
+			} catch (Exception e) {
+				e.printStackTrace();
+				return new ResponseEntity<>(object, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}
+		
+		@GetMapping("/financecostdelivery/{rule_type}")
+		public ResponseEntity<?> getFinanceCostDeliveryBRE_SA(@Validated @PathVariable ("rule_type") String rule_type) {		
+			try {
+				return businessRule_Services.financeCostDeliveryOperation(rule_type,null,"GET");
+			} catch (Exception e) {
+				e.printStackTrace();
+				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}
+		
+		@DeleteMapping("/financecostdelivery/{rule_type}")
+		public ResponseEntity<?> deleteFinanceCostDeliveryBRE_SA(@Validated @PathVariable ("rule_type") String rule_type) {		
+			try {
+				return businessRule_Services.financeCostDeliveryOperation(rule_type,null,"DELETE");
+			} catch (Exception e) {
+				e.printStackTrace();
+				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}
 	
 }
