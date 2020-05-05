@@ -19,7 +19,7 @@ public class BusinessRuleImpl_DAO<T> implements IBusinessRule_DAO<T>{
 	public boolean add(String cache, String value, T object) {
 		try {
 			redisTemplate.opsForHash().delete(cache,value);  
-			redisTemplate.opsForHash().put(cache, cache, object);
+			redisTemplate.opsForHash().put(cache, value, object);
 			return RESULT_SUCCESS;
 		}
 		catch (Exception e) {
