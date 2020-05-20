@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.packsendme.airway.bre.rule.model.AirwayBRE_Model;
@@ -233,8 +234,8 @@ public class BusinessRuleBRE_Controller {
 	}
 		
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@GetMapping("/financecostdelivery/{rule_type}")
-	public ResponseEntity<?> getFinanceCostDeliveryBRE_SA(@Validated @PathVariable ("rule_type") String rule_type) {		
+	@GetMapping("/financecostdelivery")
+	public ResponseEntity<?> getFinanceCostDeliveryBRE_SA(@Validated @RequestParam ("rule_type") String rule_type) {		
 		try {
 			return businessRule_Services.financeCostDeliveryOperation(rule_type,null,"GET");
 		} catch (Exception e) {
@@ -244,8 +245,8 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@DeleteMapping("/financecostdelivery/{rule_type}")
-	public ResponseEntity<?> deleteFinanceCostDeliveryBRE_SA(@Validated @PathVariable ("rule_type") String rule_type) {		
+	@DeleteMapping("/financecostdelivery")
+	public ResponseEntity<?> deleteFinanceCostDeliveryBRE_SA(@Validated @RequestParam ("rule_type") String rule_type) {		
 		try {
 			return businessRule_Services.financeCostDeliveryOperation(rule_type,null,"DELETE");
 		} catch (Exception e) {
