@@ -86,7 +86,7 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@GetMapping("/roadway}")
+	@GetMapping("/roadway")
 	public ResponseEntity<?> getRoadwayBRE_SA(@Validated  @RequestParam ("name_rule") String name_rule) {		
 		try {
 			return businessRule_Services.roadwayOperation(name_rule,null,"GET");
