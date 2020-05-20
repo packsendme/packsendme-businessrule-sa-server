@@ -86,8 +86,8 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@GetMapping("/roadway/{name_rule}")
-	public ResponseEntity<?> getRoadwayBRE_SA(@Validated  @PathVariable ("name_rule") String name_rule) {		
+	@GetMapping("/roadway}")
+	public ResponseEntity<?> getRoadwayBRE_SA(@Validated  @RequestParam ("name_rule") String name_rule) {		
 		try {
 			return businessRule_Services.roadwayOperation(name_rule,null,"GET");
 		} catch (Exception e) {
@@ -97,8 +97,8 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@DeleteMapping("/roadway/{name_rule}")
-	public ResponseEntity<?> deleteRoadwayBRE_SA(@Validated  @PathVariable ("name_rule") String name_rule) {		
+	@DeleteMapping("/roadway")
+	public ResponseEntity<?> deleteRoadwayBRE_SA(@Validated  @RequestParam ("name_rule") String name_rule) {		
 		try {
 			return businessRule_Services.roadwayOperation(name_rule,null,"DELETE");
 		} catch (Exception e) {
@@ -123,8 +123,8 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@GetMapping("/airway/{name_rule}")
-	public ResponseEntity<?> getAirwayBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
+	@GetMapping("/airway")
+	public ResponseEntity<?> getAirwayBRE_SA(@Validated @RequestParam ("name_rule") String name_rule) {		
 		try {
 			return businessRule_Services.airwayOperation(name_rule,null,"GET");
 		} catch (Exception e) {
@@ -134,8 +134,8 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@DeleteMapping("/airway/{name_rule}")
-	public ResponseEntity<?> deleteAirwayBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
+	@DeleteMapping("/airway")
+	public ResponseEntity<?> deleteAirwayBRE_SA(@Validated @RequestParam ("name_rule") String name_rule) {		
 		try {
 			return businessRule_Services.airwayOperation(name_rule,null,"DELETE");
 		} catch (Exception e) {
@@ -160,8 +160,8 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@GetMapping("/maritimeway/{name_rule}")
-	public ResponseEntity<?> getMaritimewayBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
+	@GetMapping("/maritimeway")
+	public ResponseEntity<?> getMaritimewayBRE_SA(@Validated @RequestParam ("name_rule") String name_rule) {		
 		try {
 			return businessRule_Services.maritimewayOperation(name_rule,null,"GET");
 		} catch (Exception e) {
@@ -171,8 +171,8 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@DeleteMapping("/maritimeway/{name_rule}")
-	public ResponseEntity<?> deleteMaritimewayBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
+	@DeleteMapping("/maritimeway")
+	public ResponseEntity<?> deleteMaritimewayBRE_SA(@Validated @RequestParam ("name_rule") String name_rule) {		
 		try {
 			return businessRule_Services.maritimewayOperation(name_rule,null,"DELETE");
 		} catch (Exception e) {
@@ -197,8 +197,8 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@GetMapping("/tollsfuel/{name_rule}")
-	public ResponseEntity<?> getTollsFuelBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
+	@GetMapping("/tollsfuel")
+	public ResponseEntity<?> getTollsFuelBRE_SA(@Validated @RequestParam ("name_rule") String name_rule) {		
 		try {
 			return businessRule_Services.tollsFuelOperation(name_rule,null,"GET");
 		} catch (Exception e) {
@@ -208,8 +208,8 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@DeleteMapping("/tollsfuel/{name_rule}")
-	public ResponseEntity<?> deleteTollsFuelBRE_SA(@Validated @PathVariable ("name_rule") String name_rule) {		
+	@DeleteMapping("/tollsfuel")
+	public ResponseEntity<?> deleteTollsFuelBRE_SA(@Validated @RequestParam ("name_rule") String name_rule) {		
 		try {
 			return businessRule_Services.tollsFuelOperation(name_rule,null,"DELETE");
 		} catch (Exception e) {
