@@ -29,6 +29,11 @@
 		    <artifactId>commons-beanutils</artifactId>
 		    <version>1.9.2</version>
 		</dependency>
+		
+		<dependency>
+    		<groupId>org.springframework.cloud</groupId>
+    		<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
 	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -59,7 +64,14 @@
 		<dependency>
 		    <groupId>redis.clients</groupId>
 		    <artifactId>jedis</artifactId>
-		</dependency>		
+		</dependency>	
+		
+		<dependency>
+			<groupId>com.packsendme.api.exchange</groupId>
+			<artifactId>packsendme-exchange-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+			
 		
 		<!--  
 		<dependency>
