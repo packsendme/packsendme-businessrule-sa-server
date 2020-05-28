@@ -3,6 +3,7 @@ package com.packsendme.microservice.sa.businessrule.service;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,7 @@ import com.packsendme.tollsfuel.bre.model.TollsFuelBRE_Model;
 @Service
 @ComponentScan("{com.packsendme.microservice.sa.businessrule.dao,"
 		+ "com.packsendme.microservice.sa.businessrule.component}")
+@EnableFeignClients(basePackages="com.packsendme.microservice.sa.businessrule.controller")
 public class BusinessRule_Services {
 	
 	public enum Operation_Enum {
