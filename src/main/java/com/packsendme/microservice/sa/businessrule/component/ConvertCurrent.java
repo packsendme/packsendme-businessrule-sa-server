@@ -2,10 +2,13 @@ package com.packsendme.microservice.sa.businessrule.component;
 
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import com.packsendme.lib.common.constants.way.Roadway_Constants;
 import com.packsendme.roadway.bre.rule.costs.model.RuleCosts_Model;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 
+@Component
 public class ConvertCurrent {
 	
 	// Execute to GET operation	
