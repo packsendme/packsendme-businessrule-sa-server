@@ -19,7 +19,7 @@ import com.packsendme.lib.common.constants.generic.HttpExceptionPackSend;
 import com.packsendme.lib.common.constants.generic.MicroservicesConstants;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
-import com.packsendme.microservice.sa.businessrule.component.ConvertCurrent;
+import com.packsendme.microservice.sa.businessrule.component.RoadwayConvertCurrent;
 import com.packsendme.microservice.sa.businessrule.component.ParserData_Component;
 import com.packsendme.microservice.sa.businessrule.config.Cache_Config;
 import com.packsendme.microservice.sa.businessrule.controller.IExchange;
@@ -41,8 +41,6 @@ public class BusinessRule_Services {
 	Cache_Config cacheConfig;
 	
 	@Autowired
-	BusinessRuleImpl_DAO<RoadwayBRE_Model> roadwayBREImpl_DAO;
-	@Autowired
 	BusinessRuleImpl_DAO<AirwayBRE_Model> airwayBREImpl_DAO;
 	@Autowired
 	BusinessRuleImpl_DAO<MaritimewayBRE_Model> maritimewayBREImpl_DAO;
@@ -50,8 +48,6 @@ public class BusinessRule_Services {
 	BusinessRuleImpl_DAO<ExecutionBRE_Model> executeBREImpl_DAO;
 	@Autowired
 	BusinessRuleImpl_DAO<FuelBRE_Model> fuelBREImpl_DAO;
-	@Autowired
-	BusinessRuleImpl_DAO<TollsFuelBRE_Model> tollsFuelBREImpl_DAO;
 	@Autowired
 	BusinessRuleImpl_DAO<FinanceCostDeliveryBRE_Model> financeCostDeliveryImpl_DAO;
 	
@@ -61,7 +57,7 @@ public class BusinessRule_Services {
 	@Autowired
 	private ParserData_Component parserData;
 	@Autowired
-	private ConvertCurrent convertCurrent;
+	private RoadwayConvertCurrent convertCurrent;
 	
 	
 	
@@ -106,79 +102,7 @@ public class BusinessRule_Services {
 		}
 	}
 	
-	public ResponseEntity<?> roadwayOperation(String name_rule, RoadwayBRE_Model roadway, String operation, Map headInformation) {
-		Response<RoadwayBRE_Model> responseObj = null;
-		RoadwayBRE_Model roadwayObj = null;
-		boolean result;
-		try {
-			if(operation.equals(Operation_Enum.GET.toString())) {
-				roadwayObj = roadwayBREImpl_DAO.findOne(cacheConfig.roadwayBRE_SA,name_rule);
-				if(roadwayObj != null) {
-					if(headInformation.get("originApp").toString().equals(MicroservicesConstants.WEB_REQUEST_ORIGIN)) {
-						// Exchange API
-						ResponseEntity<?> exchangeResponse = exchangeRate_Client.getExchange(headInformation.get("isoCurrencyCode").toString());
-						ExchangeBRE_Model exchangeBRE = parserData.getParseExchange(exchangeResponse);
-						
-						// Country-Exchange API
-						ResponseEntity<?> exchangeCountryResponse = exchangeRate_Client.getCountry(headInformation.get("isoCountryCode").toString());
-						ExchangeCountryBRE_Model exchangeCountryBRE = parserData.getParseCountryExchange(exchangeCountryResponse);
-						
-						// Convert Value to Exchange Country-Origin
-						roadwayObj = convertCurrent.opGETConvertToCountryOrigin(roadwayObj, exchangeBRE.value, exchangeCountryBRE.currencyName);
-						responseObj = new Response<RoadwayBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), roadwayObj);
 
-					}
-					else{
-						responseObj = new Response<RoadwayBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), roadwayObj);
-					}
-				}
-				else {
-					responseObj = new Response<RoadwayBRE_Model>(HttpExceptionPackSend.NOT_BUSINESS_RULE.value(),HttpExceptionPackSend.NOT_BUSINESS_RULE.getAction(), null);
-				}
-			}
-			else if(operation.equals(Operation_Enum.DELETE.toString())) {
-				result = roadwayBREImpl_DAO.delete(cacheConfig.roadwayBRE_SA,name_rule);
-				if(result == true) {
-					responseObj = new Response<RoadwayBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), null);
-				}
-				else {
-					responseObj = new Response<RoadwayBRE_Model>(HttpExceptionPackSend.NOT_BUSINESS_RULE.value(),HttpExceptionPackSend.NOT_BUSINESS_RULE.getAction(), null);
-				}
-			}
-			else if(operation.equals(Operation_Enum.POST.toString())) {
-				if(headInformation.get("originApp").toString().equals(MicroservicesConstants.WEB_REQUEST_ORIGIN)) {
-					// Exchange API
-					ResponseEntity<?> exchangeResponse = exchangeRate_Client.getExchange(headInformation.get("isoCurrencyCode").toString());
-					ExchangeBRE_Model exchangeBRE = parserData.getParseExchange(exchangeResponse);
-					
-					// Country-Exchange API
-					ResponseEntity<?> exchangeCountryResponse = exchangeRate_Client.getCountry(headInformation.get("isoCountryCode").toString());
-					ExchangeCountryBRE_Model exchangeCountryBRE = parserData.getParseCountryExchange(exchangeCountryResponse);
-					
-					// Convert Value to Exchange Country-Origin
-					roadwayObj = convertCurrent.opPOSTConvertToDollar(roadwayObj, exchangeBRE.value, exchangeCountryBRE.currencyName);
-					result = roadwayBREImpl_DAO.add(cacheConfig.roadwayBRE_SA,roadwayObj.name_rule,roadwayObj);
-				}
-				else{
-					result = roadwayBREImpl_DAO.add(cacheConfig.roadwayBRE_SA,roadway.name_rule,roadway);
-					responseObj = new Response<RoadwayBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
-				}
-				// ResultOperation - POST
-				if(result == true) {
-					responseObj = new Response<RoadwayBRE_Model>(HttpExceptionPackSend.BUSINESS_RULE.value(),HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
-				}
-				else {
-				 responseObj = new Response<RoadwayBRE_Model>(HttpExceptionPackSend.NOT_BUSINESS_RULE.value(),HttpExceptionPackSend.NOT_BUSINESS_RULE.getAction(), null);
-				}
-			}
-			return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			responseObj = new Response<RoadwayBRE_Model>(HttpExceptionPackSend.FAIL_EXECUTION.value(),HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
-			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
 	
 	public ResponseEntity<?> airwayOperation(String name_rule, AirwayBRE_Model airway, String operation, Map headInformation) {
 		Response<AirwayBRE_Model> responseObj = null;
@@ -267,50 +191,6 @@ public class BusinessRule_Services {
 		}
 	}
 	
-	public ResponseEntity<?> tollsFuelOperation(String name_rule, TollsFuelBRE_Model tollsEntity, String operation, Map headInformation) {
-		Response<TollsFuelBRE_Model> responseObj = null;
-		TollsFuelBRE_Model tollsFuelObj = null;
-		boolean result;
-		
-		try {
-			 if(operation.equals(Operation_Enum.GET.toString())) {
-				 tollsFuelObj = tollsFuelBREImpl_DAO.findOne(cacheConfig.tollsfuelBRE_SA,name_rule);
-				 
-				 if(tollsFuelObj != null) {
-					 responseObj = new Response<TollsFuelBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), tollsFuelObj);
-				 }
-				 else {
-					 responseObj = new Response<TollsFuelBRE_Model>(HttpExceptionPackSend.NOT_BUSINESS_RULE.value(),HttpExceptionPackSend.NOT_BUSINESS_RULE.getAction(), null);
-				 }
-			 }
-			 else if(operation.equals(Operation_Enum.DELETE.toString())) {
-				 result = tollsFuelBREImpl_DAO.delete(cacheConfig.tollsfuelBRE_SA,name_rule);
-				 
-				 if(result == true) {
-					 responseObj = new Response<TollsFuelBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), null);
-				 }
-				 else {
-					 responseObj = new Response<TollsFuelBRE_Model>(HttpExceptionPackSend.NOT_BUSINESS_RULE.value(),HttpExceptionPackSend.NOT_BUSINESS_RULE.getAction(), null);
-				 }
-			 }
-			 else if(operation.equals(Operation_Enum.POST.toString())) {
-				 result = tollsFuelBREImpl_DAO.add(cacheConfig.tollsfuelBRE_SA, tollsEntity.name_rule, tollsEntity);
-	
-				 if(result == true) {
-					 responseObj = new Response<TollsFuelBRE_Model>(HttpExceptionPackSend.BUSINESS_RULE.value(),HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
-				 }
-				 else {
-					 responseObj = new Response<TollsFuelBRE_Model>(HttpExceptionPackSend.NOT_BUSINESS_RULE.value(),HttpExceptionPackSend.NOT_BUSINESS_RULE.getAction(), null);
-				 }
-			 }
-			 return new ResponseEntity<>(responseObj, HttpStatus.ACCEPTED);
-
-		} catch (Exception e) {
-			responseObj = new Response<TollsFuelBRE_Model>(0,HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
-			return new ResponseEntity<>(responseObj, HttpStatus.INTERNAL_SERVER_ERROR);
-			
-		}
-	}
 	
 	
 	public ResponseEntity<?> financeCostDeliveryOperation(String rule_type, FinanceCostDeliveryBRE_Model financeEntity, String operation, Map headInformation) {

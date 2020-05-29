@@ -24,6 +24,8 @@ import com.packsendme.execution.bre.rule.model.ExecutionBRE_Model;
 import com.packsendme.financecostdelivery.bre.model.FinanceCostDeliveryBRE_Model;
 import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
 import com.packsendme.microservice.sa.businessrule.service.BusinessRule_Services;
+import com.packsendme.microservice.sa.businessrule.service.RoadwayBusinesRule_Services;
+import com.packsendme.microservice.sa.businessrule.service.TollsFuelBusinesRule_Services;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 import com.packsendme.tollsfuel.bre.model.TollsFuelBRE_Model;
 
@@ -33,6 +35,12 @@ public class BusinessRuleBRE_Controller {
 	
 	@Autowired
 	private BusinessRule_Services businessRule_Services;
+	
+	@Autowired
+	private RoadwayBusinesRule_Services roadway_Services;
+	
+	@Autowired
+	private TollsFuelBusinesRule_Services tollsfuel_Services;
 	
 	private Map<String,Object> headInformation = new HashMap<String,Object>();
 	
@@ -93,7 +101,7 @@ public class BusinessRuleBRE_Controller {
 			headInformation.put("isoCurrencyCode", isoCurrencyCode);
 			headInformation.put("originApp", originApp);
 			
-			return businessRule_Services.roadwayOperation(null,object, "POST", headInformation);
+			return roadway_Services.roadwayOperation(null,object, "POST", headInformation);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(" +++++++++++++++++++++++ postRoadwayBRE_SA ");
@@ -115,7 +123,7 @@ public class BusinessRuleBRE_Controller {
 			headInformation.put("isoCountryCode", isoCountryCode);
 			headInformation.put("isoCurrencyCode", isoCurrencyCode);
 			headInformation.put("originApp", originApp);
-			return businessRule_Services.roadwayOperation(name_rule,null,"GET",headInformation);
+			return roadway_Services.roadwayOperation(name_rule,null,"GET",headInformation);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -126,7 +134,7 @@ public class BusinessRuleBRE_Controller {
 	@DeleteMapping("/roadway")
 	public ResponseEntity<?> deleteRoadwayBRE_SA(@Validated  @RequestParam ("name_rule") String name_rule) {		
 		try {
-			return businessRule_Services.roadwayOperation(name_rule,null,"DELETE",headInformation);
+			return roadway_Services.roadwayOperation(name_rule,null,"DELETE",headInformation);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -266,7 +274,7 @@ public class BusinessRuleBRE_Controller {
 			headInformation.put("isoCurrencyCode", isoCurrencyCode);
 			headInformation.put("originApp", originApp);
 
-			return businessRule_Services.tollsFuelOperation(null,object, "POST",headInformation);
+			return tollsfuel_Services.tollsFuelOperation(null,object, "POST",headInformation);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(object, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -287,7 +295,7 @@ public class BusinessRuleBRE_Controller {
 			headInformation.put("isoCurrencyCode", isoCurrencyCode);
 			headInformation.put("originApp", originApp);
 
-			return businessRule_Services.tollsFuelOperation(name_rule,null,"GET",headInformation);
+			return tollsfuel_Services.tollsFuelOperation(name_rule,null,"GET",headInformation);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -298,7 +306,7 @@ public class BusinessRuleBRE_Controller {
 	@DeleteMapping("/tollsfuel")
 	public ResponseEntity<?> deleteTollsFuelBRE_SA(@Validated @RequestParam ("name_rule") String name_rule) {		
 		try {
-			return businessRule_Services.tollsFuelOperation(name_rule,null,"DELETE",headInformation);
+			return tollsfuel_Services.tollsFuelOperation(name_rule,null,"DELETE",headInformation);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -9,10 +9,10 @@ import com.packsendme.roadway.bre.rule.costs.model.RuleCosts_Model;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 
 @Component
-public class ConvertCurrent {
+public class RoadwayConvertCurrent {
 	
 	// Execute to GET operation	
-	public RoadwayBRE_Model opGETConvertToCountryOrigin(RoadwayBRE_Model roadwayBRE, double vlr_tax, String country) {
+	public RoadwayBRE_Model opGETConvertToCountryOrigin(RoadwayBRE_Model roadwayBRE, String country) {
 			
 		Map<String,RuleCosts_Model> ruleCostsMap = roadwayBRE.getRuleCosts().get(country);
 		
