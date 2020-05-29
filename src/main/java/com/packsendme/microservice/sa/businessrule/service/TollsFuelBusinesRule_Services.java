@@ -67,6 +67,8 @@ public class TollsFuelBusinesRule_Services {
 							
 						// Convert Value to Exchange Country-Origin
 						tollsFuelObj = convertCurrent.opGETConvertToCountryOrigin(tollsFuelObj, exchangeCountryBRE.currencyName);
+						responseObj = new Response<TollsFuelBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), tollsFuelObj);
+
 					}
 					else{
 						responseObj = new Response<TollsFuelBRE_Model>(HttpExceptionPackSend.FOUND_BUSINESS_RULE.value(),HttpExceptionPackSend.FOUND_BUSINESS_RULE.getAction(), tollsFuelObj);
