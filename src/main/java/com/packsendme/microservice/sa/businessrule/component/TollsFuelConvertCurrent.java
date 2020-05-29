@@ -30,7 +30,7 @@ public class TollsFuelConvertCurrent {
 		
 		tollsfuelPriceCountry.fuel_price = moneyFormat.doubleFormatRound(tollsfuelPriceCountry.fuel_price / vlr_rate);
 		tollsfuelPriceCountry.tolls_price = moneyFormat.doubleFormatRound(tollsfuelPriceCountry.tolls_price / vlr_rate);
-		tollsfuelPriceCountry.rate_exchange = vlr_rate;
+		tollsfuelPriceCountry.rate_exchange = moneyFormat.doubleFormatRound(vlr_rate);
 		// Add Map Way by Country
 		tollsFuelBRE.tollsfuelPriceCountry.put(country, tollsfuelPriceCountry);
 		return tollsFuelBRE;

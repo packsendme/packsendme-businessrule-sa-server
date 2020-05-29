@@ -82,7 +82,7 @@ public class RoadwayConvertCurrent {
 		ruleCosts_CAR.distance_cost = moneyFormat.doubleFormatRound(ruleCosts_CAR.distance_cost / vlr_tax);
 		ruleCosts_CAR.weight_cost = moneyFormat.doubleFormatRound(ruleCosts_CAR.weight_cost / vlr_tax);
 		ruleCosts_CAR.worktime_cost = moneyFormat.doubleFormatRound(ruleCosts_CAR.worktime_cost / vlr_tax);
-		ruleCosts_CAR.rate_exchange = vlr_tax;
+		ruleCosts_CAR.rate_exchange = moneyFormat.doubleFormatRound(vlr_tax);
 		ruleCostsMap.put(Roadway_Constants.ROADWAY_CAR, ruleCosts_CAR);
 
 		// MOTOCYCLE
