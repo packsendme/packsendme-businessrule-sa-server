@@ -3,7 +3,6 @@ package com.packsendme.microservice.sa.businessrule.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +10,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -61,8 +59,8 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@GetMapping("/execution/{name_rule}")
-	public ResponseEntity<?> getExecutionBRE_SA(@Validated  @PathVariable ("name_rule") String name_rule) {		
+	@GetMapping("/execution")
+	public ResponseEntity<?> getExecutionBRE_SA(@Validated  @RequestHeader ("name_rule") String name_rule) {		
 		try {
 			return businessRule_Services.executeOperation(name_rule,null,"GET");
 		} catch (Exception e) {
@@ -72,8 +70,8 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
-	@DeleteMapping("/execution/{name_rule}")
-	public ResponseEntity<?> deleteExecutionBRE_SA(@Validated  @PathVariable ("name_rule") String name_rule) {		
+	@DeleteMapping("/execution")
+	public ResponseEntity<?> deleteExecutionBRE_SA(@Validated  @RequestHeader ("name_rule") String name_rule) {		
 		try {
 			return businessRule_Services.executeOperation(name_rule,null,"DELETE");
 		} catch (Exception e) {
@@ -132,8 +130,17 @@ public class BusinessRuleBRE_Controller {
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@DeleteMapping("/roadway")
-	public ResponseEntity<?> deleteRoadwayBRE_SA(@Validated  @RequestParam ("name_rule") String name_rule) {		
+	public ResponseEntity<?> deleteRoadwayBRE_SA(
+			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
+			@RequestHeader("isoCountryCode") String isoCountryCode,
+			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
+			@RequestHeader("originApp") String originApp,
+			@Validated  @RequestParam ("name_rule") String name_rule) {		
 		try {
+			headInformation.put("isoLanguageCode", isoLanguageCode);
+			headInformation.put("isoCountryCode", isoCountryCode);
+			headInformation.put("isoCurrencyCode", isoCurrencyCode);
+			headInformation.put("originApp", originApp);
 			return roadway_Services.roadwayOperation(name_rule,null,"DELETE",headInformation);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -189,8 +196,17 @@ public class BusinessRuleBRE_Controller {
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@DeleteMapping("/airway")
-	public ResponseEntity<?> deleteAirwayBRE_SA(@Validated @RequestParam ("name_rule") String name_rule) {		
+	public ResponseEntity<?> deleteAirwayBRE_SA(
+			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
+			@RequestHeader("isoCountryCode") String isoCountryCode,
+			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
+			@RequestHeader("originApp") String originApp,
+			@Validated @RequestParam ("name_rule") String name_rule) {		
 		try {
+			headInformation.put("isoLanguageCode", isoLanguageCode);
+			headInformation.put("isoCountryCode", isoCountryCode);
+			headInformation.put("isoCurrencyCode", isoCurrencyCode);
+			headInformation.put("originApp", originApp);
 			return businessRule_Services.airwayOperation(name_rule,null,"DELETE",headInformation);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -246,8 +262,17 @@ public class BusinessRuleBRE_Controller {
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@DeleteMapping("/maritimeway")
-	public ResponseEntity<?> deleteMaritimewayBRE_SA(@Validated @RequestParam ("name_rule") String name_rule) {		
+	public ResponseEntity<?> deleteMaritimewayBRE_SA(
+			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
+			@RequestHeader("isoCountryCode") String isoCountryCode,
+			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
+			@RequestHeader("originApp") String originApp,
+			@Validated @RequestParam ("name_rule") String name_rule) {		
 		try {
+			headInformation.put("isoLanguageCode", isoLanguageCode);
+			headInformation.put("isoCountryCode", isoCountryCode);
+			headInformation.put("isoCurrencyCode", isoCurrencyCode);
+			headInformation.put("originApp", originApp);
 			return businessRule_Services.maritimewayOperation(name_rule,null,"DELETE",headInformation);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -304,8 +329,17 @@ public class BusinessRuleBRE_Controller {
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@DeleteMapping("/tollsfuel")
-	public ResponseEntity<?> deleteTollsFuelBRE_SA(@Validated @RequestParam ("name_rule") String name_rule) {		
+	public ResponseEntity<?> deleteTollsFuelBRE_SA(
+			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
+			@RequestHeader("isoCountryCode") String isoCountryCode,
+			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
+			@RequestHeader("originApp") String originApp,
+			@Validated @RequestParam ("name_rule") String name_rule) {		
 		try {
+			headInformation.put("isoLanguageCode", isoLanguageCode);
+			headInformation.put("isoCountryCode", isoCountryCode);
+			headInformation.put("isoCurrencyCode", isoCurrencyCode);
+			headInformation.put("originApp", originApp);
 			return tollsfuel_Services.tollsFuelOperation(name_rule,null,"DELETE",headInformation);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -345,14 +379,14 @@ public class BusinessRuleBRE_Controller {
 			@RequestHeader("isoCountryCode") String isoCountryCode,
 			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
 			@RequestHeader("originApp") String originApp,
-			@Validated @RequestParam ("rule_type") String rule_type) {		
+			@Validated @RequestParam ("name_rule") String name_rule) {		
 		try {
 			headInformation.put("isoLanguageCode", isoLanguageCode);
 			headInformation.put("isoCountryCode", isoCountryCode);
 			headInformation.put("isoCurrencyCode", isoCurrencyCode);
 			headInformation.put("originApp", originApp);
 
-			return businessRule_Services.financeCostDeliveryOperation(rule_type,null,"GET",headInformation);
+			return businessRule_Services.financeCostDeliveryOperation(name_rule,null,"GET",headInformation);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -361,8 +395,17 @@ public class BusinessRuleBRE_Controller {
 	
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@DeleteMapping("/financecostdelivery")
-	public ResponseEntity<?> deleteFinanceCostDeliveryBRE_SA(@Validated @RequestParam ("rule_type") String rule_type) {		
+	public ResponseEntity<?> deleteFinanceCostDeliveryBRE_SA(
+			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
+			@RequestHeader("isoCountryCode") String isoCountryCode,
+			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
+			@RequestHeader("originApp") String originApp,
+			@Validated @RequestParam ("name_rule") String rule_type) {		
 		try {
+			headInformation.put("isoLanguageCode", isoLanguageCode);
+			headInformation.put("isoCountryCode", isoCountryCode);
+			headInformation.put("isoCurrencyCode", isoCurrencyCode);
+			headInformation.put("originApp", originApp);
 			return businessRule_Services.financeCostDeliveryOperation(rule_type,null,"DELETE",headInformation);
 		} catch (Exception e) {
 			e.printStackTrace();
