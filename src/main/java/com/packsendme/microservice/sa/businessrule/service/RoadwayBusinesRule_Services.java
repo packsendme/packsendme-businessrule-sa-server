@@ -3,7 +3,6 @@ package com.packsendme.microservice.sa.businessrule.service;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +13,8 @@ import com.packsendme.exchange.bre.model.ExchangeCountryBRE_Model;
 import com.packsendme.lib.common.constants.generic.HttpExceptionPackSend;
 import com.packsendme.lib.common.constants.generic.MicroservicesConstants;
 import com.packsendme.lib.common.response.Response;
-import com.packsendme.microservice.sa.businessrule.component.RoadwayConvertCurrent;
 import com.packsendme.microservice.sa.businessrule.component.ParserData_Component;
+import com.packsendme.microservice.sa.businessrule.component.RoadwayConvertCurrent;
 import com.packsendme.microservice.sa.businessrule.config.Cache_Config;
 import com.packsendme.microservice.sa.businessrule.controller.IExchange;
 import com.packsendme.microservice.sa.businessrule.dao.BusinessRuleImpl_DAO;
@@ -24,7 +23,7 @@ import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 @Service
 @ComponentScan("{com.packsendme.microservice.sa.businessrule.dao,"
 		+ "com.packsendme.microservice.sa.businessrule.component}")
-@EnableFeignClients(basePackages="com.packsendme.microservice.sa.businessrule.controller")
+//@EnableFeignClients(basePackages="com.packsendme.microservice.sa.businessrule.controller")
 public class RoadwayBusinesRule_Services {
 
 	public enum Operation_Enum {
