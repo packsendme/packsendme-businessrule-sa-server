@@ -65,33 +65,33 @@ public class RoadwayConvert {
 		
 		// CONVERT Current to Exchange/Rate
 		// BICYCLE
-		ruleCosts_BICYCLE.distance_cost = moneyFormat.doubleFormatRound(ruleCosts_BICYCLE.distance_cost * ruleCosts_BICYCLE.rate_exchange);
-		ruleCosts_BICYCLE.weight_cost = moneyFormat.doubleFormatRound(ruleCosts_BICYCLE.weight_cost * ruleCosts_BICYCLE.rate_exchange);
-		ruleCosts_BICYCLE.worktime_cost = moneyFormat.doubleFormatRound(ruleCosts_BICYCLE.worktime_cost * ruleCosts_BICYCLE.rate_exchange);
+		ruleCosts_BICYCLE.distance_cost = moneyFormat.formatDouble(ruleCosts_BICYCLE.distance_cost * ruleCosts_BICYCLE.rate_exchange);
+		ruleCosts_BICYCLE.weight_cost = moneyFormat.formatDouble(ruleCosts_BICYCLE.weight_cost * ruleCosts_BICYCLE.rate_exchange);
+		ruleCosts_BICYCLE.worktime_cost = moneyFormat.formatDouble(ruleCosts_BICYCLE.worktime_cost * ruleCosts_BICYCLE.rate_exchange);
 		ruleCostsMap.put(Roadway_Constants.ROADWAY_BICYCLE, ruleCosts_BICYCLE);
 		
 		// CAR
-		ruleCosts_CAR.distance_cost = moneyFormat.doubleFormatRound(ruleCosts_CAR.distance_cost * ruleCosts_CAR.rate_exchange);
-		ruleCosts_CAR.weight_cost = moneyFormat.doubleFormatRound(ruleCosts_CAR.weight_cost * ruleCosts_CAR.rate_exchange);
-		ruleCosts_CAR.worktime_cost = moneyFormat.doubleFormatRound(ruleCosts_CAR.worktime_cost * ruleCosts_CAR.rate_exchange);
+		ruleCosts_CAR.distance_cost = moneyFormat.formatDouble(ruleCosts_CAR.distance_cost * ruleCosts_CAR.rate_exchange);
+		ruleCosts_CAR.weight_cost = moneyFormat.formatDouble(ruleCosts_CAR.weight_cost * ruleCosts_CAR.rate_exchange);
+		ruleCosts_CAR.worktime_cost = moneyFormat.formatDouble(ruleCosts_CAR.worktime_cost * ruleCosts_CAR.rate_exchange);
 		ruleCostsMap.put(Roadway_Constants.ROADWAY_CAR, ruleCosts_CAR);
 
 		// MOTOCYCLE
-		ruleCosts_MOTORCYCLE.distance_cost = moneyFormat.doubleFormatRound(ruleCosts_MOTORCYCLE.distance_cost * ruleCosts_MOTORCYCLE.rate_exchange);
-		ruleCosts_MOTORCYCLE.weight_cost = moneyFormat.doubleFormatRound(ruleCosts_MOTORCYCLE.weight_cost * ruleCosts_MOTORCYCLE.rate_exchange);
-		ruleCosts_MOTORCYCLE.worktime_cost = moneyFormat.doubleFormatRound(ruleCosts_MOTORCYCLE.worktime_cost * ruleCosts_MOTORCYCLE.rate_exchange);
+		ruleCosts_MOTORCYCLE.distance_cost = moneyFormat.formatDouble(ruleCosts_MOTORCYCLE.distance_cost * ruleCosts_MOTORCYCLE.rate_exchange);
+		ruleCosts_MOTORCYCLE.weight_cost = moneyFormat.formatDouble(ruleCosts_MOTORCYCLE.weight_cost * ruleCosts_MOTORCYCLE.rate_exchange);
+		ruleCosts_MOTORCYCLE.worktime_cost = moneyFormat.formatDouble(ruleCosts_MOTORCYCLE.worktime_cost * ruleCosts_MOTORCYCLE.rate_exchange);
 		ruleCostsMap.put(Roadway_Constants.ROADWAY_MOTORCYCLE, ruleCosts_MOTORCYCLE);
 
 		// MOTOCYCLE
-		ruleCosts_TRUCK.distance_cost = moneyFormat.doubleFormatRound(ruleCosts_TRUCK.distance_cost * ruleCosts_TRUCK.rate_exchange);
-		ruleCosts_TRUCK.weight_cost = moneyFormat.doubleFormatRound(ruleCosts_TRUCK.weight_cost * ruleCosts_TRUCK.rate_exchange);
-		ruleCosts_TRUCK.worktime_cost = moneyFormat.doubleFormatRound(ruleCosts_TRUCK.worktime_cost * ruleCosts_TRUCK.rate_exchange);
+		ruleCosts_TRUCK.distance_cost = moneyFormat.formatDouble(ruleCosts_TRUCK.distance_cost * ruleCosts_TRUCK.rate_exchange);
+		ruleCosts_TRUCK.weight_cost = moneyFormat.formatDouble(ruleCosts_TRUCK.weight_cost * ruleCosts_TRUCK.rate_exchange);
+		ruleCosts_TRUCK.worktime_cost = moneyFormat.formatDouble(ruleCosts_TRUCK.worktime_cost * ruleCosts_TRUCK.rate_exchange);
 		ruleCostsMap.put(Roadway_Constants.ROADWAY_TRUCK, ruleCosts_TRUCK);
 		
 		// MOTOCYCLE
-		ruleCosts_WALKING.distance_cost = moneyFormat.doubleFormatRound(ruleCosts_WALKING.distance_cost * ruleCosts_WALKING.rate_exchange);
-		ruleCosts_WALKING.weight_cost = moneyFormat.doubleFormatRound(ruleCosts_WALKING.weight_cost * ruleCosts_WALKING.rate_exchange);
-		ruleCosts_WALKING.worktime_cost = moneyFormat.doubleFormatRound(ruleCosts_WALKING.worktime_cost * ruleCosts_WALKING.rate_exchange);
+		ruleCosts_WALKING.distance_cost = moneyFormat.formatDouble(ruleCosts_WALKING.distance_cost * ruleCosts_WALKING.rate_exchange);
+		ruleCosts_WALKING.weight_cost = moneyFormat.formatDouble(ruleCosts_WALKING.weight_cost * ruleCosts_WALKING.rate_exchange);
+		ruleCosts_WALKING.worktime_cost = moneyFormat.formatDouble(ruleCosts_WALKING.worktime_cost * ruleCosts_WALKING.rate_exchange);
 		ruleCostsMap.put(Roadway_Constants.ROADWAY_WALKING, ruleCosts_WALKING);
 
 		// Add Map Way by Country
@@ -143,42 +143,42 @@ public class RoadwayConvert {
 
 		// CONVERT Current to Exchange/Rate
 		// BICYCLE
-		ruleCosts_BICYCLE.distance_cost = moneyFormat.doubleFormatRound(ruleCosts_BICYCLE.distance_cost / vlr_tax);
-		ruleCosts_BICYCLE.weight_cost = moneyFormat.doubleFormatRound(ruleCosts_BICYCLE.weight_cost / vlr_tax);
-		ruleCosts_BICYCLE.worktime_cost = moneyFormat.doubleFormatRound(ruleCosts_BICYCLE.worktime_cost / vlr_tax);
-		ruleCosts_BICYCLE.rate_exchange = moneyFormat.doubleFormatRound(vlr_tax);
+		ruleCosts_BICYCLE.distance_cost = moneyFormat.formatDouble(ruleCosts_BICYCLE.distance_cost / vlr_tax);
+		ruleCosts_BICYCLE.weight_cost = moneyFormat.formatDouble(ruleCosts_BICYCLE.weight_cost / vlr_tax);
+		ruleCosts_BICYCLE.worktime_cost = moneyFormat.formatDouble(ruleCosts_BICYCLE.worktime_cost / vlr_tax);
+		ruleCosts_BICYCLE.rate_exchange = moneyFormat.formatDouble(vlr_tax);
 		ruleCosts_BICYCLE.current_exchange = currencySymbol;
 		ruleCostsMap.put(Roadway_Constants.ROADWAY_BICYCLE, ruleCosts_BICYCLE);
 		
 		// CAR
-		ruleCosts_CAR.distance_cost = moneyFormat.doubleFormatRound(ruleCosts_CAR.distance_cost / vlr_tax);
-		ruleCosts_CAR.weight_cost = moneyFormat.doubleFormatRound(ruleCosts_CAR.weight_cost / vlr_tax);
-		ruleCosts_CAR.worktime_cost = moneyFormat.doubleFormatRound(ruleCosts_CAR.worktime_cost / vlr_tax);
-		ruleCosts_CAR.rate_exchange = moneyFormat.doubleFormatRound(vlr_tax);
+		ruleCosts_CAR.distance_cost = moneyFormat.formatDouble(ruleCosts_CAR.distance_cost / vlr_tax);
+		ruleCosts_CAR.weight_cost = moneyFormat.formatDouble(ruleCosts_CAR.weight_cost / vlr_tax);
+		ruleCosts_CAR.worktime_cost = moneyFormat.formatDouble(ruleCosts_CAR.worktime_cost / vlr_tax);
+		ruleCosts_CAR.rate_exchange = moneyFormat.formatDouble(vlr_tax);
 		ruleCosts_CAR.current_exchange = currencySymbol;
 		ruleCostsMap.put(Roadway_Constants.ROADWAY_CAR, ruleCosts_CAR);
 
 		// MOTOCYCLE
-		ruleCosts_MOTORCYCLE.distance_cost = moneyFormat.doubleFormatRound(ruleCosts_MOTORCYCLE.distance_cost / vlr_tax);
-		ruleCosts_MOTORCYCLE.weight_cost = moneyFormat.doubleFormatRound(ruleCosts_MOTORCYCLE.weight_cost / vlr_tax);
-		ruleCosts_MOTORCYCLE.worktime_cost = moneyFormat.doubleFormatRound(ruleCosts_MOTORCYCLE.worktime_cost / vlr_tax);
-		ruleCosts_MOTORCYCLE.rate_exchange = moneyFormat.doubleFormatRound(vlr_tax);
+		ruleCosts_MOTORCYCLE.distance_cost = moneyFormat.formatDouble(ruleCosts_MOTORCYCLE.distance_cost / vlr_tax);
+		ruleCosts_MOTORCYCLE.weight_cost = moneyFormat.formatDouble(ruleCosts_MOTORCYCLE.weight_cost / vlr_tax);
+		ruleCosts_MOTORCYCLE.worktime_cost = moneyFormat.formatDouble(ruleCosts_MOTORCYCLE.worktime_cost / vlr_tax);
+		ruleCosts_MOTORCYCLE.rate_exchange = moneyFormat.formatDouble(vlr_tax);
 		ruleCosts_MOTORCYCLE.current_exchange = currencySymbol;
 		ruleCostsMap.put(Roadway_Constants.ROADWAY_MOTORCYCLE, ruleCosts_MOTORCYCLE);
 
 		// MOTOCYCLE
-		ruleCosts_TRUCK.distance_cost = moneyFormat.doubleFormatRound(ruleCosts_TRUCK.distance_cost / vlr_tax);
-		ruleCosts_TRUCK.weight_cost = moneyFormat.doubleFormatRound(ruleCosts_TRUCK.weight_cost / vlr_tax);
-		ruleCosts_TRUCK.worktime_cost = moneyFormat.doubleFormatRound(ruleCosts_TRUCK.worktime_cost / vlr_tax);
-		ruleCosts_TRUCK.rate_exchange = moneyFormat.doubleFormatRound(vlr_tax);
+		ruleCosts_TRUCK.distance_cost = moneyFormat.formatDouble(ruleCosts_TRUCK.distance_cost / vlr_tax);
+		ruleCosts_TRUCK.weight_cost = moneyFormat.formatDouble(ruleCosts_TRUCK.weight_cost / vlr_tax);
+		ruleCosts_TRUCK.worktime_cost = moneyFormat.formatDouble(ruleCosts_TRUCK.worktime_cost / vlr_tax);
+		ruleCosts_TRUCK.rate_exchange = moneyFormat.formatDouble(vlr_tax);
 		ruleCosts_TRUCK.current_exchange = currencySymbol;
 		ruleCostsMap.put(Roadway_Constants.ROADWAY_TRUCK, ruleCosts_TRUCK);
 		
 		// MOTOCYCLE
-		ruleCosts_WALKING.distance_cost = moneyFormat.doubleFormatRound(ruleCosts_WALKING.distance_cost / vlr_tax);
-		ruleCosts_WALKING.weight_cost = moneyFormat.doubleFormatRound(ruleCosts_WALKING.weight_cost / vlr_tax);
-		ruleCosts_WALKING.worktime_cost = moneyFormat.doubleFormatRound(ruleCosts_WALKING.worktime_cost / vlr_tax);
-		ruleCosts_WALKING.rate_exchange = moneyFormat.doubleFormatRound(vlr_tax);
+		ruleCosts_WALKING.distance_cost = moneyFormat.formatDouble(ruleCosts_WALKING.distance_cost / vlr_tax);
+		ruleCosts_WALKING.weight_cost = moneyFormat.formatDouble(ruleCosts_WALKING.weight_cost / vlr_tax);
+		ruleCosts_WALKING.worktime_cost = moneyFormat.formatDouble(ruleCosts_WALKING.worktime_cost / vlr_tax);
+		ruleCosts_WALKING.rate_exchange = moneyFormat.formatDouble(vlr_tax);
 		ruleCosts_WALKING.current_exchange = currencySymbol;
 		ruleCostsMap.put(Roadway_Constants.ROADWAY_WALKING, ruleCosts_WALKING);
 
