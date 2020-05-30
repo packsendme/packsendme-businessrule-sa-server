@@ -14,7 +14,7 @@ import com.packsendme.lib.common.constants.generic.HttpExceptionPackSend;
 import com.packsendme.lib.common.constants.generic.MicroservicesConstants;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.microservice.sa.businessrule.component.ParserData_Component;
-import com.packsendme.microservice.sa.businessrule.component.RoadwayConvertCurrent;
+import com.packsendme.microservice.sa.businessrule.component.RoadwayConvert;
 import com.packsendme.microservice.sa.businessrule.config.Cache_Config;
 import com.packsendme.microservice.sa.businessrule.controller.IExchange;
 import com.packsendme.microservice.sa.businessrule.dao.BusinessRuleImpl_DAO;
@@ -23,7 +23,6 @@ import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 @Service
 @ComponentScan("{com.packsendme.microservice.sa.businessrule.dao,"
 		+ "com.packsendme.microservice.sa.businessrule.component}")
-//@EnableFeignClients(basePackages="com.packsendme.microservice.sa.businessrule.controller")
 public class RoadwayBusinesRule_Services {
 
 	public enum Operation_Enum {
@@ -42,7 +41,7 @@ public class RoadwayBusinesRule_Services {
 	@Autowired
 	private ParserData_Component parserData;
 	@Autowired
-	private RoadwayConvertCurrent convertCurrent;
+	private RoadwayConvert convertCurrent;
 	
 
 
@@ -96,7 +95,7 @@ public class RoadwayBusinesRule_Services {
 					ExchangeCountryBRE_Model exchangeCountryBRE = parserData.getParseCountryExchange(exchangeCountryResponse);
 					
 					// Convert Value to Exchange Country-Origin
-					roadwayObj = convertCurrent.opPOSTConvertToDollar(roadwayEntity, exchangeBRE.value, exchangeCountryBRE.currencyName);
+					roadwayObj = convertCurrent.opPOSTConvertToDollar(roadwayEntity, exchangeBRE.value, exchangeCountryBRE.currencyName, exchangeCountryBRE.currencySymbol);
 					result = roadwayBREImpl_DAO.add(cacheConfig.roadwayBRE_SA,roadwayObj.name_rule,roadwayObj);
 				}
 				else{
