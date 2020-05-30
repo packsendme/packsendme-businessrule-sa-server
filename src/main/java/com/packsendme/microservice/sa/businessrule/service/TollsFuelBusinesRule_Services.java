@@ -99,7 +99,7 @@ public class TollsFuelBusinesRule_Services {
 					ExchangeCountryBRE_Model exchangeCountryBRE = parserData.getParseCountryExchange(exchangeCountryResponse);
 							
 					// Convert Value to Exchange Country-Origin
-					tollsFuelObj = convertCurrent.opPOSTConvertToDollar(tollsEntity, exchangeRateBRE.value, exchangeCountryBRE.currencyName);
+					tollsFuelObj = convertCurrent.opPOSTConvertToDollar(tollsEntity, exchangeRateBRE.value, exchangeCountryBRE.currencyName, exchangeCountryBRE.currencySymbol);
 					result = tollsFuelBREImpl_DAO.add(cacheConfig.tollsfuelBRE_SA, tollsFuelObj.name_rule, tollsFuelObj);
 				}
 				else{

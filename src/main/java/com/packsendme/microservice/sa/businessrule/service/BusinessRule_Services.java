@@ -19,7 +19,7 @@ import com.packsendme.lib.common.constants.generic.HttpExceptionPackSend;
 import com.packsendme.lib.common.constants.generic.MicroservicesConstants;
 import com.packsendme.lib.common.response.Response;
 import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
-import com.packsendme.microservice.sa.businessrule.component.RoadwayConvertCurrent;
+import com.packsendme.microservice.sa.businessrule.component.RoadwayConvert;
 import com.packsendme.microservice.sa.businessrule.component.ParserData_Component;
 import com.packsendme.microservice.sa.businessrule.config.Cache_Config;
 import com.packsendme.microservice.sa.businessrule.controller.IExchange;
@@ -57,7 +57,7 @@ public class BusinessRule_Services {
 	@Autowired
 	private ParserData_Component parserData;
 	@Autowired
-	private RoadwayConvertCurrent convertCurrent;
+	private RoadwayConvert convertCurrent;
 	
 	
 	

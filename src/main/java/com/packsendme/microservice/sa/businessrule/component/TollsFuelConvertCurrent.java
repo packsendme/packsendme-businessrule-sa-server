@@ -24,13 +24,14 @@ public class TollsFuelConvertCurrent {
 	}
 
 	// Execute to POST operation
-	public TollsFuelBRE_Model opPOSTConvertToDollar(TollsFuelBRE_Model tollsFuelBRE, double vlr_rate, String country) {
+	public TollsFuelBRE_Model opPOSTConvertToDollar(TollsFuelBRE_Model tollsFuelBRE, double vlr_rate, String country, String currencySymbol) {
 		
 		TollsFuelPriceCountryBRE_Model tollsfuelPriceCountry = tollsFuelBRE.tollsfuelPriceCountry.get(country);
 		
 		tollsfuelPriceCountry.fuel_price = moneyFormat.doubleFormatRound(tollsfuelPriceCountry.fuel_price / vlr_rate);
 		tollsfuelPriceCountry.tolls_price = moneyFormat.doubleFormatRound(tollsfuelPriceCountry.tolls_price / vlr_rate);
 		tollsfuelPriceCountry.rate_exchange = moneyFormat.doubleFormatRound(vlr_rate);
+		tollsfuelPriceCountry.current_exchange = currencySymbol;
 		// Add Map Way by Country
 		tollsFuelBRE.tollsfuelPriceCountry.put(country, tollsfuelPriceCountry);
 		return tollsFuelBRE;
