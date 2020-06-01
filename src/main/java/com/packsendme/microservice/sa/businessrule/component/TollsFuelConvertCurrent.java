@@ -16,7 +16,8 @@ public class TollsFuelConvertCurrent {
 			
 		TollsFuelPriceCountryBRE_Model tollsfuelPriceCountry = tollsFuelBRE.tollsfuelPriceCountry.get(country);
 		
-		tollsfuelPriceCountry.fuel_price = moneyFormat.formatDouble(tollsfuelPriceCountry.fuel_price * tollsfuelPriceCountry.rate_exchange);
+		tollsfuelPriceCountry.fuelGasoline_price = moneyFormat.formatDouble(tollsfuelPriceCountry.fuelGasoline_price * tollsfuelPriceCountry.rate_exchange);
+		tollsfuelPriceCountry.fuelDiesel_price = moneyFormat.formatDouble(tollsfuelPriceCountry.fuelDiesel_price * tollsfuelPriceCountry.rate_exchange);
 		tollsfuelPriceCountry.tolls_price = moneyFormat.formatDouble(tollsfuelPriceCountry.tolls_price * tollsfuelPriceCountry.rate_exchange);
 		// Add Map Way by Country
 		tollsFuelBRE.tollsfuelPriceCountry.put(country, tollsfuelPriceCountry);
@@ -28,7 +29,8 @@ public class TollsFuelConvertCurrent {
 		
 		TollsFuelPriceCountryBRE_Model tollsfuelPriceCountry = tollsFuelBRE.tollsfuelPriceCountry.get(country);
 		
-		tollsfuelPriceCountry.fuel_price = moneyFormat.formatDouble(tollsfuelPriceCountry.fuel_price / vlr_rate);
+		tollsfuelPriceCountry.fuelGasoline_price = moneyFormat.formatDouble(tollsfuelPriceCountry.fuelGasoline_price / vlr_rate);
+		tollsfuelPriceCountry.fuelDiesel_price = moneyFormat.formatDouble(tollsfuelPriceCountry.fuelDiesel_price / vlr_rate);
 		tollsfuelPriceCountry.tolls_price = moneyFormat.formatDouble(tollsfuelPriceCountry.tolls_price / vlr_rate);
 		tollsfuelPriceCountry.rate_exchange = moneyFormat.formatDouble(vlr_rate);
 		tollsfuelPriceCountry.current_exchange = currencySymbol;
