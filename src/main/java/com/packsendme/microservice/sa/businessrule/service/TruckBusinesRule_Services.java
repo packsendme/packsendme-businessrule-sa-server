@@ -47,7 +47,7 @@ public class TruckBusinesRule_Services {
 				}
 			 }
 			 else if(operation.equals(Operation_Enum.POST.toString())) {
-					result = truckBREImpl_DAO.add(cacheConfig.tollsfuelBRE_SA, truckEntity.name_rule, truckEntity);
+					result = truckBREImpl_DAO.add(cacheConfig.truckBRE_SA, truckEntity.name_rule, truckEntity);
 	
 					if(result == true) {
 						responseObj = new Response<TruckBRE_Model>(HttpExceptionPackSend.BUSINESS_RULE.value(),HttpExceptionPackSend.BUSINESS_RULE.getAction(), null);
