@@ -20,7 +20,7 @@ import com.packsendme.truck.bre.model.TruckBRE_Model;
 public class TruckBusinesRule_Services {
 
 	public enum Operation_Enum {
-		GET, POST;
+		GET, POST, DELETE;
 	}
 	
 	@Autowired
