@@ -24,8 +24,10 @@ import com.packsendme.maritimeway.bre.rule.model.MaritimewayBRE_Model;
 import com.packsendme.microservice.sa.businessrule.service.BusinessRule_Services;
 import com.packsendme.microservice.sa.businessrule.service.RoadwayBusinesRule_Services;
 import com.packsendme.microservice.sa.businessrule.service.TollsFuelBusinesRule_Services;
+import com.packsendme.microservice.sa.businessrule.service.TruckBusinesRule_Services;
 import com.packsendme.roadway.bre.rule.model.RoadwayBRE_Model;
 import com.packsendme.tollsfuel.bre.model.TollsFuelBRE_Model;
+import com.packsendme.truck.bre.model.TruckBRE_Model;
 
 @RestController
 @RequestMapping("/businessrule/sa")
@@ -33,12 +35,12 @@ public class BusinessRuleBRE_Controller {
 	
 	@Autowired
 	private BusinessRule_Services businessRule_Services;
-	
 	@Autowired
 	private RoadwayBusinesRule_Services roadway_Services;
-	
 	@Autowired
 	private TollsFuelBusinesRule_Services tollsfuel_Services;
+	@Autowired
+	private TruckBusinesRule_Services truck_Services;
 	
 	private Map<String,Object> headInformation = new HashMap<String,Object>();
 	
@@ -348,8 +350,8 @@ public class BusinessRuleBRE_Controller {
 	}
 	
 	//========================================================================================
-		// METHOD POST|GET :: FinanceCostDelivery-BRE
-		//========================================================================================//
+	// METHOD POST|GET :: FinanceCostDelivery-BRE
+	//========================================================================================//
 
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PostMapping("/financecostdelivery")
@@ -412,4 +414,53 @@ public class BusinessRuleBRE_Controller {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	//========================================================================================
+	// METHOD POST|GET :: Truck-BRE
+	//========================================================================================//
+
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
+	@PostMapping("/truck")
+	public ResponseEntity<?> postTruckBRE_SA(
+			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
+			@RequestHeader("isoCountryCode") String isoCountryCode,
+			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
+			@RequestHeader("originApp") String originApp,
+			@Validated @RequestBody TruckBRE_Model object) {		
+		try {
+			headInformation.put("isoLanguageCode", isoLanguageCode);
+			headInformation.put("isoCountryCode", isoCountryCode);
+			headInformation.put("isoCurrencyCode", isoCurrencyCode);
+			headInformation.put("originApp", originApp);
+
+			return truck_Services.truckOperation(null,object, "POST",headInformation);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(object, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+		
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
+	@GetMapping("/truck")
+	public ResponseEntity<?> getTruckBRE_SA(
+			@RequestHeader("isoLanguageCode") String isoLanguageCode, 
+			@RequestHeader("isoCountryCode") String isoCountryCode,
+			@RequestHeader("isoCurrencyCode") String isoCurrencyCode,
+			@RequestHeader("originApp") String originApp,
+			@Validated @RequestParam ("name_rule") String name_rule) {		
+		try {
+			headInformation.put("isoLanguageCode", isoLanguageCode);
+			headInformation.put("isoCountryCode", isoCountryCode);
+			headInformation.put("isoCurrencyCode", isoCurrencyCode);
+			headInformation.put("originApp", originApp);
+
+			return truck_Services.truckOperation(name_rule,null,"GET",headInformation);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+
+
 }
