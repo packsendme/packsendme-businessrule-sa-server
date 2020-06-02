@@ -23,6 +23,9 @@ public class Cache_Config {
 	
 	@Value(value = "${redis.cache.financeCostDeliveryBRE_SA}")
 	public String financeCostDeliveryBRE_SA;
+	
+	@Value(value = "${redis.cache.truckBRE_SA}")
+	public String truckBRE_SA;
 
 
 }
